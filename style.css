@@ -563,75 +563,105 @@ nav.main-navbar{
     margin-top: 25px;/* Space from top of the section*/
 }
 
-/* Mobile Responsive Overrides */
+/* --- 1. Desktop Fixes (Pre-Media Query) --- */
+.image-container {
+    width: 100%; /* Fixing that 1348px issue immediately */
+}
+
+/* --- 2. The Hamburger Icon Styling (Hidden on Desktop) --- */
+.menu-toggle {
+    display: none;
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+    z-index: 2000;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    border-radius: 2px;
+}
+
+/* --- 3. MOBILE RESPONSIVE BLOCK (max-width: 768px) --- */
 @media screen and (max-width: 768px) {
-    /* 1. Reset Container Widths */
-    .image-container, 
-    .flex-container,
-    .video,
-    .milestone-1 {
-        width: 100% !important;
-        max-width: 100%;
-    }
-
-    /* 2. Stack Flex Elements Vertically */
-    .flex-container, 
-    .video-container, 
-    .technology-EGBHLMS {
-        flex-direction: column;
-        flex-wrap: wrap;
-    }
-
-    /* 3. Reset Box Fixed Widths and Margins */
-    .box1, .box2 {
-        width: 100% !important;
-        height: auto; /* Allow height to expand with content */
-        margin-top: 20px !important; /* Removes the 340px/150px gaps */
-        margin-left: 0;
-        margin-right: 0;
-        padding: 20px;
-    }
-
-    /* 4. Responsive Videos & YouTube */
-    .youtube-1,
-    .video-1 video, 
-    .video-2 video,
-    .video-1,
-    .video-2,
-    .content-1,
-    .content-2,
-    .BMW_Itellegence {
-        width: 100% !important;
-        height: auto !important;
-        max-width: 100%;
-        min-width: 100%;
-    }
-
-    /* 5. Center Headings and Sub-headings */
-    .joy .heading,
-    .hidden .heading,
-    .joy .sub-heading,
-    .hidden .sub-heading,
-    .heading-c,
-    .sub-heading-c,
-    .discription,
-    .discription-sub-heading {
-        text-align: center !important;
-        margin-left: 0 !important;
-        padding: 0 10px;
-    }
-
-    /* Navbar adjustment for mobile */
-    nav, nav.main-navbar {
-        flex-direction: column;
-        height: auto;
-        padding: 20px;
+    
+    /* Navigation: Hide by default, Show on click */
+    .hamburger {
+        display: flex; /* Show icon on mobile */
     }
 
     .navcontent, .navcontent-2 {
+        display: none; /* Hide the menu links */
         flex-direction: column;
-        gap: 10px;
-        margin-left: 0;
+        position: absolute;
+        top: 80px;
+        left: 0;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.95);
+        padding: 20px;
         text-align: center;
+        z-index: 1500;
+    }
+
+    /* When the checkbox is checked, show the menu */
+    .menu-toggle:checked ~ .navcontent,
+    .menu-toggle:checked ~ .navcontent-2 {
+        display: flex;
+    }
+
+    /* Reset Fixed Widths to Fluid 100% */
+    .image-container, 
+    .flex-container,
+    .video,
+    .milestone-1,
+    .box1, .box2,
+    .youtube-1 {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        margin-top: 20px !important; /* Removes the massive 340px gap */
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    /* Stack Flex Sections */
+    .flex-container, 
+    .video-container, 
+    .technology-EGBHLMS,
+    .image-gallery-container {
+        flex-direction: column !important;
+        align-items: center;
+    }
+
+    /* Responsive Videos */
+    .video-1 video, 
+    .video-2 video,
+    .BMW_Itellegence,
+    .gallery-item video {
+        width: 100% !important;
+        height: auto !important;
+        min-width: unset !important;
+    }
+
+    /* Center All Typography */
+    .heading, .sub-heading, 
+    .heading-c, .sub-heading-c, 
+    .discription, .discription-sub-heading,
+    .item-discription, .main-brand-name, .sub-brand-name {
+        text-align: center !important;
+        margin-left: 0 !important;
+        width: 100% !important;
+    }
+
+    /* Gallery Adjustments */
+    .gallery-item {
+        max-width: 90%;
+        margin-bottom: 20px;
     }
 }
