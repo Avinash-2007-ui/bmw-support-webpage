@@ -180,12 +180,10 @@ li a:hover,
     width: 50%;
     margin: 20px;
     text-align: center;
-    justify-content: center;
     font-size: xx-large;
-    height: 450px;
-    margin-top: 340px;
+    height: auto; /* Change from 450px to auto so it grows with the button */
+    margin-top: 100px; /* Reduced from 340px to prevent pushing it off-screen */
 }
-
 .box2 {
     width: 50%;
     margin: 20px;
@@ -482,6 +480,7 @@ nav.main-navbar {
         height: auto;
     }
 }
+
 
 
 
