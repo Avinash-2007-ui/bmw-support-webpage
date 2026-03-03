@@ -207,6 +207,10 @@
             text-decoration: none;
             colour: white;
         }
+        .button {
+            position: relative; /* z-index ONLY works if position is relative, absolute, or fixed */
+            z-index: 999;       /* This high number ensures it sits on top of everything else */
+        }
         .youtube-1{
             height: 450px;
             width: 860px;
@@ -217,7 +221,7 @@
             flex-wrap: nowrap; /* Keep nowrap as per your original preference */
             justify-content: space-evenly; /* Evenly space videos */
             align-items: flex-start; /* Align video content to the top */
-            background-color: inherit;
+            background-colour: inherit;
             padding: 40px 20px; /* Add padding for overall spacing */
             gap: 10px; /* Space between video columns */
         }
@@ -300,9 +304,9 @@
         }
         .image-gallery-section{
             padding: 40px 20px;
-            background-color: black;
-            text-align: center;
-            color: white;
+            background-colour: black;
+            text-align: centre;
+            colour: white;
         }
         .image-gallery-section h2{ 
             font-size: 2.5em;
@@ -349,18 +353,18 @@
         }
         .item-discription{
             padding: 15px;
-            text-align: center;
+            text-align: centre;
             width: 100%;/* Ensures text container takes full width of item*/ 
         }
         .item-discription p{
             margin: 0;
             font-size: 1.1em;
-            color: lightgrey;
+            colour: lightgrey;
             line-height: 6;
         }
         a.bmw_original{
             text-decoration: none;
-            color: lightgrey;
+            colour: lightgrey;
         }
         /*
  * Corrected and optimized CSS.
@@ -371,9 +375,9 @@
 /* Main section styling */
 .technology-section {
     padding: 40px 20px;
-    background-color: black;
-    text-align: center;
-    color: white;
+    background-colour: black;
+    text-align: centre;
+    colour: white;
 }
 
 /* Flex container for the video items */
@@ -382,7 +386,7 @@
     display: flex;
     padding: 0 10px;
     gap: 25px;
-    justify-content: center;
+    justify-content: centre;
     flex-wrap: wrap;
 }
 
@@ -407,7 +411,7 @@
 
 /* The video element itself */
 .milestone-1 video {
-    /* Video should fill its parent container completely */
+    /* Video should fill its parent container */
     width: 100%;
     height: 350px;
     
@@ -440,8 +444,8 @@
     font-weight: bold;
     margin-top: 25px;
     margin-bottom: 5px;
-    text-align: center;
-    color: white;
+    text-align: centre;
+    colour: white;
     text-decoration: none;
     width: 100%;
 }
@@ -449,7 +453,7 @@
 .sub-heading-c {
     display: block;
     font-size: 1.5em;
-    color: lightgray;
+    colour: lightgray;
     text-align: left;
     margin-left: 20px;
     text-decoration: none;
@@ -478,7 +482,7 @@
     text-decoration: none; /* Removes the underline from the link */
     overflow: hidden; /* Hides parts of the video that zoom out of bounds */
   
-    background-color: inherit; /* Optional: A background for the text area */
+    background-colour: inherit; /* Optional: A background for the text area */
     padding-bottom: 10px; /* Adds space inside the bottom of the card */
 }
 
@@ -494,7 +498,7 @@
 /* The hover effect targets ONLY the video.
    When hovering the link, the video scales up and its opacity is reduced.
    The text is a sibling, so it is NOT affected by this rule. */
-.intelligent:hover .BMW_Itellegence {
+.intelligent: hover.BMW_Itellegence {
     transform: scale(1.1); /* Zooms the video to 110% of its size */
     opacity: 0.4; /* Reduces the opacity to 40% */
 }
@@ -602,7 +606,7 @@ nav.main-navbar{
     .content-2,
     .BMW_Itellegence {
         width: 100% !important;
-        height: auto !important;
+        height: auto! important;
         max-width: 100%;
         min-width: 100%;
     }
@@ -616,13 +620,13 @@ nav.main-navbar{
     .sub-heading-c,
     .discription,
     .discription-sub-heading {
-        text-align: center !important;
-        margin-left: 0 !important;
+        text-align: centre! important;
+        margin-left: 0 ! important;
         padding: 0 10px;
     }
 
     /* Navbar adjustment for mobile */
-    nav, nav.main-navbar {
+    nav, nav. main-navbar {
         flex-direction: column;
         height: auto;
         padding: 20px;
@@ -632,7 +636,8 @@ nav.main-navbar{
         flex-direction: column;
         gap: 10px;
         margin-left: 0;
-        text-align: center;
+        text-align: centre;
     }
 }
+
 
