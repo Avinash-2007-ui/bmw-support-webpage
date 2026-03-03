@@ -196,13 +196,11 @@ li a:hover,
 }
 
 .button {
-    text-decoration: none;
-    padding: 10px 20px;
-    background-color: blue;
-    border: solid 1px white;
-    border-radius: 15px;
-    display: inline-block;
-    z-index: 5; /* Keep it above the background */
+     text-decoration: none;
+     padding: 10px 20px;
+     background-color: blue;
+     border: solid;
+     border-radius: 15px;
 }
 
 .button a {
@@ -484,5 +482,6 @@ nav.main-navbar {
         height: auto;
     }
 }
+
 
 
