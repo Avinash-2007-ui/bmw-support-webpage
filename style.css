@@ -189,7 +189,7 @@
         .box2{
             width: 50%;
             margin: 20px;
-            align-items: centre;
+            align-items: center;
             font-size: xx-large;
             justify-content: space-between;
             height: 450px;
@@ -199,29 +199,25 @@
         .button{
             text-decoration: none;
             padding: 10px 20px;
-            background-colour: blue;
+            background-color: blue;
             border: solid;
             border-radius: 15px;
         }
         .button a{
             text-decoration: none;
-            colour: white;
-        }
-        .button {
-            position: relative; /* z-index ONLY works if position is relative, absolute, or fixed */
-            z-index: 999;       /* This high number ensures it sits on top of everything else */
+            color: white;
         }
         .youtube-1{
             height: 450px;
             width: 860px;
-            align-items: centre;
+            align-items: center;
         }
         .video-container{
             display: flex;
             flex-wrap: nowrap; /* Keep nowrap as per your original preference */
             justify-content: space-evenly; /* Evenly space videos */
             align-items: flex-start; /* Align video content to the top */
-            background-colour: inherit;
+            background-color: inherit;
             padding: 40px 20px; /* Add padding for overall spacing */
             gap: 10px; /* Space between video columns */
         }
@@ -304,9 +300,9 @@
         }
         .image-gallery-section{
             padding: 40px 20px;
-            background-colour: black;
-            text-align: centre;
-            colour: white;
+            background-color: black;
+            text-align: center;
+            color: white;
         }
         .image-gallery-section h2{ 
             font-size: 2.5em;
@@ -353,18 +349,18 @@
         }
         .item-discription{
             padding: 15px;
-            text-align: centre;
+            text-align: center;
             width: 100%;/* Ensures text container takes full width of item*/ 
         }
         .item-discription p{
             margin: 0;
             font-size: 1.1em;
-            colour: lightgrey;
+            color: lightgrey;
             line-height: 6;
         }
         a.bmw_original{
             text-decoration: none;
-            colour: lightgrey;
+            color: lightgrey;
         }
         /*
  * Corrected and optimized CSS.
@@ -375,9 +371,9 @@
 /* Main section styling */
 .technology-section {
     padding: 40px 20px;
-    background-colour: black;
-    text-align: centre;
-    colour: white;
+    background-color: black;
+    text-align: center;
+    color: white;
 }
 
 /* Flex container for the video items */
@@ -386,7 +382,7 @@
     display: flex;
     padding: 0 10px;
     gap: 25px;
-    justify-content: centre;
+    justify-content: center;
     flex-wrap: wrap;
 }
 
@@ -411,7 +407,7 @@
 
 /* The video element itself */
 .milestone-1 video {
-    /* Video should fill its parent container */
+    /* Video should fill its parent container completely */
     width: 100%;
     height: 350px;
     
@@ -444,8 +440,8 @@
     font-weight: bold;
     margin-top: 25px;
     margin-bottom: 5px;
-    text-align: centre;
-    colour: white;
+    text-align: center;
+    color: white;
     text-decoration: none;
     width: 100%;
 }
@@ -453,7 +449,7 @@
 .sub-heading-c {
     display: block;
     font-size: 1.5em;
-    colour: lightgray;
+    color: lightgray;
     text-align: left;
     margin-left: 20px;
     text-decoration: none;
@@ -482,7 +478,7 @@
     text-decoration: none; /* Removes the underline from the link */
     overflow: hidden; /* Hides parts of the video that zoom out of bounds */
   
-    background-colour: inherit; /* Optional: A background for the text area */
+    background-color: inherit; /* Optional: A background for the text area */
     padding-bottom: 10px; /* Adds space inside the bottom of the card */
 }
 
@@ -498,7 +494,7 @@
 /* The hover effect targets ONLY the video.
    When hovering the link, the video scales up and its opacity is reduced.
    The text is a sibling, so it is NOT affected by this rule. */
-.intelligent: hover.BMW_Itellegence {
+.intelligent:hover .BMW_Itellegence {
     transform: scale(1.1); /* Zooms the video to 110% of its size */
     opacity: 0.4; /* Reduces the opacity to 40% */
 }
@@ -639,6 +635,4 @@ nav.main-navbar{
         text-align: centre;
     }
 }
-
-
 
