@@ -172,25 +172,39 @@ li a:hover,
 
 .flex-container {
     display: flex;
-    flex-wrap: nowrap;
+    flex-direction: row; /* Force them to be side-by-side */
+    align-items: center; /* Vertically center the text with the video */
+    justify-content: center;
     background: inherit;
+    width: 100%;
+    padding: 50px;
+    gap: 40px; /* Space between the text and the video */
 }
 
 .box1 {
-    width: 50%;
-    margin: 20px;
+    flex: 1; /* Takes up 50% space */
     text-align: center;
     font-size: xx-large;
-    height: auto; /* Change from 450px to auto so it grows with the button */
-    margin-top: 100px; /* Reduced from 340px to prevent pushing it off-screen */
-}
-.box2 {
-    width: 50%;
-    margin: 20px;
+    display: flex;
+    flex-direction: column; /* Stacks text and button vertically INSIDE the left side */
     align-items: center;
-    font-size: xx-large;
+    justify-content: center;
+    margin-top: 0; /* Removed the 340px margin that was pushing it down */
+}
+
+.box2 {
+    flex: 1; /* Takes up 50% space */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0; /* Removed the 150px margin */
+}
+
+.youtube-1 {
     height: 450px;
-    margin-top: 150px;
+    width: 100%; /* Fill the box2 container */
+    max-width: 860px;
+    border-radius: 10px; /* Optional: looks cleaner with the BMW aesthetic */
 }
 
 .button {
@@ -480,6 +494,7 @@ nav.main-navbar {
         height: auto;
     }
 }
+
 
 
 
