@@ -189,7 +189,7 @@
         .box2{
             width: 50%;
             margin: 20px;
-            align-items: center;
+            align-items: centre;
             font-size: xx-large;
             justify-content: space-between;
             height: 450px;
@@ -199,18 +199,18 @@
         .button{
             text-decoration: none;
             padding: 10px 20px;
-            background-color: blue;
+            background-colour: blue;
             border: solid;
             border-radius: 15px;
         }
         .button a{
             text-decoration: none;
-            color: white;
+            colour: white;
         }
         .youtube-1{
             height: 450px;
             width: 860px;
-            align-items: center;
+            align-items: centre;
         }
         .video-container{
             display: flex;
@@ -635,3 +635,4 @@ nav.main-navbar{
         text-align: center;
     }
 }
+
