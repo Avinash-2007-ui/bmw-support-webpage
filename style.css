@@ -202,8 +202,6 @@ li a:hover,
     border: solid 1px white;
     border-radius: 15px;
     display: inline-block;
-    margin-top: 20px;
-    position: relative; 
     z-index: 5; /* Keep it above the background */
 }
 
@@ -486,4 +484,5 @@ nav.main-navbar {
         height: auto;
     }
 }
+
 
