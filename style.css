@@ -199,9 +199,12 @@ li a:hover,
     text-decoration: none;
     padding: 10px 20px;
     background-color: blue;
-    border: solid;
+    border: solid 1px white;
     border-radius: 15px;
-    display: inline-block; /* Ensure it stays a box */
+    display: inline-block;
+    margin-top: 20px;
+    position: relative; 
+    z-index: 5; /* Keep it above the background */
 }
 
 .button a {
@@ -483,3 +486,4 @@ nav.main-navbar {
         height: auto;
     }
 }
+
