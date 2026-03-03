@@ -169,68 +169,59 @@
             opacity: 0.9;
             box-shadow: 0 12px 16px 0 rgb(177, 2, 2),0 17px 50px 0 rgb(0, 204, 255);
         }
-       /* This is the main parent that holds both the text and the video */
-.flex-container {
-    display: flex;
-    flex-direction: row;      /* Forces side-by-side */
-    flex-wrap: nowrap;        /* Prevents wrapping to a new line */
-    align-items: center;      /* Vertically centers everything */
-    justify-content: center;  /* Centers the whole group */
-    width: 100%;
-    background: inherit;
-    padding: 60px 20px;       /* Adds space around the section */
-    gap: 30px;                /* Space between text and video */
-}
-
-/* LEFT SIDE: Text and Button */
-.box1 {
-    flex: 1;                  /* Takes up exactly half the width */
-    max-width: 50%;           /* Ensures it never grows too large */
-    text-align: center;
-    font-size: 2rem;          /* Using rem is safer for mobile */
-    margin: 0 !important;     /* Reset those giant margins */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-}
-
-/* RIGHT SIDE: Video Container */
-.box2 {
-    flex: 1;                  /* Takes up exactly the other half */
-    max-width: 50%;           /* Ensures it stays on the right */
-    margin: 0 !important;     /* Reset those giant margins */
-    display: flex;
-    justify-content: center;
-}
-
-/* The YouTube Iframe */
-.youtube-1 {
-    width: 100%;              /* Responsive width */
-    max-width: 560px;         /* Standard YouTube size */
-    aspect-ratio: 16 / 9;     /* Keeps the video shape perfect */
-    height: auto;
-    border: none;
-}
+        .flex-container{
+            display: flex;
+            flex-wrap: nowrap;
+            background: inherit;
+            
+        }
+        .box1{
+            width: 50%;
+            margin: 20px;
+            text-align: center;
+            justify-content: center;
+            font-size: xx-large;
+            justify-content: space-between;
+            height: 450px;
+            width: 860px;
+            margin-top: 340px;
+        }
+        .box2{
+            width: 50%;
+            margin: 20px;
+            align-items: centre;
+            font-size: xx-large;
+            justify-content: space-between;
+            height: 450px;
+            width: 860px;
+            margin-top: 150px;
+        }
         .button{
             text-decoration: none;
             padding: 10px 20px;
-            background-color: blue;
+            background-colour: blue;
             border: solid;
             border-radius: 15px;
         }
         .button a{
             text-decoration: none;
-            color: white;
+            colour: white;
         }
-       
+        .button {
+            position: relative; /* z-index ONLY works if position is relative, absolute, or fixed */
+            z-index: 999;       /* This high number ensures it sits on top of everything else */
+        }
+        .youtube-1{
+            height: 450px;
+            width: 860px;
+            align-items: centre;
         }
         .video-container{
             display: flex;
             flex-wrap: nowrap; /* Keep nowrap as per your original preference */
             justify-content: space-evenly; /* Evenly space videos */
             align-items: flex-start; /* Align video content to the top */
-            background-color: inherit;
+            background-colour: inherit;
             padding: 40px 20px; /* Add padding for overall spacing */
             gap: 10px; /* Space between video columns */
         }
@@ -313,9 +304,9 @@
         }
         .image-gallery-section{
             padding: 40px 20px;
-            background-color: black;
-            text-align: center;
-            color: white;
+            background-colour: black;
+            text-align: centre;
+            colour: white;
         }
         .image-gallery-section h2{ 
             font-size: 2.5em;
@@ -362,18 +353,18 @@
         }
         .item-discription{
             padding: 15px;
-            text-align: center;
+            text-align: centre;
             width: 100%;/* Ensures text container takes full width of item*/ 
         }
         .item-discription p{
             margin: 0;
             font-size: 1.1em;
-            color: lightgrey;
+            colour: lightgrey;
             line-height: 6;
         }
         a.bmw_original{
             text-decoration: none;
-            color: lightgrey;
+            colour: lightgrey;
         }
         /*
  * Corrected and optimized CSS.
@@ -384,9 +375,9 @@
 /* Main section styling */
 .technology-section {
     padding: 40px 20px;
-    background-color: black;
-    text-align: center;
-    color: white;
+    background-colour: black;
+    text-align: centre;
+    colour: white;
 }
 
 /* Flex container for the video items */
@@ -395,7 +386,7 @@
     display: flex;
     padding: 0 10px;
     gap: 25px;
-    justify-content: center;
+    justify-content: centre;
     flex-wrap: wrap;
 }
 
@@ -420,7 +411,7 @@
 
 /* The video element itself */
 .milestone-1 video {
-    /* Video should fill its parent container completely */
+    /* Video should fill its parent container */
     width: 100%;
     height: 350px;
     
@@ -453,8 +444,8 @@
     font-weight: bold;
     margin-top: 25px;
     margin-bottom: 5px;
-    text-align: center;
-    color: white;
+    text-align: centre;
+    colour: white;
     text-decoration: none;
     width: 100%;
 }
@@ -462,7 +453,7 @@
 .sub-heading-c {
     display: block;
     font-size: 1.5em;
-    color: lightgray;
+    colour: lightgray;
     text-align: left;
     margin-left: 20px;
     text-decoration: none;
@@ -491,7 +482,7 @@
     text-decoration: none; /* Removes the underline from the link */
     overflow: hidden; /* Hides parts of the video that zoom out of bounds */
   
-    background-color: inherit; /* Optional: A background for the text area */
+    background-colour: inherit; /* Optional: A background for the text area */
     padding-bottom: 10px; /* Adds space inside the bottom of the card */
 }
 
@@ -507,7 +498,7 @@
 /* The hover effect targets ONLY the video.
    When hovering the link, the video scales up and its opacity is reduced.
    The text is a sibling, so it is NOT affected by this rule. */
-.intelligent:hover .BMW_Itellegence {
+.intelligent: hover.BMW_Itellegence {
     transform: scale(1.1); /* Zooms the video to 110% of its size */
     opacity: 0.4; /* Reduces the opacity to 40% */
 }
@@ -648,6 +639,7 @@ nav.main-navbar{
         text-align: centre;
     }
 }
+
 
 
 
