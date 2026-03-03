@@ -1,0 +1,564 @@
+/* Universal box-sizing for consistent layout */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: rgb(0, 0, 0);
+            color: white;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* Pushes left and right sections to opposite ends */
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+            height: 80px;
+            padding: 0 40px; /* Padding on the sides of the navbar */
+        }
+
+        /* Group for logo and brand text */
+        .left-section {
+            display: flex;
+            align-items: center; /* Vertically aligns the image and the text container */
+            gap: 15px; /* Space between the logo and the text */
+        }
+
+        .left-section img {
+            height: 60px;
+            width: 60px;
+        }
+
+        /* Container for "Performance" and "The Beast" */
+        .brand-text {
+            display: flex;
+            flex-direction: column; /* Stacks the text vertically */
+            justify-content: center; /* Centers the text vertically within its space */
+        }
+
+        .main-brand-name {
+            font-size: 1.4em; /* Larger for "Performance" */
+            font-weight: bold;
+            color: white;
+            margin-bottom: 2px; /* Small space between the two lines of text */
+        }
+
+        .sub-brand-name {
+            font-size: 0.9em; /* Smaller for "The Beast" */
+            color: lightgray; /* Slightly muted color */
+        }
+
+        /* Navigation links on the right */
+        .navcontent {
+            list-style: none;
+            display: flex;
+            gap: 30px; /* Space between the main navigation links */
+            margin: 0; /* Reset default ul margin */
+            padding: 0; /* Reset default ul padding */
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            padding: 16px 0; /* Vertical padding for clickable area */
+            display: block; /* Ensures the whole padded area is clickable */
+            transition: color 0.3s, font-size 0.3s; /* Smooth hover transition */
+        }
+
+        nav ul li a:hover {
+            color: rgb(127, 255, 212);
+            font-size: 1.1rem; /* Slight size increase on hover */
+        }
+
+        /*===============================================================================================================*/
+        /* DROPDOWN */
+        /*===============================================================================================================*/
+        li.frustration {
+            position: relative; /* Essential for positioning the dropdown content */
+            display: inline-block;
+        }
+
+        .morefrustration {
+            padding: 16px 0; /* Consistent padding with other nav links */
+            display: block;
+            text-align: center;
+        }
+
+
+        li a:hover,
+        .frustration:hover .morefrustration {
+            color: aquamarine;
+            font-size: 1.1rem; /* Consistent hover size */
+        }
+
+        .frustration1 {
+            display: none;
+            position: absolute;
+            z-index: 1000; /* Ensures dropdown is above other content */
+            background-color: rgba(7, 7, 7, 0.9); /* Semi-transparent background */
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            border-radius: 4px; /* Optional: subtle rounded corners */
+            overflow: hidden; /* Ensures content respects border-radius */
+            left: 50%; /* Start dropdown at 50% from parent's left edge */
+            transform: translateX(-50%); /* Adjust to truly center it */
+            top: 100%; /* Position directly below the parent link */
+        }
+
+        .frustration1 a {
+            color: white;
+            display: block;
+            text-align: left; /* Align dropdown items to the left */
+            padding: 10px 15px; /* Padding for dropdown items */
+            text-decoration: none;
+            transition: background-color 0.2s, color 0.2s; /* Smooth hover transitions */
+        }
+
+        .frustration1 a:hover {
+            color: turquoise;
+            background-color: rgba(50, 200, 200, 0.15); /* Subtle background on hover */
+        }
+
+        .frustration:hover .frustration1 {
+            display: block;
+        }
+        .image-container{
+            width: 1348px;
+            display: inline-block;
+            max-width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+        .image-container img{
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+        .image-overlay{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: all;
+        }
+        .image-button{
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            display: inline-block;
+            padding: 10px 20px;
+            background: linear-gradient(to right, rgb(82, 2, 2), rgb(0, 0, 0));
+            opacity: 0.1;
+            color: white;
+            text-decoration: none;
+            border: solid;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: bold;
+            transition: background-color 0.3s ease, transform 0.2s ease;/* for smooth transition*/
+            z-index: 1000;
+        }
+        .image-button:hover{
+            background-color:rgba(59, 2, 2, 0.733);
+            transform: translateY(-6px); /* Slight lift effect on hover */
+            opacity: 0.9;
+            box-shadow: 0 12px 16px 0 rgb(177, 2, 2),0 17px 50px 0 rgb(0, 204, 255);
+        }
+        .flex-container{
+            display: flex;
+            flex-wrap: nowrap;
+            background: inherit;
+            
+        }
+        .box1{
+            width: 50%;
+            margin: 20px;
+            text-align: center;
+            justify-content: center;
+            font-size: xx-large;
+            justify-content: space-between;
+            height: 450px;
+            width: 860px;
+            margin-top: 340px;
+        }
+        .box2{
+            width: 50%;
+            margin: 20px;
+            align-items: center;
+            font-size: xx-large;
+            justify-content: space-between;
+            height: 450px;
+            width: 860px;
+            margin-top: 150px;
+        }
+        .button{
+            text-decoration: none;
+            padding: 10px 20px;
+            background-color: blue;
+            border: solid;
+            border-radius: 15px;
+        }
+        .button a{
+            text-decoration: none;
+            color: white;
+        }
+        .youtube-1{
+            height: 450px;
+            width: 860px;
+            align-items: center;
+        }
+        .video-container{
+            display: flex;
+            flex-wrap: nowrap; /* Keep nowrap as per your original preference */
+            justify-content: space-evenly; /* Evenly space videos */
+            align-items: flex-start; /* Align video content to the top */
+            background-color: inherit;
+            padding: 40px 20px; /* Add padding for overall spacing */
+            gap: 10px; /* Space between video columns */
+        }
+        .video-1, .video-2 {
+            /* These are the containers for each video and its text */
+            display: flex;
+            flex-direction: column; /* Stack video and text vertically */
+            align-items: center; /* Center video and text horizontally */
+            flex: 1; /* Allows columns to take equal space */
+            min-width: 300px; /* Minimum width before potentially breaking layout (if nowrap) */
+            max-width: 500px; /* Optional: Max width for videos */
+            text-align: center; /* Center the text below the video */
+            margin-bottom: 20px; /* Space below each video column */
+            overflow: hidden;
+        }
+        .video-1 video, .video-2 video{
+            width: 100%; /* Make it fill the container initially */
+            height: 100%; /* Make it fill the container initially */
+            object-fit: cover; /* Ensures image/video covers the area without distortion */
+            display: block; /* Remove extra space below inline elements */
+            /* Transition for smooth animation */
+            transition: transform 1.5s ease-in-out, opacity 1.5s ease-in-out;
+            /* Initial state (optional, can be skipped if opacity is 1 and scale is 1 by default) */
+            opacity: 1;
+            transform: scale(1);
+        }
+        .video-1:hover video, 
+        .video-2:hover video{
+            transform: scale(1.1);
+            max-width: 500px; /* Optional: Max width for videos */
+            opacity: 0.6;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Stronger shadow on hover */
+        }
+        .content-1, .content-2{ /* These are your <video> tags */
+            width: 100%; /* Make video fill its column */
+            height: auto; /* Maintain aspect ratio */
+            max-height: 300px; /* Example max height for videos */
+            display: block; /* Ensure it behaves like a block element */
+            margin-bottom: 15px; /* Space between video and text */
+        }
+
+        /* --- START OF CHANGES FOR TEXT BELOW VIDEOS --- */
+        /* Applied to the spans directly within the <a> tags */
+        .joy .heading,
+        .hidden .heading {
+            display: block; /* Make the heading behave like a block element */
+            font-size: 1em; /* Adjust size as needed */
+            font-weight: bold;
+            margin-bottom: 5px; /* Space between heading and sub-heading */
+            text-align: center; /* Center the heading text */
+            color: white; /* Ensure text is white */
+            text-decoration: none; /* Remove underline if applied by parent <a> */
+            width: 100%; /* Take full width of its parent */
+        }
+
+        .joy .sub-heading,
+        .hidden .sub-heading {
+            display: block; /* Make the sub-heading behave like a block element */
+            font-size: 1.5em; /* Adjust size as needed */
+            color: lightgray; /* Muted color for sub-heading */
+            text-align: left; /* Center the sub-heading text */
+            margin-left: 20px;/* make sub-Heading left aligned and with a little space from left*/
+            text-decoration: none; /* Remove underline if applied by parent <a> */
+            width: 100%; /* Take full width of its parent */
+        }
+
+        /* Ensure the links themselves also act like blocks for proper centering */
+        .joy, .hidden {
+            display: block; /* Make the entire link block-level */
+            text-decoration: none; /* Remove underline from the link */
+            color: white; /* Ensure link color is white */
+            width: 100%; /* Make the clickable area span the width of its parent (.video-1/.video-2) */
+            padding: 5px 0; /* Add a little vertical padding for clickability */
+        }
+        /* --- END OF CHANGES FOR TEXT BELOW VIDEOS --- */
+
+        /* Fix for potential overlap/issue from an empty div or misused styling */
+        body > div { /* This targets the extra </div> at the end of your main */
+            display: none;
+        }
+        .image-gallery-section{
+            padding: 40px 20px;
+            background-color: black;
+            text-align: center;
+            color: white;
+        }
+        .image-gallery-section h2{ 
+            font-size: 2.5em;
+            margin-bottom: 100px;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            text-decoration-thickness: normal;
+        }
+        .image-gallery-container{
+            display: flex;/* make display flex*/
+            padding: 0 10px;/* add some horizontal padding*/
+            gap: 10px;/* for the gap  in images*/
+            justify-content: center;/* Center items horizontally when there's space*/
+            flex-wrap: wrap;/*wrap the content in smaller screen*/
+        }
+        .gallery-item{
+            flex: auto;
+            min-width: 150px;
+            max-width: 250px;
+            border-radius: 8px;
+            overflow: hidden;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .gallery-item:hover{
+            transform: translateY(-25px); /* Lift effect on hover */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Stronger shadow on hover */
+        }
+        .gallery-item img{
+            width: 100%;/*image should cover it's parent full width*/
+            height: 400px;/*specifies the height of image*/
+            object-fit: cover;/*image should fit it's parent conatiner*/
+            display: block;/* any image distrotion should be neglected*/
+            border-top-left-radius: 8px;/*image should cover it's parent radius*/
+            border-top-right-radius: 8px;/*same as above*/
+        }
+        .gallery-item video{
+            width: 100%;/*image should cover it's parent full width*/
+            height: 400px;/*specifies the height of image*/
+            object-fit: cover;/*image should fit it's parent conatiner*/
+            display: block;/* any image distrotion should be neglected*/
+            border-top-left-radius: 8px;/*image should cover it's parent radius*/
+            border-top-right-radius: 8px;/*same as above*/
+        }
+        .item-discription{
+            padding: 15px;
+            text-align: center;
+            width: 100%;/* Ensures text container takes full width of item*/ 
+        }
+        .item-discription p{
+            margin: 0;
+            font-size: 1.1em;
+            color: lightgrey;
+            line-height: 6;
+        }
+        a.bmw_original{
+            text-decoration: none;
+            color: lightgrey;
+        }
+        /*
+ * Corrected and optimized CSS.
+ * This version fixes the issues with display and overflow,
+ * and cleans up redundant properties.
+ */
+
+/* Main section styling */
+.technology-section {
+    padding: 40px 20px;
+    background-color: black;
+    text-align: center;
+    color: white;
+}
+
+/* Flex container for the video items */
+.technology-EGBHLMS {
+    /* Correct Flexbox properties for the container */
+    display: flex;
+    padding: 0 10px;
+    gap: 25px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* The parent container for each video. This is the frame. */
+.milestone-1 {
+    /* Define the size of the container. The video will be clipped to this. */
+    min-width: 450px;
+    max-width: 560px;
+    
+    /* CRUCIAL: This hides the overflow when the child video scales up */
+    overflow: hidden;
+    
+    /* Ensure the container behaves as a block-level element for proper sizing */
+    display: block; 
+    
+    /* Optional: Add a subtle box shadow for a professional look */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    
+    /* Optional: Add a smooth transition to any properties that might change */
+    transition: box-shadow 0.6s ease-in-out;
+}
+
+/* The video element itself */
+.milestone-1 video {
+    /* Video should fill its parent container completely */
+    width: 100%;
+    height: 350px;
+    
+    /* Ensures the video covers the entire container without distortion */
+    object-fit: cover;
+    
+    /* Prevents unwanted space below the video */
+    display: block;
+    
+    /* Transition for a smooth zoom and opacity change */
+    transition: transform 1.5s ease-in-out, opacity 1.5s ease-in-out;
+}
+
+/* State for when the parent container is hovered */
+.milestone-1:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Stronger shadow on hover */
+}
+
+/* Apply the transform and opacity change to the video on parent hover */
+.milestone-1:hover video {
+    transform: scale(1.1); /* This is the zoom effect */
+    opacity: 0.4;
+}
+
+/* Headings and sub-headings */
+/* It's better to style these separately for clarity */
+.heading-c {
+    display: block;
+    font-size: 1em;
+    font-weight: bold;
+    margin-top: 25px;
+    margin-bottom: 5px;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    width: 100%;
+}
+
+.sub-heading-c {
+    display: block;
+    font-size: 1.5em;
+    color: lightgray;
+    text-align: left;
+    margin-left: 20px;
+    text-decoration: none;
+    width: 100%;
+}
+.bmw-technology{
+    text-decoration: none;
+}
+/*
+ * This CSS styles the video card component.
+ * It places text below the video and applies a hover effect where only the video fades and zooms.
+ */
+
+/* The main container for your video component. 
+   Use margin: auto to center it within its parent container. */
+.video {
+    width: 80%;
+    max-width: 700px;
+    margin: 40px auto; /* Adds spacing and centers the component */
+}
+
+/* The link wrapping the video and text.
+   overflow: hidden is crucial to contain the video's zoom. */
+.intelligent {
+    display: block;
+    text-decoration: none; /* Removes the underline from the link */
+    overflow: hidden; /* Hides parts of the video that zoom out of bounds */
+  
+    background-color: inherit; /* Optional: A background for the text area */
+    padding-bottom: 10px; /* Adds space inside the bottom of the card */
+}
+
+/* The video element itself.
+   The transition is set up for a smooth zoom and fade effect. */
+.BMW_Itellegence {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 1.5s ease-in-out, opacity 1.5s ease-in-out;
+}
+
+/* The hover effect targets ONLY the video.
+   When hovering the link, the video scales up and its opacity is reduced.
+   The text is a sibling, so it is NOT affected by this rule. */
+.intelligent:hover .BMW_Itellegence {
+    transform: scale(1.1); /* Zooms the video to 110% of its size */
+    opacity: 0.4; /* Reduces the opacity to 40% */
+}
+
+/* Styling for the main description heading, positioned below the video. */
+.discription {
+    display: block;
+    font-size: 1em;
+    font-weight: bold;
+    margin-top: 25px;
+    margin-bottom: 5px;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+    width: 100%;
+}
+
+/* Styling for the sub-heading, positioned below the main description. */
+.discription-sub-heading {
+    display: block;
+    font-size: 1.5em;
+    color: lightgray;
+    text-align: left;
+    margin-left: 20px;
+    text-decoration: none;
+    width: 100%;
+}
+/* --- Shared Styles for BOTH navbars (Optional) --- */
+nav {
+    width: 100%;
+    padding: 10px;
+}
+
+
+
+/*=============================================================================================*/
+/*                             ending the webpage with second nav bars                         */
+/*=============================================================================================*/
+
+
+.second{
+    background-color: rgb(27, 24, 24);
+    height: 650px;
+}
+nav.main-navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(27, 24, 24);
+    height: 80px;
+    padding: 0 40px;
+}
+.left-2{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+ /* Navigation links on the right */
+.navcontent-2{
+    list-style: none;
+    display: flex;
+    gap: 30px; /* Space between the main navigation links */
+    margin: 0; /* Reset default ul margin */
+    padding: 0; /* Reset default ul padding */
+    margin-left: 50px;/* Space from left side ot=f the nav bar*/
+    margin-top: 25px;/* Space from top of the section*/
+}
