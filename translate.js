@@ -23,7 +23,7 @@ const translations = {
         m5_e39_2: "E39 M5 (1998-2003)",
         m5_e39_3: "E39 M5 (1998-2003)",
         project_gallery: "Project Gallery",
-        box_drive: "BMW PANAROMIC DRIVE <br> iDRIVE",
+        box_drive: "BMW PANORAMIC DRIVE <br> iDRIVE",
         learn_more: "Learn More↗",
         guide_title: "The Guide",
         guide_sub: "The Heart of Joy: Redefining the Driving Pleasure",
@@ -154,56 +154,36 @@ const translations = {
     }
 };
 
-// 2. THE TRANSLATOR FUNCTION
-    // This function takes a language code (like "es") and updates the page.
-    function applyTranslations(lang) {
-        // Find the correct "chapter" in our dictionary
-        const dictionary = translations[lang];
-        if (!dictionary) return; // If the language doesn't exist, do nothing
+function applyTranslations(lang) {
+    const dictionary = translations[lang];
+    if (!dictionary) return;
 
-        // Find every element in the HTML that has a "data-key" label
-        document.querySelectorAll('[data-key]').forEach(element => {
-            const key = element.getAttribute('data-key');
-            const translation = dictionary[key];
-
-            // If we found a translation for this key, update the element
-            if (translation) {
-                element.innerHTML = translation;
-            }
-        });
-    }
-
-    // 3. THE LANGUAGE SWITCHER BUTTONS
-    // This finds all your language links and tells them what to do when clicked.
-    document.querySelectorAll('[data-lang]').forEach(link => {
-        link.addEventListener('click', (event) => {
-            event.preventDefault(); // Stop the link from reloading the page
-            
-            // Get the language code from the clicked link (e.g., "de")
-            const lang = link.getAttribute('data-lang');
-            
-            // Tell our translator function to apply the new language
-            applyTranslations(lang);
-
-            // SAVE the user's choice in the browser's memory
-            localStorage.setItem('bmw_lang', lang);
-        });
-    });
-
-    // 4. THE INITIAL PAGE LOAD LOGIC
-    // This runs only once when a user first visits any page.
-    function initializeLanguage() {
-        // Check the browser's memory for a saved language
-        const savedLang = localStorage.getItem('bmw_lang');
-
-        if (savedLang) {
-            // If we found a saved language, use it
-            applyTranslations(savedLang);
-        } else {
-            // Otherwise, just use English as the default
-            applyTranslations('en');
+    document.querySelectorAll('[data-key]').forEach(element => {
+        const key = element.getAttribute('data-key');
+        const translation = dictionary[key];
+        if (translation) {
+            element.innerHTML = translation;
         }
-    }
+    });
+}
 
-    // Run the initialization function
-    initializeLanguage();
+document.querySelectorAll('[data-lang]').forEach(link => {
+    link.addEventListener('click', (event) => {
+        event.preventDefault();
+        const lang = link.getAttribute('data-lang');
+        applyTranslations(lang);
+        localStorage.setItem('bmw_lang', lang);
+    });
+});
+
+function initializeLanguage() {
+    const savedLang = localStorage.getItem('bmw_lang');
+    if (savedLang) {
+        applyTranslations(savedLang);
+    } else {
+        applyTranslations('en');
+    }
+}
+
+// Ensure the DOM is fully loaded before running
+document.addEventListener('DOMContentLoaded', initializeLanguage);
