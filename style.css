@@ -626,7 +626,7 @@ nav.main-navbar{
     }
 
     /* Navbar adjustment for mobile */
-    nav, nav. main-navbar {
+    nav, nav.main-navbar {
         flex-direction: column;
         height: auto;
         padding: 20px;
@@ -639,5 +639,6 @@ nav.main-navbar{
         text-align: centre;
     }
 }
+
 
 
