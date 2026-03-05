@@ -399,7 +399,6 @@
     display: block; /* Ensure the container behaves as a block-level element for proper sizing */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Add a subtle box shadow for a professional look */
     transition: box-shadow 0.6s ease-in-out; /* Optional: Add a smooth transition to any properties that might change */
-    position: relative; /* Ensure children align correctly */
 }
 /* Target both Video and Iframe */
 .milestone-1 video,
@@ -627,6 +626,7 @@ nav.main-navbar{
         text-align: centre;
     }
 }
+
 
 
 
