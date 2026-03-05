@@ -414,6 +414,11 @@
     pointer-events: none;
 }
 
+.milestone-1 iframe {
+    position: relative;
+    z-index: 1; 
+    pointer-events: auto; /* Let it play, the shield handles the clicking */
+}
 /* State for when the parent container is hovered */
 .milestone-1:hover {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Stronger shadow on hover */
@@ -425,6 +430,18 @@
 .milestone-1:hover iframe {
     transform: scale(1.1); /* This is the zoom effect */
     opacity: 0.4;
+}
+
+/* 2. Style the Shield */
+.video-click-shield {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 350px; /* MATCH this to your iframe height */
+    z-index: 5;    /* Sits ABOVE the video */
+    background: rgba(0,0,0,0); /* Invisible but clickable */
+    cursor: pointer;
 }
 
 /* Headings and sub-headings */
@@ -632,6 +649,7 @@ nav.main-navbar{
         text-align: centre;
     }
 }
+
 
 
 
