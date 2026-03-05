@@ -393,37 +393,22 @@
 
 /* The parent container for each video. This is the frame. */
 .milestone-1 {
-    /* Define the size of the container. The video will be clipped to this. */
-    min-width: 450px;
+    min-width: 450px; /* Define the size of the container. The video will be clipped to this. */
     max-width: 560px;
-    
-    /* CRUCIAL: This hides the overflow when the child video scales up */
-    overflow: hidden;
-    
-    /* Ensure the container behaves as a block-level element for proper sizing */
-    display: block; 
-    
-    /* Optional: Add a subtle box shadow for a professional look */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-    
-    /* Optional: Add a smooth transition to any properties that might change */
-    transition: box-shadow 0.6s ease-in-out;
+    overflow: hidden;  /* CRUCIAL: This hides the overflow when the child video scales up */
+    display: block; /* Ensure the container behaves as a block-level element for proper sizing */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Add a subtle box shadow for a professional look */
+    transition: box-shadow 0.6s ease-in-out; /* Optional: Add a smooth transition to any properties that might change */
+    position: relative; /* Ensure children align correctly */
 }
-
-/* The video element itself */
-.milestone-1 video {
-    /* Video should fill its parent container completely */
-    width: 100%;
+/* Target both Video and Iframe */
+.milestone-1 video,
+.milestone-1 iframe{
+    width: 100%;/* Video should fill its parent container completely */
     height: 350px;
-    
-    /* Ensures the video covers the entire container without distortion */
-    object-fit: cover;
-    
-    /* Prevents unwanted space below the video */
-    display: block;
-    
-    /* Transition for a smooth zoom and opacity change */
-    transition: transform 1.5s ease-in-out, opacity 1.5s ease-in-out;
+    object-fit: cover; /* Ensures the video covers the entire container without distortion */
+    display: block; /* Prevents unwanted space below the video */
+    transition: transform 1.5s ease-in-out, opacity 1.5s ease-in-out; /* Transition for a smooth zoom and opacity change */
 }
 
 /* State for when the parent container is hovered */
@@ -432,9 +417,17 @@
 }
 
 /* Apply the transform and opacity change to the video on parent hover */
-.milestone-1:hover video {
+/* Apply zoom and opacity to both */
+.milestone-1:hover video,
+.milestone-1:hover iframe {
     transform: scale(1.1); /* This is the zoom effect */
     opacity: 0.4;
+}
+/* Ensure the description stays visible on top of the iframe */
+.technology-discription {
+    position: absolute;
+    z-index: 2;
+    pointer-events: none; /* Allows click to reach the <a> tag link */
 }
 
 /* Headings and sub-headings */
@@ -640,6 +633,7 @@ nav.main-navbar{
         text-align: centre;
     }
 }
+
 
 
 
