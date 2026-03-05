@@ -410,6 +410,7 @@
     
     /* Optional: Add a smooth transition to any properties that might change */
     transition: box-shadow 0.6s ease-in-out;
+       position: relative;
 }
 
 /* The video element itself */
@@ -429,7 +430,7 @@
 }
 
 /* State for when the parent container is hovered */
-.milestone-1:hover {
+.milestone-1:hover, .milestone-iframe-1 {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Stronger shadow on hover */
 }
 
@@ -447,6 +448,7 @@
     display: block;
     pointer-events: none; /* Prevents users from clicking to pause */
     transition: transform 1.5s ease-in-out, opacity 1.5s ease-in-out;
+       position: relative;
 }
 /* Headings and sub-headings */
 /* It's better to style these separately for clarity */
