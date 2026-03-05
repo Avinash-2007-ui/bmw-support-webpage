@@ -446,7 +446,7 @@
     height: 350px;
     display: block;
     border: none;
-       pointer-events: none;
+    pointer-events: none; /* Prevents users from clicking to pause */
     transition: transform 1.5s ease-in-out, opacity 1.5s ease-in-out;
     will-change: transform;
     transform: translateZ(0);
@@ -660,6 +660,7 @@ nav.main-navbar{
         text-align: centre;
     }
 }
+
 
 
 
