@@ -391,70 +391,72 @@
     flex-wrap: wrap;
 }
 
-/* 1. The Container */
+/* The parent container for each video. This is the frame. */
 .milestone-1 {
+    /* Define the size of the container. The video will be clipped to this. */
     min-width: 450px;
     max-width: 560px;
-    overflow: hidden; 
-    display: block; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
-    transition: box-shadow 0.6s ease-in-out;
-    background: #000; /* Keeps the card background dark like your image */
-}
-
-/* 2. The Video and Iframe (Same exact size) */
-.milestone-1 video,
-.milestone-1 iframe {
-    width: 100%;
-    height: 350px; /* This is the height from your original code */
-    display: block;
-    border: none;
-    object-fit: cover; /* Keeps video from stretching */
-    transition: transform 1.5s ease-in-out, opacity 1.5s ease-in-out;
     
-    /* CRITICAL: This allows the click to pass through to the <a> tag */
-    pointer-events: none; 
+    /* CRUCIAL: This hides the overflow when the child video scales up */
+    overflow: hidden;
+    
+    /* Ensure the container behaves as a block-level element for proper sizing */
+    display: block; 
+    
+    /* Optional: Add a subtle box shadow for a professional look */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    
+    /* Optional: Add a smooth transition to any properties that might change */
+    transition: box-shadow 0.6s ease-in-out;
 }
 
-/* 3. The Clickable Link Wrapper */
-.bmw-technology {
-    text-decoration: none;
+/* The video element itself */
+.milestone-1 video {
+    /* Video should fill its parent container completely */
+    width: 100%;
+    height: 350px;
+    
+    /* Ensures the video covers the entire container without distortion */
+    object-fit: cover;
+    
+    /* Prevents unwanted space below the video */
     display: block;
-    position: relative; /* Anchor for the stacking context */
+    
+    /* Transition for a smooth zoom and opacity change */
+    transition: transform 1.5s ease-in-out, opacity 1.5s ease-in-out;
 }
 
-/* 4. The Hover Effect */
+/* State for when the parent container is hovered */
 .milestone-1:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Stronger shadow on hover */
 }
 
-/* Zoom effect on hover for both video and iframe */
-.milestone-1:hover video,
-.milestone-1:hover iframe {
-    transform: scale(1.1);
+/* Apply the transform and opacity change to the video on parent hover */
+.milestone-1:hover video {
+    transform: scale(1.1); /* This is the zoom effect */
     opacity: 0.4;
 }
 
-/* 5. Headings and Sub-headings (Aligned Below) */
+/* Headings and sub-headings */
+/* It's better to style these separately for clarity */
 .heading-c {
     display: block;
     font-size: 1em;
     font-weight: bold;
-    margin-top: 25px; /* Your original spacing */
+    margin-top: 25px;
     margin-bottom: 5px;
     text-align: center;
-    color: white !important;
+    color: white;
     text-decoration: none;
     width: 100%;
 }
 
 .sub-heading-c {
     display: block;
-    font-size: 1.5em; /* Your original size */
-    color: lightgray !important;
+    font-size: 1.5em;
+    color: lightgray;
     text-align: left;
     margin-left: 20px;
-    margin-bottom: 20px; /* Added padding at the bottom of the card */
     text-decoration: none;
     width: 100%;
 }
@@ -634,6 +636,7 @@ nav.main-navbar{
         text-align: centre;
     }
 }
+
 
 
 
