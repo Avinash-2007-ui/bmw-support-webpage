@@ -399,7 +399,6 @@
     display: block; /* Ensure the container behaves as a block-level element for proper sizing */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Add a subtle box shadow for a professional look */
     transition: box-shadow 0.6s ease-in-out; /* Optional: Add a smooth transition to any properties that might change */
-    pointer-events: none;
 }
 /* Target both Video and Iframe */
 .milestone-1 video,
@@ -433,7 +432,7 @@
     display: block;
     font-size: 1em;
     font-weight: bold;
-    margin-top: 10px; /* Reduced to fit the overlay */
+    margin-top: 25px; /* Reduced to fit the overlay */
     margin-bottom: 5px;
     text-align: center;
     color: #ffffff !important; /* Force white color */
@@ -632,6 +631,7 @@ nav.main-navbar{
         text-align: centre;
     }
 }
+
 
 
 
