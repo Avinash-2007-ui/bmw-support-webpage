@@ -195,6 +195,7 @@
             height: 450px;
             width: 860px;
             margin-top: 150px;
+               pointer-events: none;
         }
         .button{
             text-decoration: none;
@@ -651,6 +652,7 @@ nav.main-navbar{
         text-align: centre;
     }
 }
+
 
 
 
