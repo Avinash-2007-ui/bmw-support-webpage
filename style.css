@@ -449,7 +449,7 @@
        pointer-events: none; /* Prevents users from clicking to pause */
        min-width: 450px;
        max-width: 560px;
-       
+       transition: transform 1.5s ease-in-out, opacity 1.5s ease-in-out;
 }
 /* Headings and sub-headings */
 /* It's better to style these separately for clarity */
@@ -654,6 +654,7 @@ nav.main-navbar{
         text-align: centre;
     }
 }
+
 
 
 
