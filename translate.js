@@ -1,5 +1,4 @@
 const translations = {
-   const translations = {
     en: {
         title: "BMW Life: Driven by Passion",
         brand_main: "Performance",
@@ -340,4 +339,5 @@ function initializeLanguage() {
 
 // Ensure the DOM is fully loaded before running
 document.addEventListener('DOMContentLoaded', initializeLanguage);
+
 
