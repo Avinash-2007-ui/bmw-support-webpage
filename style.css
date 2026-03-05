@@ -429,12 +429,14 @@
 }
 
 /* State for when the parent container is hovered */
-.milestone-1:hover {
+.milestone-1:hover,
+.milestone-iframe-1:hover {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Stronger shadow on hover */
 }
 
 /* Apply the transform and opacity change to the video on parent hover */
-.milestone-1:hover video {
+.milestone-1:hover video,
+.milestone-iframe-1:hover iframe{
     transform: scale(1.1); /* This is the zoom effect */
     opacity: 0.4;
 }
@@ -652,6 +654,7 @@ nav.main-navbar{
         text-align: centre;
     }
 }
+
 
 
 
