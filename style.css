@@ -415,7 +415,7 @@
 .milestone-1 iframe {
     /* Video should fill its parent container completely */
     width: 100%;
-    height: 350px;
+    height: 350px !important;
     
     /* Ensures the video covers the entire container without distortion */
     object-fit: cover;
@@ -450,7 +450,7 @@
     margin-bottom: 5px;
     text-align: center;
     color: white;
-    text-decoration: none;
+    text-decoration: none !important;
     width: 100%;
 }
 
@@ -460,7 +460,7 @@
     color: lightgray;
     text-align: left;
     margin-left: 20px;
-    text-decoration: none;
+    text-decoration: none !important;
     width: 100%;
 }
 This CSS styles the video card component.
@@ -639,6 +639,7 @@ nav.main-navbar{
         text-align: centre;
     }
 }
+
 
 
 
