@@ -395,71 +395,69 @@
 .milestone-1 {
     min-width: 450px;
     max-width: 560px;
-    /* Remove 'height: 350px' so the box grows to fit the text below */
-    height: auto; 
-    overflow: hidden;
-    position: relative;
-    display: flex;
-    flex-direction: column; /* Stacks Video on top, Text on bottom */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    background: #000; /* Matching your black background */
+    overflow: hidden; 
+    display: block; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+    transition: box-shadow 0.6s ease-in-out;
+    background: #000; /* Keeps the card background dark like your image */
 }
 
-/* 2. Target Video and Iframe */
+/* 2. The Video and Iframe (Same exact size) */
 .milestone-1 video,
 .milestone-1 iframe {
     width: 100%;
-    height: 350px; /* Keep the video size consistent */
+    height: 350px; /* This is the height from your original code */
     display: block;
-    object-fit: cover;
     border: none;
+    object-fit: cover; /* Keeps video from stretching */
     transition: transform 1.5s ease-in-out, opacity 1.5s ease-in-out;
-    /* We remove pointer-events: none so it stays interactive if needed */
-    pointer-events: auto; 
+    
+    /* CRITICAL: This allows the click to pass through to the <a> tag */
+    pointer-events: none; 
 }
 
-/* 3. The Text Layer (Now positioned BELOW) */
-.technology-discription {
-    padding: 20px; /* Adds space around the text */
-    background: #000; /* Ensures the background behind text is black */
-    width: 100%;
-    display: block;
-}
-
-/* 4. Fix for Clickable Link */
-/* To make the whole area clickable without absolute overlays */
+/* 3. The Clickable Link Wrapper */
 .bmw-technology {
     text-decoration: none;
     display: block;
-    width: 100%;
+    position: relative; /* Anchor for the stacking context */
 }
 
-/* 5. HOVER EFFECTS */
-/* Zooms the video only when you hover the container */
+/* 4. The Hover Effect */
+.milestone-1:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+/* Zoom effect on hover for both video and iframe */
 .milestone-1:hover video,
 .milestone-1:hover iframe {
     transform: scale(1.1);
-    opacity: 0.7; /* Lightly fades to show hover state */
+    opacity: 0.4;
 }
 
-/* Text Styles */
+/* 5. Headings and Sub-headings (Aligned Below) */
 .heading-c {
     display: block;
     font-size: 1em;
     font-weight: bold;
-    color: white !important;
+    margin-top: 25px; /* Your original spacing */
+    margin-bottom: 5px;
     text-align: center;
-    margin-bottom: 8px;
+    color: white !important;
+    text-decoration: none;
+    width: 100%;
 }
 
 .sub-heading-c {
     display: block;
-    font-size: 1.2em; /* Slightly smaller to fit better below */
-    color: #d3d3d3 !important;
+    font-size: 1.5em; /* Your original size */
+    color: lightgray !important;
     text-align: left;
-    line-height: 1.4;
+    margin-left: 20px;
+    margin-bottom: 20px; /* Added padding at the bottom of the card */
+    text-decoration: none;
+    width: 100%;
 }
-
 This CSS styles the video card component.
  * It places text below the video and applies a hover effect where only the video fades and zooms.
  */
@@ -636,6 +634,7 @@ nav.main-navbar{
         text-align: centre;
     }
 }
+
 
 
 
