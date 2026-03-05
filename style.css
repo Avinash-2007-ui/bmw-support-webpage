@@ -411,8 +411,7 @@
 }
 
 /* The video element itself */
-.milestone-1 video,
-.milestone-1 iframe {
+.milestone-1 video {
     /* Video should fill its parent container completely */
     width: 100%;
     height: 350px !important;
@@ -425,7 +424,6 @@
     
     /* Transition for a smooth zoom and opacity change */
     transition: transform 1.5s ease-in-out, opacity 1.5s ease-in-out;
-    pointer-events: none;
 }
 
 /* State for when the parent container is hovered */
@@ -434,8 +432,7 @@
 }
 
 /* Apply the transform and opacity change to the video on parent hover */
-.milestone-1:hover video,
-.milestone-1:hover iframe {
+.milestone-1:hover video {
     transform: scale(1.1); /* This is the zoom effect */
     opacity: 0.4;
 }
@@ -639,6 +636,7 @@ nav.main-navbar{
         text-align: centre;
     }
 }
+
 
 
 
