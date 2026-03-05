@@ -423,12 +423,6 @@
     transform: scale(1.1); /* This is the zoom effect */
     opacity: 0.4;
 }
-/* Ensure the description stays visible on top of the iframe */
-.technology-discription {
-    position: absolute;
-    z-index: 2;
-    pointer-events: none; /* Allows click to reach the <a> tag link */
-}
 
 /* Headings and sub-headings */
 /* It's better to style these separately for clarity */
@@ -633,6 +627,7 @@ nav.main-navbar{
         text-align: centre;
     }
 }
+
 
 
 
