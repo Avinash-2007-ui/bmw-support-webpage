@@ -446,7 +446,7 @@
     margin-top: 25px;
     margin-bottom: 5px;
     text-align: center;
-    color: white;
+    color: rgb(148, 119, 119);
     text-decoration: none;
     width: 100%;
 }
@@ -463,7 +463,8 @@
 .bmw-technology{
     text-decoration: none;
 }
-This CSS styles the video card component.
+/*
+ * This CSS styles the video card component.
  * It places text below the video and applies a hover effect where only the video fades and zooms.
  */
 
