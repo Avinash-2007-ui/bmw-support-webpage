@@ -391,83 +391,67 @@
     flex-wrap: wrap;
 }
 
-/* 1. The Parent Container */
+/* 1. The Container */
 .milestone-1 {
+    position: relative; /* Anchor for absolute children */
     min-width: 450px;
     max-width: 560px;
-    height: 350px; /* Fixed height is necessary for the layout */
+    height: 350px;
     overflow: hidden;
-    position: relative; /* Anchor point for children */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: box-shadow 0.6s ease-in-out;
+    background: black; /* Prevents white "flash" during hover */
 }
 
-/* 2. THE FIX: Make the link fill the whole box */
+/* 2. THE SECRET SAUCE: The Clickable Layer */
+/* We make the link a transparent "blanket" over the whole box */
 .bmw-technology {
-    display: block;
-    width: 100%;
-    height: 100%;
-    text-decoration: none;
-    position: relative;
-    z-index: 10; /* Keeps the link area on top of the video */
-}
-
-/* 3. Target Video and Iframe */
-.milestone-1 video,
-.milestone-1 iframe {
-    width: 100%;
-    height: 100%;
-    position: absolute; /* Take them out of the flow */
+    position: absolute;
     top: 0;
     left: 0;
-    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    z-index: 100; /* Sits ABOVE the video and ABOVE the text */
     display: block;
-    transition: transform 1.5s ease-in-out, opacity 1.5s ease-in-out;
+    text-decoration: none;
+}
+
+/* 3. The Video/Iframe Layer */
+.milestone-1 video,
+.milestone-1 iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1; /* Bottom Layer */
+    pointer-events: none; /* Mouse ignores it */
     border: none;
-    z-index: 1; /* Sit at the very bottom */
-    pointer-events: none; /* Mouse ignores them, so the link works */
+    transition: transform 1.5s ease-in-out, opacity 1.5s ease-in-out;
 }
 
-/* 4. Hover Effects (Triggered by the PARENT) */
-.milestone-1:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
-}
-
-.milestone-1:hover video,
-.milestone-1:hover iframe {
-    transform: scale(1.1);
-    opacity: 0.4;
-}
-
-/* 5. Description Layer */
+/* 4. The Text Layer */
 .technology-discription {
     position: absolute;
     bottom: 20px;
     left: 0;
     width: 100%;
-    z-index: 15; /* Sits on the very top */
-    pointer-events: none; /* Clicks pass through to the <a> tag */
+    z-index: 50; /* Sits above video, but BELOW the link-blanket */
+    pointer-events: none; /* Mouse ignores it so click hits the link */
 }
 
-.heading-c {
-    display: block;
-    font-size: 1em;
-    font-weight: bold;
-    margin-top: 10px;
-    text-align: center;
-    color: #ffffff !important;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.9);
+/* 5. HOVER EFFECTS */
+/* When we hover the container, zoom the video/iframe */
+.milestone-1:hover video,
+.milestone-1:hover iframe {
+    transform: scale(1.1);
+    opacity: 0.5;
 }
 
-.sub-heading-c {
-    display: block;
-    font-size: 1.5em;
-    color: #d3d3d3 !important;
-    text-align: left;
-    margin-left: 20px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.9);
-}/*
- * This CSS styles the video card component.
+/* Fix for Heading visibility */
+.heading-c, .sub-heading-c {
+    color: white !important;
+    text-shadow: 2px 2px 8px rgba(0,0,0,1);
+} * This CSS styles the video card component.
  * It places text below the video and applies a hover effect where only the video fades and zooms.
  */
 
@@ -643,6 +627,7 @@ nav.main-navbar{
         text-align: centre;
     }
 }
+
 
 
 
