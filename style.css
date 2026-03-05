@@ -339,7 +339,8 @@
             border-top-left-radius: 8px;/*image should cover it's parent radius*/
             border-top-right-radius: 8px;/*same as above*/
         }
-        .gallery-item video{
+        .gallery-item video, 
+        .gallery-item iframe{
             width: 100%;/*image should cover it's parent full width*/
             height: 400px;/*specifies the height of image*/
             object-fit: cover;/*image should fit it's parent conatiner*/
@@ -635,4 +636,5 @@ nav.main-navbar{
         text-align: centre;
     }
 }
+
 
