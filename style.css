@@ -391,70 +391,82 @@
     flex-wrap: wrap;
 }
 
-/* The parent container for each video. This is the frame. */
+/* 1. The Parent Container */
 .milestone-1 {
-    min-width: 450px; /* Define the size of the container. The video will be clipped to this. */
+    min-width: 450px;
     max-width: 560px;
-    overflow: hidden;  /* CRUCIAL: This hides the overflow when the child video scales up */
-    display: block; /* Ensure the container behaves as a block-level element for proper sizing */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Optional: Add a subtle box shadow for a professional look */
-    transition: box-shadow 0.6s ease-in-out; /* Optional: Add a smooth transition to any properties that might change */
+    height: 350px; /* Fixed height is necessary for the layout */
+    overflow: hidden;
+    position: relative; /* Anchor point for children */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.6s ease-in-out;
 }
-/* Target both Video and Iframe */
+
+/* 2. THE FIX: Make the link fill the whole box */
+.bmw-technology {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    position: relative;
+    z-index: 10; /* Keeps the link area on top of the video */
+}
+
+/* 3. Target Video and Iframe */
 .milestone-1 video,
-.milestone-1 iframe{
-    width: 100%;/* Video should fill its parent container completely */
-    height: 350px;
-    object-fit: cover; /* Ensures the video covers the entire container without distortion */
-    display: block; /* Prevents unwanted space below the video */
-    transition: transform 1.5s ease-in-out, opacity 1.5s ease-in-out; /* Transition for a smooth zoom and opacity change */
+.milestone-1 iframe {
+    width: 100%;
+    height: 100%;
+    position: absolute; /* Take them out of the flow */
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    display: block;
+    transition: transform 1.5s ease-in-out, opacity 1.5s ease-in-out;
     border: none;
-    z-index: 1; /* Lower than the description */
-    pointer-events: none;
+    z-index: 1; /* Sit at the very bottom */
+    pointer-events: none; /* Mouse ignores them, so the link works */
 }
 
-/* State for when the parent container is hovered */
+/* 4. Hover Effects (Triggered by the PARENT) */
 .milestone-1:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Stronger shadow on hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
 
-/* Apply the transform and opacity change to the video on parent hover */
-/* Apply zoom and opacity to both */
 .milestone-1:hover video,
 .milestone-1:hover iframe {
-    transform: scale(1.1); /* This is the zoom effect */
+    transform: scale(1.1);
     opacity: 0.4;
 }
 
-/* Headings and sub-headings */
-/* It's better to style these separately for clarity */
+/* 5. Description Layer */
+.technology-discription {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    width: 100%;
+    z-index: 15; /* Sits on the very top */
+    pointer-events: none; /* Clicks pass through to the <a> tag */
+}
+
 .heading-c {
     display: block;
     font-size: 1em;
     font-weight: bold;
-    margin-top: 25px; /* Reduced to fit the overlay */
-    margin-bottom: 5px;
+    margin-top: 10px;
     text-align: center;
-    color: #ffffff !important; /* Force white color */
-    text-decoration: none;
-    width: 100%;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.7); /* Adds contrast against the video */
+    color: #ffffff !important;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.9);
 }
 
 .sub-heading-c {
     display: block;
     font-size: 1.5em;
-    color: #d3d3d3 !important; /* Force lightgray */
+    color: #d3d3d3 !important;
     text-align: left;
     margin-left: 20px;
-    text-decoration: none;
-    width: 100%;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.7); /* Adds contrast */
-}
-.bmw-technology{
-    text-decoration: none;
-}
-/*
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.9);
+}/*
  * This CSS styles the video card component.
  * It places text below the video and applies a hover effect where only the video fades and zooms.
  */
@@ -631,6 +643,7 @@ nav.main-navbar{
         text-align: centre;
     }
 }
+
 
 
 
