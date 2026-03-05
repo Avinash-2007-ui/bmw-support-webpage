@@ -211,6 +211,7 @@
             height: 450px;
             width: 860px;
             align-items: center;
+            pointer-events: none;   
         }
         .video-container{
             display: flex;
@@ -650,6 +651,7 @@ nav.main-navbar{
         text-align: centre;
     }
 }
+
 
 
 
