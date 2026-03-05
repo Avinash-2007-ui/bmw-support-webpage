@@ -347,14 +347,13 @@
             display: block;/* any image distrotion should be neglected*/
             border-top-left-radius: 8px;/*image should cover it's parent radius*/
             border-top-right-radius: 8px;/*same as above*/
-        }
-       .gallery-item iframe {
             pointer-events: none; /* Prevents users from clicking to pause */
         }
         .item-discription{
             padding: 15px;
             text-align: center;
             width: 100%;/* Ensures text container takes full width of item*/ 
+            pointer-events: auto;
         }
         .item-discription p{
             margin: 0;
@@ -365,6 +364,8 @@
         a.bmw_original{
             text-decoration: none;
             color: lightgrey;
+            display: block;
+            position: relative;
         }
         /*
  * Corrected and optimized CSS.
@@ -639,6 +640,7 @@ nav.main-navbar{
         text-align: centre;
     }
 }
+
 
 
 
