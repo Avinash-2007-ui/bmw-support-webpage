@@ -410,6 +410,7 @@
     transition: transform 1.5s ease-in-out, opacity 1.5s ease-in-out; /* Transition for a smooth zoom and opacity change */
     border: none;
     z-index: 1; /* Lower than the description */
+    pointer-events: none;
 }
 
 /* State for when the parent container is hovered */
@@ -630,6 +631,7 @@ nav.main-navbar{
         text-align: centre;
     }
 }
+
 
 
 
