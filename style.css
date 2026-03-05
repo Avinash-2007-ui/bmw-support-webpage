@@ -348,6 +348,9 @@
             border-top-left-radius: 8px;/*image should cover it's parent radius*/
             border-top-right-radius: 8px;/*same as above*/
         }
+       .gallery-item iframe {
+            pointer-events: none; /* Prevents users from clicking to pause */
+        }
         .item-discription{
             padding: 15px;
             text-align: center;
@@ -636,5 +639,6 @@ nav.main-navbar{
         text-align: centre;
     }
 }
+
 
 
