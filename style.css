@@ -522,7 +522,7 @@
     display: block;
     font-size: 1.5em;
     color: lightgray;
-    text-align: left;
+    text-align: center;
     margin-left: 20px;
     text-decoration: none;
     width: 100%;
@@ -640,6 +640,7 @@ nav.main-navbar{
         text-align: centre;
     }
 }
+
 
 
 
