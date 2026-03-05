@@ -448,7 +448,9 @@
     display: block;
     pointer-events: none; /* Prevents users from clicking to pause */
     transition: transform 1.5s ease-in-out, opacity 1.5s ease-in-out;
-       position: relative;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    will-change: transform;
 }
 /* Headings and sub-headings */
 /* It's better to style these separately for clarity */
@@ -480,6 +482,7 @@
     text-decoration: none; /* Removes any unwanted underlines */
     overflow: hidden;      /* CRITICAL: This crops the zoom */
     position: relative;
+       cursor: pointer;
 }
 /*
  * This CSS styles the video card component.
@@ -658,6 +661,7 @@ nav.main-navbar{
         text-align: centre;
     }
 }
+
 
 
 
