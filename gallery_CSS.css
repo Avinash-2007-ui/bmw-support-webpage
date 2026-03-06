@@ -203,10 +203,12 @@ nav.main-navbar{
     padding: 0; /* Reset default ul padding */
     margin-left: 50px;/* Space from left side ot=f the nav bar*/
     margin-top: 25px;/* Space from top of the section*/
+    color: white;
 }
  li a:hover,
         .frustration:hover .morefrustration {
             color: aquamarine;
             font-size: 1.1rem; /* Consistent hover size */
         }
+
 
