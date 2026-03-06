@@ -177,59 +177,31 @@ nav {
     text-decoration: none;
     color: lightgray;
 }
-.second{
-    background-color: rgb(27, 24, 24);
-    height: 650px;
+/* 1. THE NORMAL STATE (How it looks when NOT hovering) */
+.second {
+    background-color: rgb(27, 24, 24); /* This matches your dark theme */
+    height: 650px; 
 }
-nav.main-navbar{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: rgb(27, 24, 24);
-    height: 80px;
-    padding: 0 40px;
-}
-.left-2{
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
- /* Navigation links on the right */
-.navcontent-2{
-    list-style: none;
-    display: flex;
-    gap: 30px; /* Space between the main navigation links */
-    margin: 0; /* Reset default ul margin */
-    padding: 0; /* Reset default ul padding */
-    margin-left: 50px;/* Space from left side ot=f the nav bar*/
-    margin-top: 25px;/* Space from top of the section*/
-}
-//* LEVEL 3: The Actual Links (Normal State) */
-.second .main-navbar .navcontent-2 li a {
+
+.second .navcontent-2 li a {
     text-decoration: none;
-    color: white !important; /* Forces white on start */
+    color: white !important; /* Always white by default */
     font-size: 1rem;
+    padding: 10px 15px;
     display: block;
-    transition: all 0.3s ease;
-    padding: 16px 0; /* Vertical padding for clickable area */
+    transition: all 0.3s ease-in-out; /* This makes the "fade back" smooth */
 }
 
-/* Level 4: The Absolute Boss Selector */
-/* We target the Section -> Nav -> UL -> LI -> A */
-section.second nav.main-navbar ul.navcontent-2 li a:hover {
-    color: #7fffda !important; /* This is the Hex code for Aquamarine */
-    font-size: 1.1rem !important;
-    text-shadow: 0 0 10px rgba(127, 255, 212, 0.5); /* Adds a glow to prove it's working */
-    transition: color 0.3s ease-in-out;
+/* 2. THE HOVER STATE (Exactly like your screenshot) */
+.second .navcontent-2 li a:hover {
+    color: rgb(127, 255, 212) !important; /* Aquamarine color */
+    font-size: 1.15rem !important;        /* The "Pop" effect */
+    text-shadow: 0 0 15px rgba(127, 255, 212, 0.7); /* The glow in your photo */
+    cursor: pointer;
 }
 
-
-
-
-
-
-
-
-
-
-
+/* 3. OPTIONAL: If you want the background of the link to change slightly too */
+.second .navcontent-2 li a:hover {
+    background-color: rgba(255, 255, 255, 0.05); /* Very subtle gray highlight */
+    border-radius: 4px;
+}
