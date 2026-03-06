@@ -177,24 +177,34 @@ nav {
     text-decoration: none;
     color: lightgray;
 }
-/* LEVEL 1: The Outer Container (The Background) */
-.second {
-    background-color: rgb(27, 24, 24);
-    width: 100%;
-    padding: 40px 0; /* Gives the footer some breathing room */
-    display: flex;
-    justify-content: center; /* Centers the whole navbar horizontally */
+.second{
+    background-color: rgb(27, 24, 24);
+    height: 650px;
 }
-
-/* LEVEL 2: The List Container (The Alignment) */
-.navcontent-2 {
-    display: flex;
-    list-style: none; /* Removes the bullet points */
-    gap: 30px;        /* Space between English, Español, etc. */
-    margin: 0;
-    padding: 0;
+nav.main-navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(27, 24, 24);
+    height: 80px;
+    padding: 0 40px;
 }
-
+.left-2{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+ /* Navigation links on the right */
+.navcontent-2{
+    list-style: none;
+    display: flex;
+    gap: 30px; /* Space between the main navigation links */
+    margin: 0; /* Reset default ul margin */
+    padding: 0; /* Reset default ul padding */
+    margin-left: 50px;/* Space from left side ot=f the nav bar*/
+    margin-top: 25px;/* Space from top of the section*/
+    color: white;
+}
 //* LEVEL 3: The Actual Links (Normal State) */
 .second .main-navbar .navcontent-2 li a {
     text-decoration: none;
@@ -202,6 +212,7 @@ nav {
     font-size: 1rem;
     display: block;
     transition: all 0.3s ease;
+    padding: 16px 0; /* Vertical padding for clickable area */
 }
 
 /* Level 4: The Absolute Boss Selector */
@@ -212,6 +223,7 @@ section.second nav.main-navbar ul.navcontent-2 li a:hover {
     text-shadow: 0 0 10px rgba(127, 255, 212, 0.5); /* Adds a glow to prove it's working */
     transition: color 0.3s ease-in-out;
 }
+
 
 
 
