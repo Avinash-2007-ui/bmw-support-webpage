@@ -48,7 +48,22 @@ const translations = {
         lang_fr: "Français",
         lang_zh: "Chinese",
         footer_privacy: "Privacy Policy",
-        footer_terms: "Terms of Service"
+        footer_terms: "Terms of Service",
+        /* Translate for Gallery_html */
+        future_projects: "Future Projects",
+        current_projects: "Current Projects",
+        project_ix5_title: "iX5 Hydrogen",
+        project_ix5_desc: "Fuel cell assembly line in our Munich plant.",
+        project_digital_title: "Digital Manufacturing",
+        project_digital_desc: "Advanced robotics for precision body welding.",
+        project_v8_title: "New Engine Architecture",
+        project_v8_desc: "Research into next-gen V8 engine casting.",
+        project_factory_title: "Factory 4.0",
+        project_factory_desc: "Fully automated paint and finish shop.",
+        project_assembly_title: "Final Assembly Line",
+        project_assembly_desc: "Quality control checks on the new 7 Series.",
+        project_m_title: "Performance Division",
+        project_m_desc: "Final tuning and testing of M-series engines."
     },
     es: {
         title: "BMW Vida: Impulsado por la Pasión",
@@ -99,7 +114,22 @@ const translations = {
         lang_fr: "Francés",
         lang_zh: "Chino",
         footer_privacy: "Política de Privacidad",
-        footer_terms: "Términos del Servicio"
+        footer_terms: "Términos del Servicio",
+        future_projects: "Proyectos Futuros",
+    current_projects: "Proyectos Actuales",
+    project_ix5_title: "iX5 Hydrogen",
+    project_ix5_desc: "Línea de montaje de pilas de combustible en nuestra planta de Múnich.",
+    project_digital_title: "Fabricación Digital",
+    project_digital_desc: "Robótica avanzada para la soldadura de precisión de carrocerías.",
+    project_v8_title: "Nueva Arquitectura de Motores",
+    project_v8_desc: "Investigación sobre la fundición de motores V8 de próxima generación.",
+    project_factory_title: "Fábrica 4.0",
+    project_factory_desc: "Taller de pintura y acabado totalmente automatizado.",
+    project_assembly_title: "Línea de Ensamblaje Final",
+    project_assembly_desc: "Controles de calidad en la nueva Serie 7.",
+    project_m_title: "División de Rendimiento",
+    project_m_desc: "Ajuste final y pruebas de los motores de la serie M."
+        
     },
     de: {
         title: "BMW Leben: Angetrieben von Leidenschaft",
@@ -150,7 +180,21 @@ const translations = {
         lang_fr: "Französisch",
         lang_zh: "Chinesisch",
         footer_privacy: "Datenschutz-Bestimmungen",
-        footer_terms: "Nutzungsbedingungen"
+        footer_terms: "Nutzungsbedingungen",
+        future_projects: "Zukunftsprojekte",
+        current_projects: "Aktuelle Projekte",
+        project_ix5_title: "iX5 Hydrogen",
+        project_ix5_desc: "Brennstoffzellen-Montagelinie in unserem Werk München.",
+        project_digital_title: "Digitale Fertigung",
+        project_digital_desc: "Fortschrittliche Robotik für präzises Karosserieschweißen.",
+        project_v8_title: "Neue Motorenarchitektur",
+        project_v8_desc: "Forschung zum V8-Motorenguss der nächsten Generation.",
+        project_factory_title: "Fabrik 4.0",
+        project_factory_desc: "Vollautomatische Lackiererei und Endbearbeitung.",
+        project_assembly_title: "Endmontagelinie",
+        project_assembly_desc: "Qualitätskontrollen für die neue 7er-Reihe.",
+        project_m_title: "Performance-Abteilung",
+        project_m_desc: "Feinabstimmung und Erprobung von M-Motoren."
     },
     it: {
         title: "BMW Life: Guidati dalla Passione",
@@ -201,7 +245,21 @@ const translations = {
         lang_fr: "Francese",
         lang_zh: "Cinese",
         footer_privacy: "Informativa sulla Privacy",
-        footer_terms: "Termini di Servizio"
+        footer_terms: "Termini di Servizio",
+        future_projects: "Progetti Futuri",
+        current_projects: "Progetti Attuali",
+        project_ix5_title: "iX5 Hydrogen",
+        project_ix5_desc: "Linea di assemblaggio celle a combustibile nello stabilimento di Monaco.",
+        project_digital_title: "Produzione Digitale",
+        project_digital_desc: "Robotica avanzata per la saldatura di precisione della carrozzeria.",
+        project_v8_title: "Nuova Architettura del Motore",
+        project_v8_desc: "Ricerca sulla fusione dei motori V8 di prossima generazione.",
+        project_factory_title: "Fabbrica 4.0",
+        project_factory_desc: "Reparto verniciatura e finitura completamente automatizzato.",
+        project_assembly_title: "Linea di Assemblaggio Finale",
+        project_assembly_desc: "Controlli di qualità sulla nuova Serie 7.",
+        project_m_title: "Divisione Performance",
+        project_m_desc: "Messa a punto finale e test dei motori della serie M."
     },
     fr: {
         title: "BMW Life : Passionnément Vôtre",
@@ -251,8 +309,22 @@ const translations = {
         lang_it: "Italien",
         lang_fr: "Français",
         lang_zh: "Chinois",
-        footer_privacy: "Politique de Confidentialité",
-        footer_terms: "Conditions d'Utilisation"
+        footer_privacy: "Politique de confidentialité",
+        footer_terms: "Conditions d'Utilisation",
+        future_projects: "Projets Futurs",
+        current_projects: "Projets Actuels",
+        project_ix5_title: "iX5 Hydrogen",
+        project_ix5_desc: "Chaîne de montage de piles à combustible dans notre usine de Munich.",
+        project_digital_title: "Fabrication Numérique",
+        project_digital_desc: "Robotique avancée pour le soudage de précision des carrosseries.",
+        project_v8_title: "Nouvelle Architecture Moteur",
+        project_v8_desc: "Recherche sur le moulage des moteurs V8 de nouvelle génération.",
+        project_factory_title: "Usine 4.0",
+        project_factory_desc: "Atelier de peinture et de finition entièrement automatisé.",
+        project_assembly_title: "Chaîne de Montage Finale",
+        project_assembly_desc: "Contrôles qualité sur la nouvelle Série 7.",
+        project_m_title: "Division Performance",
+        project_m_desc: "Réglage final et tests des moteurs de la série M."
     },
     zh: {
         title: "BMW 生活：激情驱动",
@@ -303,7 +375,21 @@ const translations = {
         lang_fr: "法语",
         lang_zh: "中文",
         footer_privacy: "隐私政策",
-        footer_terms: "服务条款"
+        footer_terms: "服务条款",
+        future_projects: "未来项目",
+        current_projects: "当前项目",
+        project_ix5_title: "iX5 氢动力",
+        project_ix5_desc: "慕尼黑工厂的燃料电池组装线。",
+        project_digital_title: "数字化制造",
+        project_digital_desc: "用于精密车身焊接的高级机器人。",
+        project_v8_title: "新发动机架构",
+        project_v8_desc: "下一代 V8 发动机铸造研究。",
+        project_factory_title: "工业 4.0 工厂",
+        project_factory_desc: "全自动喷漆和精加工车间。",
+        project_assembly_title: "总装线",
+        project_assembly_desc: "全新 7 系列的质量控制检查。",
+        project_m_title: "高性能部门",
+        project_m_desc: "M 系列发动机的最终调校和测试。"
     }
 };
 function applyTranslations(lang) {
@@ -339,5 +425,6 @@ function initializeLanguage() {
 
 // Ensure the DOM is fully loaded before running
 document.addEventListener('DOMContentLoaded', initializeLanguage);
+
 
 
