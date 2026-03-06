@@ -210,12 +210,13 @@ nav.main-navbar{
             color: aquamarine;
             font-size: 1.1rem; /* Consistent hover size */
         }
- li a {
+.navcontent-2 li a {
             text-decoration: none;
             color: white;
             padding: 16px 0; /* Vertical padding for clickable area */
             display: block; /* Ensures the whole padded area is clickable */
             transition: color 0.3s, font-size 0.3s; /* Smooth hover transition */
         }
+
 
 
