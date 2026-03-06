@@ -195,21 +195,21 @@ nav {
     padding: 0;
 }
 
-/* LEVEL 3: The Actual Links (Normal State) */
-/* We use the full path to make sure this is the "boss" of the styling */
-.second .navcontent-2 li a {
+//* LEVEL 3: The Actual Links (Normal State) */
+.second .main-navbar .navcontent-2 li a {
     text-decoration: none;
-    color: white;
+    color: white !important; /* Forces white on start */
     font-size: 1rem;
     display: block;
-    transition: all 0.3s ease; /* Makes the color/size change smooth */
+    transition: all 0.3s ease;
 }
 
 /* LEVEL 4: The Hover State (The Magic) */
-/* This overrides everything else when your mouse touches the link */
-.second .navcontent-2 li a:hover {
-    color: rgb(127, 255, 212); /* Aquamarine */
-    font-size: 1.1rem;          /* The slight pop-out effect */
+/* We target .second -> .main-navbar -> .navcontent-2 -> li -> a:hover */
+.second .main-navbar .navcontent-2 li a:hover {
+    color: rgb(127, 255, 212) !important; /* FORCED Aquamarine */
+    font-size: 1.1rem; 
+    text-shadow: 0 0 8px rgba(127, 255, 212, 0.6); /* Adds a glow to make the color pop */
     cursor: pointer;
 }
 
