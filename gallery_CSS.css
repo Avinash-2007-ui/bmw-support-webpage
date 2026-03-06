@@ -203,7 +203,6 @@ nav.main-navbar{
     padding: 0; /* Reset default ul padding */
     margin-left: 50px;/* Space from left side ot=f the nav bar*/
     margin-top: 25px;/* Space from top of the section*/
-    color: white;
 }
 //* LEVEL 3: The Actual Links (Normal State) */
 .second .main-navbar .navcontent-2 li a {
@@ -223,6 +222,7 @@ section.second nav.main-navbar ul.navcontent-2 li a:hover {
     text-shadow: 0 0 10px rgba(127, 255, 212, 0.5); /* Adds a glow to prove it's working */
     transition: color 0.3s ease-in-out;
 }
+
 
 
 
