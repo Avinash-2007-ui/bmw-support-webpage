@@ -204,21 +204,19 @@ nav.main-navbar{
     margin-left: 50px;/* Space from left side ot=f the nav bar*/
     margin-top: 25px;/* Space from top of the section*/
 }
-/* --- SECOND PAGE NAVBAR STYLES --- */
-
-/* Base style for the links */
-.navcontent-2 li a {
+/* This uses 'div.second' to make the rule "stronger" so the browser doesn't ignore it */
+div.second .navcontent-2 li a {
     text-decoration: none;
-    color: white;
-    padding: 16px 0; 
-    display: block; 
-    transition: color 0.3s, font-size 0.3s; /* Smooth transition */
+    color: white !important;
+    padding: 16px 0;
+    display: block;
+    transition: all 0.3s ease;
 }
 
-/* Hover style for the links */
-.navcontent-2 li a:hover {
-    color: rgb(127, 255, 212); /* Aquamarine */
-    font-size: 1.1rem;          /* Slight size increase */
-    text-shadow: 0 0 10px rgba(127, 255, 212, 0.4); /* Glow effect */
+div.second .navcontent-2 li a:hover {
+    color: rgb(127, 255, 212) !important; /* Aquamarine */
+    font-size: 1.1rem !important;
+    text-shadow: 0 0 10px rgba(127, 255, 212, 0.5);
 }
+
 
