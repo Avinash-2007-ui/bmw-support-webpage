@@ -178,45 +178,31 @@ nav {
     color: lightgray;
 }
 .second{
-    background-color: rgb(27, 24, 24);
-    height: 650px;
+    background-color: rgb(27, 24, 24);
+    height: 650px;
 }
 nav.main-navbar{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: rgb(27, 24, 24);
-    height: 80px;
-    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(27, 24, 24);
+    height: 80px;
+    padding: 0 40px;
 }
 .left-2{
-    display: flex;
-    align-items: center;
-    gap: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
- /* Navigation links on the right */
+ /* Navigation links on the right */
 .navcontent-2{
-    list-style: none;
-    display: flex;
-    gap: 30px; /* Space between the main navigation links */
-    margin: 0; /* Reset default ul margin */
-    padding: 0; /* Reset default ul padding */
-    margin-left: 50px;/* Space from left side ot=f the nav bar*/
-    margin-top: 25px;/* Space from top of the section*/
-    color: white;
+    list-style: none;
+    display: flex;
+    gap: 30px; /* Space between the main navigation links */
+    margin: 0; /* Reset default ul margin */
+    padding: 0; /* Reset default ul padding */
+    margin-left: 50px;/* Space from left side ot=f the nav bar*/
+    margin-top: 25px;/* Space from top of the section*/
 }
- li a:hover,
-        .frustration:hover .morefrustration {
-            color: aquamarine;
-            font-size: 1.1rem; /* Consistent hover size */
-        }
-.navcontent-2 li a {
-            text-decoration: none;
-            color: white;
-            padding: 16px 0; /* Vertical padding for clickable area */
-            display: block; /* Ensures the whole padded area is clickable */
-            transition: color 0.3s, font-size 0.3s; /* Smooth hover transition */
-        }
 
-okay this code works well like kinda works it works till the color:white; in the .navcontent-2
 
