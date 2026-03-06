@@ -204,14 +204,15 @@ nav {
     transition: all 0.3s ease;
 }
 
-/* LEVEL 4: The Hover State (The Magic) */
-/* We target .second -> .main-navbar -> .navcontent-2 -> li -> a:hover */
- li a:hover {
-    color: rgb(127, 255, 212) !important; /* FORCED Aquamarine */
-    font-size: 1.1rem; 
-    text-shadow: 0 0 8px rgba(127, 255, 212, 0.6); /* Adds a glow to make the color pop */
-    cursor: pointer;
+/* Level 4: The Absolute Boss Selector */
+/* We target the Section -> Nav -> UL -> LI -> A */
+section.second nav.main-navbar ul.navcontent-2 li a:hover {
+    color: #7fffda !important; /* This is the Hex code for Aquamarine */
+    font-size: 1.1rem !important;
+    text-shadow: 0 0 10px rgba(127, 255, 212, 0.5); /* Adds a glow to prove it's working */
+    transition: color 0.3s ease-in-out;
 }
+
 
 
 
