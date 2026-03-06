@@ -204,5 +204,12 @@ nav.main-navbar{
     margin-left: 50px;/* Space from left side ot=f the nav bar*/
     margin-top: 25px;/* Space from top of the section*/
 }
+.navcontent-2 li a {
+    text-decoration: none;
+    color: white !important; /* Forces text to stay white initially */
+    padding: 16px 0; 
+    display: block; 
+    transition: color 0.3s, font-size 0.3s; 
+}
 
 
