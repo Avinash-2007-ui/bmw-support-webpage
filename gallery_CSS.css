@@ -177,10 +177,32 @@ nav {
     text-decoration: none;
     color: lightgray;
 }
-/* 1. THE NORMAL STATE (How it looks when NOT hovering) */
-.second {
-    background-color: rgb(27, 24, 24); /* This matches your dark theme */
-    height: 650px; 
+.second{
+    background-color: rgb(27, 24, 24);
+    height: 650px;
+}
+nav.main-navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(27, 24, 24);
+    height: 80px;
+    padding: 0 40px;
+}
+.left-2{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+ /* Navigation links on the right */
+.navcontent-2{
+    list-style: none;
+    display: flex;
+    gap: 30px; /* Space between the main navigation links */
+    margin: 0; /* Reset default ul margin */
+    padding: 0; /* Reset default ul padding */
+    margin-left: 50px;/* Space from left side ot=f the nav bar*/
+    margin-top: 25px;/* Space from top of the section*/
 }
 
 .second .navcontent-2 li a {
@@ -205,3 +227,4 @@ nav {
     background-color: rgba(255, 255, 255, 0.05); /* Very subtle gray highlight */
     border-radius: 4px;
 }
+
