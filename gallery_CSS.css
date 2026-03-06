@@ -177,46 +177,42 @@ nav {
     text-decoration: none;
     color: lightgray;
 }
-.second{
+/* LEVEL 1: The Outer Container (The Background) */
+.second {
     background-color: rgb(27, 24, 24);
-    height: 650px;
-}
-nav.main-navbar{
+    width: 100%;
+    padding: 40px 0; /* Gives the footer some breathing room */
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: rgb(27, 24, 24);
-    height: 80px;
-    padding: 0 40px;
+    justify-content: center; /* Centers the whole navbar horizontally */
 }
-.left-2{
+
+/* LEVEL 2: The List Container (The Alignment) */
+.navcontent-2 {
     display: flex;
-    align-items: center;
-    gap: 15px;
+    list-style: none; /* Removes the bullet points */
+    gap: 30px;        /* Space between English, Español, etc. */
+    margin: 0;
+    padding: 0;
 }
- /* Navigation links on the right */
-.navcontent-2{
-    list-style: none;
-    display: flex;
-    gap: 30px; /* Space between the main navigation links */
-    margin: 0; /* Reset default ul margin */
-    padding: 0; /* Reset default ul padding */
-    margin-left: 50px;/* Space from left side ot=f the nav bar*/
-    margin-top: 25px;/* Space from top of the section*/
+
+/* LEVEL 3: The Actual Links (Normal State) */
+/* We use the full path to make sure this is the "boss" of the styling */
+.second .navcontent-2 li a {
+    text-decoration: none;
     color: white;
+    font-size: 1rem;
+    display: block;
+    transition: all 0.3s ease; /* Makes the color/size change smooth */
 }
- li a:hover,
-        .frustration:hover .morefrustration {
-            color: aquamarine;
-            font-size: 1.1rem; /* Consistent hover size */
-        }
-.navcontent-2 li a {
-            text-decoration: none;
-            color: white;
-            padding: 16px 0; /* Vertical padding for clickable area */
-            display: block; /* Ensures the whole padded area is clickable */
-            transition: color 0.3s, font-size 0.3s; /* Smooth hover transition */
-        }
+
+/* LEVEL 4: The Hover State (The Magic) */
+/* This overrides everything else when your mouse touches the link */
+.second .navcontent-2 li a:hover {
+    color: rgb(127, 255, 212); /* Aquamarine */
+    font-size: 1.1rem;          /* The slight pop-out effect */
+    cursor: pointer;
+}
+
 
 
 
