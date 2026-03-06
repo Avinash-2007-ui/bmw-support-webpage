@@ -221,5 +221,10 @@ nav.main-navbar{
     text-shadow: 0 0 10px rgba(127, 255, 212, 0.5);
     cursor: pointer;
 }
+nav ul li a:hover {
+            color: rgb(127, 255, 212);
+            font-size: 1.1rem; /* Slight size increase on hover */
+        }
+
 
 
