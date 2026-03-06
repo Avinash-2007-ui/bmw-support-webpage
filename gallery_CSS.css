@@ -204,12 +204,22 @@ nav.main-navbar{
     margin-left: 50px;/* Space from left side ot=f the nav bar*/
     margin-top: 25px;/* Space from top of the section*/
 }
+/* This part handles the "Normal" look and the "Return" animation */
 .navcontent-2 li a {
     text-decoration: none;
-    color: white !important; /* Forces text to stay white initially */
-    padding: 16px 0; 
-    display: block; 
-    transition: color 0.3s, font-size 0.3s; 
+    color: white;
+    font-size: 1rem;
+    display: block;
+    /* CRITICAL: This makes the hover and the 'un-hover' smooth */
+    transition: color 0.3s ease, font-size 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* This part handles the "Active" look when your mouse is there */
+.navcontent-2 li a:hover {
+    color: rgb(127, 255, 212) !important; 
+    font-size: 1.1rem;
+    text-shadow: 0 0 10px rgba(127, 255, 212, 0.5);
+    cursor: pointer;
 }
 
 
