@@ -207,11 +207,12 @@ nav {
 /* LEVEL 4: The Hover State (The Magic) */
 /* We target .second -> .main-navbar -> .navcontent-2 -> li -> a:hover */
  li a:hover {
-    color: rgb(127, 255, 0) !important; /* FORCED Aquamarine */
+    color: rgb(127, 255, 212) !important; /* FORCED Aquamarine */
     font-size: 1.1rem; 
     text-shadow: 0 0 8px rgba(127, 255, 212, 0.6); /* Adds a glow to make the color pop */
     cursor: pointer;
 }
+
 
 
 
