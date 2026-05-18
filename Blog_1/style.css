@@ -410,6 +410,7 @@
     
     /* Optional: Add a smooth transition to any properties that might change */
     transition: box-shadow 0.6s ease-in-out;
+       position: relative;
 }
 
 /* The video element itself */
@@ -429,12 +430,13 @@
 }
 
 /* State for when the parent container is hovered */
-.milestone-1:hover {
+.milestone-1:hover, .milestone-iframe-1 {
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); /* Stronger shadow on hover */
 }
 
 /* Apply the transform and opacity change to the video on parent hover */
-.milestone-1:hover video {
+.milestone-1:hover video,
+.milestone-1:hover .milestone-iframe-1{
     transform: scale(1.1); /* This is the zoom effect */
     opacity: 0.4;
 }
@@ -442,12 +444,12 @@
 .milestone-iframe-1 {
     width: 100%;
     height: 350px;
-       object-fit: cover;
-       display: block;
-       pointer-events: none; /* Prevents users from clicking to pause */
-       min-width: 450px;
-       max-width: 560px;
-       
+    display: block;
+    border: none;
+    pointer-events: none; /* Prevents users from clicking to pause */
+    transition: transform 1.5s ease-in-out, opacity 1.5s ease-in-out;
+    will-change: transform;
+    transform: translateZ(0);
 }
 /* Headings and sub-headings */
 /* It's better to style these separately for clarity */
@@ -473,7 +475,13 @@
     width: 100%;
 }
 .bmw-technology{
-    text-decoration: none;
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none; /* Removes any unwanted underlines */
+    overflow: hidden;      /* CRITICAL: This crops the zoom */
+    position: relative;
+       cursor: pointer;
 }
 /*
  * This CSS styles the video card component.
@@ -652,6 +660,14 @@ nav.main-navbar{
         text-align: centre;
     }
 }
+
+
+
+
+
+
+
+
 
 
 

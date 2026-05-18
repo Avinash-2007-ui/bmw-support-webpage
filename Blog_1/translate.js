@@ -23,7 +23,7 @@ const translations = {
         m5_e39_2: "E39 M5 (1998-2003)",
         m5_e39_3: "E39 M5 (1998-2003)",
         project_gallery: "Project Gallery",
-        box_drive: "BMW PANAROMIC DRIVE <br> iDRIVE",
+        box_drive: "BMW PANORAMIC DRIVE <br> iDRIVE",
         learn_more: "Learn More↗",
         guide_title: "The Guide",
         guide_sub: "The Heart of Joy: Redefining the Driving Pleasure",
@@ -48,7 +48,22 @@ const translations = {
         lang_fr: "Français",
         lang_zh: "Chinese",
         footer_privacy: "Privacy Policy",
-        footer_terms: "Terms of Service"
+        footer_terms: "Terms of Service",
+        /* Translate for Gallery_html */
+        future_projects: "Future Projects",
+        current_projects: "Current Projects",
+        project_ix5_title: "iX5 Hydrogen",
+        project_ix5_desc: "Fuel cell assembly line in our Munich plant.",
+        project_digital_title: "Digital Manufacturing",
+        project_digital_desc: "Advanced robotics for precision body welding.",
+        project_v8_title: "New Engine Architecture",
+        project_v8_desc: "Research into next-gen V8 engine casting.",
+        project_factory_title: "Factory 4.0",
+        project_factory_desc: "Fully automated paint and finish shop.",
+        project_assembly_title: "Final Assembly Line",
+        project_assembly_desc: "Quality control checks on the new 7 Series.",
+        project_m_title: "Performance Division",
+        project_m_desc: "Final tuning and testing of M-series engines."
     },
     es: {
         title: "BMW Vida: Impulsado por la Pasión",
@@ -99,7 +114,22 @@ const translations = {
         lang_fr: "Francés",
         lang_zh: "Chino",
         footer_privacy: "Política de Privacidad",
-        footer_terms: "Términos del Servicio"
+        footer_terms: "Términos del Servicio",
+        future_projects: "Proyectos Futuros",
+    current_projects: "Proyectos Actuales",
+    project_ix5_title: "iX5 Hydrogen",
+    project_ix5_desc: "Línea de montaje de pilas de combustible en nuestra planta de Múnich.",
+    project_digital_title: "Fabricación Digital",
+    project_digital_desc: "Robótica avanzada para la soldadura de precisión de carrocerías.",
+    project_v8_title: "Nueva Arquitectura de Motores",
+    project_v8_desc: "Investigación sobre la fundición de motores V8 de próxima generación.",
+    project_factory_title: "Fábrica 4.0",
+    project_factory_desc: "Taller de pintura y acabado totalmente automatizado.",
+    project_assembly_title: "Línea de Ensamblaje Final",
+    project_assembly_desc: "Controles de calidad en la nueva Serie 7.",
+    project_m_title: "División de Rendimiento",
+    project_m_desc: "Ajuste final y pruebas de los motores de la serie M."
+        
     },
     de: {
         title: "BMW Leben: Angetrieben von Leidenschaft",
@@ -150,60 +180,251 @@ const translations = {
         lang_fr: "Französisch",
         lang_zh: "Chinesisch",
         footer_privacy: "Datenschutz-Bestimmungen",
-        footer_terms: "Nutzungsbedingungen"
+        footer_terms: "Nutzungsbedingungen",
+        future_projects: "Zukunftsprojekte",
+        current_projects: "Aktuelle Projekte",
+        project_ix5_title: "iX5 Hydrogen",
+        project_ix5_desc: "Brennstoffzellen-Montagelinie in unserem Werk München.",
+        project_digital_title: "Digitale Fertigung",
+        project_digital_desc: "Fortschrittliche Robotik für präzises Karosserieschweißen.",
+        project_v8_title: "Neue Motorenarchitektur",
+        project_v8_desc: "Forschung zum V8-Motorenguss der nächsten Generation.",
+        project_factory_title: "Fabrik 4.0",
+        project_factory_desc: "Vollautomatische Lackiererei und Endbearbeitung.",
+        project_assembly_title: "Endmontagelinie",
+        project_assembly_desc: "Qualitätskontrollen für die neue 7er-Reihe.",
+        project_m_title: "Performance-Abteilung",
+        project_m_desc: "Feinabstimmung und Erprobung von M-Motoren."
+    },
+    it: {
+        title: "BMW Life: Guidati dalla Passione",
+        brand_main: "Prestazioni",
+        brand_sub: "Il puro piacere di guidare",
+        nav_home: "Home",
+        nav_m3: "Serie M3",
+        m3_e30: "M3 E30",
+        m3_e46: "M3 E46",
+        m3_e92: "M3 E90/E92/E93",
+        m3_f80: "M3 F80",
+        m3_g80: "M3 G80",
+        nav_m4: "Serie M4",
+        m4_competition: "M4 Competition",
+        m4_xdrive: "M4 Competition con M xDrive",
+        m4_cs: "M4 CS",
+        m4_csl: "M4 CSL",
+        m4_coupe: "M4 Coupé",
+        nav_m5: "Serie M5",
+        m5_e28: "M5 E28 (1985-1988)",
+        m5_e34: "M5 E34 (1988-1995)",
+        m5_e39_1: "M5 E39 (1998-2003)",
+        m5_e39_2: "M5 E39 (1998-2003)",
+        m5_e39_3: "M5 E39 (1998-2003)",
+        project_gallery: "Galleria Progetti",
+        box_drive: "BMW PANORAMIC DRIVE <br> iDRIVE",
+        learn_more: "Scopri di più↗",
+        guide_title: "La Guida",
+        guide_sub: "Il Cuore della Gioia: Ridefinire il Piacere di Guidare",
+        hidden_title: "La Guida",
+        hidden_sub: "Funzioni Nascoste BMW: Scopri le Caratteristiche Intelligenti",
+        stay_updated: "RESTA AGGIORNATO CON BMW.",
+        bmw_emblem: "Iconico Emblema BMW.",
+        bmw_art_basel: "Art Basel Basilea 2025",
+        bmw_perfume: "Il primo profumo BMW",
+        bmw_charging: "Puro piacere di ricarica",
+        bmw_spotify: "Playlist Spotify",
+        tech_title_1: "Tecnologia",
+        tech_sub_1: "Capolavoro Meccanico: 15 Eccezionali Motori BMW",
+        tech_title_2: "Tecnologia",
+        tech_sub_2: "Eredità di Luce: L'evoluzione dei Fari BMW",
+        bmw_intelligence: "BMW Intelligence",
+        bmw_intelligence_sub: "Un'evoluzione del Controllo e della Connettività Intelligente",
+        lang_en: "Inglese",
+        lang_es: "Spagnolo",
+        lang_de: "Tedesco",
+        lang_it: "Italiano",
+        lang_fr: "Francese",
+        lang_zh: "Cinese",
+        footer_privacy: "Informativa sulla Privacy",
+        footer_terms: "Termini di Servizio",
+        future_projects: "Progetti Futuri",
+        current_projects: "Progetti Attuali",
+        project_ix5_title: "iX5 Hydrogen",
+        project_ix5_desc: "Linea di assemblaggio celle a combustibile nello stabilimento di Monaco.",
+        project_digital_title: "Produzione Digitale",
+        project_digital_desc: "Robotica avanzata per la saldatura di precisione della carrozzeria.",
+        project_v8_title: "Nuova Architettura del Motore",
+        project_v8_desc: "Ricerca sulla fusione dei motori V8 di prossima generazione.",
+        project_factory_title: "Fabbrica 4.0",
+        project_factory_desc: "Reparto verniciatura e finitura completamente automatizzato.",
+        project_assembly_title: "Linea di Assemblaggio Finale",
+        project_assembly_desc: "Controlli di qualità sulla nuova Serie 7.",
+        project_m_title: "Divisione Performance",
+        project_m_desc: "Messa a punto finale e test dei motori della serie M."
+    },
+    fr: {
+        title: "BMW Life : Passionnément Vôtre",
+        brand_main: "Performance",
+        brand_sub: "Le plaisir de conduire",
+        nav_home: "Accueil",
+        nav_m3: "Série M3",
+        m3_e30: "M3 E30",
+        m3_e46: "M3 E46",
+        m3_e92: "M3 E90/E92/E93",
+        m3_f80: "M3 F80",
+        m3_g80: "M3 G80",
+        nav_m4: "Série M4",
+        m4_competition: "M4 Competition",
+        m4_xdrive: "M4 Competition avec M xDrive",
+        m4_cs: "M4 CS",
+        m4_csl: "M4 CSL",
+        m4_coupe: "M4 Coupé",
+        nav_m5: "Série M5",
+        m5_e28: "M5 E28 (1985-1988)",
+        m5_e34: "M5 E34 (1988-1995)",
+        m5_e39_1: "M5 E39 (1998-2003)",
+        m5_e39_2: "M5 E39 (1998-2003)",
+        m5_e39_3: "M5 E39 (1998-2003)",
+        project_gallery: "Galerie de Projets",
+        box_drive: "BMW PANORAMIC DRIVE <br> iDRIVE",
+        learn_more: "En savoir plus↗",
+        guide_title: "Le Guide",
+        guide_sub: "Le Cœur de la Joie : Redéfinir le Plaisir de Conduire",
+        hidden_title: "Le Guide",
+        hidden_sub: "Fonctions Cachées BMW : Découvrez des Fonctions Astucieuses",
+        stay_updated: "RESTEZ À JOUR AVEC BMW.",
+        bmw_emblem: "Emblème Iconique BMW.",
+        bmw_art_basel: "Art Basel Bâle 2025",
+        bmw_perfume: "Le premier parfum BMW",
+        bmw_charging: "Le plaisir de la recharge",
+        bmw_spotify: "Playlist Spotify",
+        tech_title_1: "Technologie",
+        tech_sub_1: "Chef-d'œuvre Mécanique : 15 Moteurs BMW Exceptionnels",
+        tech_title_2: "Technologie",
+        tech_sub_2: "Héritage de Lumière : L'évolution des Phares BMW",
+        bmw_intelligence: "BMW Intelligence",
+        bmw_intelligence_sub: "Une Évolution du Contrôle et de la Connectivité Intelligente",
+        lang_en: "Anglais",
+        lang_es: "Espagnol",
+        lang_de: "Allemand",
+        lang_it: "Italien",
+        lang_fr: "Français",
+        lang_zh: "Chinois",
+        footer_privacy: "Politique de confidentialité",
+        footer_terms: "Conditions d'Utilisation",
+        future_projects: "Projets Futurs",
+        current_projects: "Projets Actuels",
+        project_ix5_title: "iX5 Hydrogen",
+        project_ix5_desc: "Chaîne de montage de piles à combustible dans notre usine de Munich.",
+        project_digital_title: "Fabrication Numérique",
+        project_digital_desc: "Robotique avancée pour le soudage de précision des carrosseries.",
+        project_v8_title: "Nouvelle Architecture Moteur",
+        project_v8_desc: "Recherche sur le moulage des moteurs V8 de nouvelle génération.",
+        project_factory_title: "Usine 4.0",
+        project_factory_desc: "Atelier de peinture et de finition entièrement automatisé.",
+        project_assembly_title: "Chaîne de Montage Finale",
+        project_assembly_desc: "Contrôles qualité sur la nouvelle Série 7.",
+        project_m_title: "Division Performance",
+        project_m_desc: "Réglage final et tests des moteurs de la série M."
+    },
+    zh: {
+        title: "BMW 生活：激情驱动",
+        brand_main: "性能",
+        brand_sub: "纯粹驾驶乐趣",
+        nav_home: "首页",
+        nav_m3: "M3 系列",
+        m3_e30: "E30 M3",
+        m3_e46: "E46 M3",
+        m3_e92: "E90/E92/E93 M3",
+        m3_f80: "F80 M3",
+        m3_g80: "G80 M3",
+        nav_m4: "M4 系列",
+        m4_competition: "M4 雷霆版",
+        m4_xdrive: "M4 雷霆版 (含 M xDrive)",
+        m4_cs: "M4 CS",
+        m4_csl: "M4 CSL",
+        m4_coupe: "M4 双门轿跑车",
+        nav_m5: "M5 系列",
+        m5_e28: "E28 M5 (1985-1988)",
+        m5_e34: "E34 M5 (1988-1995)",
+        m5_e39_1: "E39 M5 (1998-2003)",
+        m5_e39_2: "E39 M5 (1998-2003)",
+        m5_e39_3: "E39 M5 (1998-2003)",
+        project_gallery: "项目库",
+        box_drive: "BMW 全景驾驶视界 <br> iDRIVE",
+        learn_more: "了解更多↗",
+        guide_title: "指南",
+        guide_sub: "悦之心：重新定义驾驶乐趣",
+        hidden_title: "指南",
+        hidden_sub: "BMW 隐藏功能：发现您车内的巧妙设计",
+        stay_updated: "关注 BMW 最新动态。",
+        bmw_emblem: "经典的 BMW 标志。",
+        bmw_art_basel: "2025 巴塞尔艺术展",
+        bmw_perfume: "首款 BMW 香氛",
+        bmw_charging: "纯粹充电乐趣",
+        bmw_spotify: "Spotify 播放列表",
+        tech_title_1: "科技",
+        tech_sub_1: "机械杰作：15 款卓越的 BMW 发动机",
+        tech_title_2: "科技",
+        tech_sub_2: "光之传承：BMW 大灯进化史",
+        bmw_intelligence: "BMW 智能",
+        bmw_intelligence_sub: "控制与智能互联的演进",
+        lang_en: "英语",
+        lang_es: "西班牙语",
+        lang_de: "德语",
+        lang_it: "意大利语",
+        lang_fr: "法语",
+        lang_zh: "中文",
+        footer_privacy: "隐私政策",
+        footer_terms: "服务条款",
+        future_projects: "未来项目",
+        current_projects: "当前项目",
+        project_ix5_title: "iX5 氢动力",
+        project_ix5_desc: "慕尼黑工厂的燃料电池组装线。",
+        project_digital_title: "数字化制造",
+        project_digital_desc: "用于精密车身焊接的高级机器人。",
+        project_v8_title: "新发动机架构",
+        project_v8_desc: "下一代 V8 发动机铸造研究。",
+        project_factory_title: "工业 4.0 工厂",
+        project_factory_desc: "全自动喷漆和精加工车间。",
+        project_assembly_title: "总装线",
+        project_assembly_desc: "全新 7 系列的质量控制检查。",
+        project_m_title: "高性能部门",
+        project_m_desc: "M 系列发动机的最终调校和测试。"
     }
 };
+function applyTranslations(lang) {
+    const dictionary = translations[lang];
+    if (!dictionary) return;
 
-// 2. THE TRANSLATOR FUNCTION
-    // This function takes a language code (like "es") and updates the page.
-    function applyTranslations(lang) {
-        // Find the correct "chapter" in our dictionary
-        const dictionary = translations[lang];
-        if (!dictionary) return; // If the language doesn't exist, do nothing
-
-        // Find every element in the HTML that has a "data-key" label
-        document.querySelectorAll('[data-key]').forEach(element => {
-            const key = element.getAttribute('data-key');
-            const translation = dictionary[key];
-
-            // If we found a translation for this key, update the element
-            if (translation) {
-                element.innerHTML = translation;
-            }
-        });
-    }
-
-    // 3. THE LANGUAGE SWITCHER BUTTONS
-    // This finds all your language links and tells them what to do when clicked.
-    document.querySelectorAll('[data-lang]').forEach(link => {
-        link.addEventListener('click', (event) => {
-            event.preventDefault(); // Stop the link from reloading the page
-            
-            // Get the language code from the clicked link (e.g., "de")
-            const lang = link.getAttribute('data-lang');
-            
-            // Tell our translator function to apply the new language
-            applyTranslations(lang);
-
-            // SAVE the user's choice in the browser's memory
-            localStorage.setItem('bmw_lang', lang);
-        });
-    });
-
-    // 4. THE INITIAL PAGE LOAD LOGIC
-    // This runs only once when a user first visits any page.
-    function initializeLanguage() {
-        // Check the browser's memory for a saved language
-        const savedLang = localStorage.getItem('bmw_lang');
-
-        if (savedLang) {
-            // If we found a saved language, use it
-            applyTranslations(savedLang);
-        } else {
-            // Otherwise, just use English as the default
-            applyTranslations('en');
+    document.querySelectorAll('[data-key]').forEach(element => {
+        const key = element.getAttribute('data-key');
+        const translation = dictionary[key];
+        if (translation) {
+            element.innerHTML = translation;
         }
-    }
+    });
+}
 
-    // Run the initialization function
-    initializeLanguage();
+document.querySelectorAll('[data-lang]').forEach(link => {
+    link.addEventListener('click', (event) => {
+        event.preventDefault();
+        const lang = link.getAttribute('data-lang');
+        applyTranslations(lang);
+        localStorage.setItem('bmw_lang', lang);
+    });
+});
+
+function initializeLanguage() {
+    const savedLang = localStorage.getItem('bmw_lang');
+    if (savedLang) {
+        applyTranslations(savedLang);
+    } else {
+        applyTranslations('en');
+    }
+}
+
+// Ensure the DOM is fully loaded before running
+document.addEventListener('DOMContentLoaded', initializeLanguage);
+
+
+
