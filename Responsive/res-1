@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMW Inspired Concept</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">SHEER DRIVING</div>
+        <ul class="nav-links">
+            <li><a href="#">Models</a></li>
+            <li><a href="#">Electric</a></li>
+            <li><a href="#">Configurator</a></li>
+            <li><a href="#">Visit Store</a></li>
+        </ul>
+        <div class="burger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content">
+            <h1>THE NEW i7</h1>
+            <p>100% Electric. 100% BMW.</p>
+            <div class="cta-group">
+                <a href="#" class="btn primary">Discover Now</a>
+                <a href="#" class="btn secondary">Build Your Own</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="models-section">
+        <h2>FIND YOUR BMW</h2>
+        <div class="model-grid">
+            <div class="model-card">
+                <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?auto=format&fit=crop&w=800&q=80" alt="BMW 3 Series">
+                <div class="card-info">
+                    <h3>3 Series</h3>
+                    <p>Starting from $43,800</p>
+                </div>
+            </div>
+            <div class="model-card">
+                <img src="https://images.unsplash.com/photo-1617531653332-bd46c24f2068?auto=format&fit=crop&w=800&q=80" alt="BMW M4">
+                <div class="card-info">
+                    <h3>M4 Coupe</h3>
+                    <p>Starting from $78,100</p>
+                </div>
+            </div>
+            <div class="model-card">
+                <img src="https://images.unsplash.com/photo-1603386329225-868f9b1ee6c9?auto=format&fit=crop&w=800&q=80" alt="BMW X5">
+                <div class="card-info">
+                    <h3>X5 SUV</h3>
+                    <p>Starting from $65,200</p>
+                </div>
+            </div>
+        </div>
+    </section>
+<script></script>
+</body>
+</html>

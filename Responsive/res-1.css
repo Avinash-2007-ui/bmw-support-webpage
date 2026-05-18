@@ -1,0 +1,68 @@
+/* Mobile Menu Styles */
+@media screen and (max-width: 768px) {
+    body {
+        overflow-x: hidden; /* Prevent side-scroll */
+    }
+
+    .nav-links {
+        position: absolute;
+        right: 0px;
+        height: 92vh;
+        top: 8vh;
+        background-color: var(--white);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%; /* Full screen overlay */
+        transform: translateX(100%);
+        transition: transform 0.5s ease-in;
+        z-index: 999;
+    }
+
+    .nav-links li {
+        opacity: 0;
+        margin: 20px 0;
+    }
+
+    .nav-active {
+        transform: translateX(0%);
+    }
+
+    /* Burger Icon Styling */
+    .burger {
+        display: block;
+        cursor: pointer;
+    }
+
+    .burger span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background-color: var(--black);
+        margin: 5px;
+        transition: all 0.3s ease;
+    }
+}
+
+/* Animations */
+@keyframes navLinkFade {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+/* Burger to 'X' Animation */
+.toggle span:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+.toggle span:nth-child(2) {
+    opacity: 0;
+}
+.toggle span:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
