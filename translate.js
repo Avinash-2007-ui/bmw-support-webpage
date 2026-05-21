@@ -426,12 +426,12 @@ function initializeLanguage() {
 // Ensure the DOM is fully loaded before running
 document.addEventListener('DOMContentLoaded', initializeLanguage);
 
-// Clean, standard preloader handler for the main page
+
 window.addEventListener("load", () => {
     const preloader = document.getElementById("preloader");
     if (preloader) {
-        // Remove the slashes here so these lines run cleanly:
-        preloader.style.opacity = "0";
-        preloader.style.visibility = "hidden";
+        // Comment out these two lines temporarily:
+        // preloader.style.opacity = "0";
+        // preloader.style.visibility = "hidden";
     }
 });

@@ -35,12 +35,3 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Dedicated gallery preloader handler
-window.addEventListener("load", () => {
-    const preloader = document.getElementById("preloader");
-    if (preloader) {
-        // Active layout rules:
-        preloader.style.opacity = "0";
-        preloader.style.visibility = "hidden";
-    }
-});
