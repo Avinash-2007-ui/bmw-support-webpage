@@ -427,11 +427,11 @@ function initializeLanguage() {
 document.addEventListener('DOMContentLoaded', initializeLanguage);
 
 
-// Waits completely until every single image, iframe, and layout asset is 100% downloaded
 window.addEventListener("load", () => {
     const preloader = document.getElementById("preloader");
     if (preloader) {
-        preloader.style.opacity = "0";
-        preloader.style.visibility = "hidden";
+        // Comment out these two lines temporarily:
+        // preloader.style.opacity = "0";
+        // preloader.style.visibility = "hidden";
     }
 });
