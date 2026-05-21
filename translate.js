@@ -423,37 +423,15 @@ function initializeLanguage() {
     }
 }
 
-// Ensure the DOM is fully loaded before running language scripts
+// Ensure the DOM is fully loaded before running
 document.addEventListener('DOMContentLoaded', initializeLanguage);
 
-// =========================================================================
-// 🔓 ULTRA FAIL-SAFE GLOBAL PRELOADER SHUT-OFF ENGINE
-// =========================================================================
-(function() {
-    // Check every 100 milliseconds if the page is ready to show
-    const preloaderCheck = setInterval(() => {
-        const preloader = document.getElementById("preloader");
-        
-        if (preloader) {
-            // Once found, drop the black curtain smoothly after a brief transition
-            setTimeout(() => {
-                preloader.style.opacity = "0";
-                preloader.style.visibility = "hidden";
-                console.log("Preloader cleared successfully!");
-            }, 800); // 800ms visual buffer window
-            
-            // Clear our checking engine loop to save system memory
-            clearInterval(preloaderCheck);
-        }
-    }, 100);
 
-    // Ultimate backup fallback: Force drop the curtain if the script takes too long
-    setTimeout(() => {
-        const preloader = document.getElementById("preloader");
-        if (preloader && preloader.style.visibility !== "hidden") {
-            preloader.style.opacity = "0";
-            preloader.style.visibility = "hidden";
-            console.log("Preloader cleared by safety backup loop.");
-        }
-    }, 2500); // 2.5 Second absolute maximum hard cutoff threshold
-})();
+window.addEventListener("load", () => {
+    const preloader = document.getElementById("preloader");
+    if (preloader) {
+        // Comment out these two lines temporarily:
+        preloader.style.opacity = "0";
+        preloader.style.visibility = "hidden";
+    }
+});

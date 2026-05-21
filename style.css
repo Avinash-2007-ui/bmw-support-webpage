@@ -51,6 +51,28 @@
             color: lightgray; /* Slightly muted color */
         }
 
+        /* ==========================================================================
+   📌 ULTRA-STABLE FLOATING NAVIGATION BAR (YOUTUBE LAYOUT)
+   ========================================================================== */
+header {
+    position: fixed; /* Completely locks the header bar to the screen glass */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999; /* Forces it to float on top of video grids, headers, and images */
+    background-color: rgba(0, 0, 0, 0.9); /* Opaque premium dark room backdrop */
+    backdrop-filter: blur(10px); /* Sleek background glass blurring effect */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Technical divider line */
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+    padding: 0 40px;
+}
+
         /* Navigation links on the right */
         .navcontent {
             list-style: none;
