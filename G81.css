@@ -1,0 +1,190 @@
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: rgb(0, 0, 0);
+            color: white;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between; /* Pushes left and right sections to opposite ends */
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+            height: 80px;
+            padding: 0 40px; /* Padding on the sides of the navbar */
+        }
+
+        /* Group for logo and brand text */
+        .left-section {
+            display: flex;
+            align-items: center; /* Vertically aligns the image and the text container */
+            gap: 15px; /* Space between the logo and the text */
+        }
+
+        .left-section img {
+            height: 60px;
+            width: 60px;
+        }
+
+        /* Container for "Performance" and "The Beast" */
+        .brand-text {
+            display: flex;
+            flex-direction: column; /* Stacks the text vertically */
+            justify-content: center; /* Centers the text vertically within its space */
+        }
+
+        .main-brand-name {
+            font-size: 1.4em; /* Larger for "Performance" */
+            font-weight: bold;
+            color: white;
+            margin-bottom: 2px; /* Small space between the two lines of text */
+        }
+
+        .sub-brand-name {
+            font-size: 0.9em; /* Smaller for "The Beast" */
+            color: lightgray; /* Slightly muted color */
+        }
+
+        /* ==========================================================================
+   📌 ULTRA-STABLE FLOATING NAVIGATION BAR (YOUTUBE LAYOUT)
+   ========================================================================== */
+header {
+    position: fixed; /* Completely locks the header bar to the screen glass */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999; /* Forces it to float on top of video grids, headers, and images */
+    background-color: rgba(0, 0, 0, 0.9); /* Opaque premium dark room backdrop */
+    backdrop-filter: blur(10px); /* Sleek background glass blurring effect */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Technical divider line */
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+    padding: 0 40px;
+}
+
+        /* Navigation links on the right */
+        .navcontent {
+            list-style: none;
+            display: flex;
+            gap: 30px; /* Space between the main navigation links */
+            margin: 0; /* Reset default ul margin */
+            padding: 0; /* Reset default ul padding */
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            padding: 16px 0; /* Vertical padding for clickable area */
+            display: block; /* Ensures the whole padded area is clickable */
+            transition: color 0.3s, font-size 0.3s; /* Smooth hover transition */
+        }
+
+        nav ul li a:hover {
+            color: rgb(127, 255, 212);
+            font-size: 1.1rem; /* Slight size increase on hover */
+        }
+
+        /*===============================================================================================================*/
+        /* DROPDOWN */
+        /*===============================================================================================================*/
+        li.frustration {
+            position: relative; /* Essential for positioning the dropdown content */
+            display: inline-block;
+        }
+
+        .morefrustration {
+            padding: 16px 0; /* Consistent padding with other nav links */
+            display: block;
+            text-align: center;
+        }
+
+
+        li a:hover,
+        .frustration:hover .morefrustration {
+            color: aquamarine;
+            font-size: 1.1rem; /* Consistent hover size */
+        }
+
+        .frustration1 {
+            display: none;
+            position: absolute;
+            z-index: 1000; /* Ensures dropdown is above other content */
+            background-color: rgba(7, 7, 7, 0.9); /* Semi-transparent background */
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            border-radius: 4px; /* Optional: subtle rounded corners */
+            overflow: hidden; /* Ensures content respects border-radius */
+            left: 50%; /* Start dropdown at 50% from parent's left edge */
+            transform: translateX(-50%); /* Adjust to truly center it */
+            top: 100%; /* Position directly below the parent link */
+        }
+
+        .frustration1 a {
+            color: white;
+            display: block;
+            text-align: left; /* Align dropdown items to the left */
+            padding: 10px 15px; /* Padding for dropdown items */
+            text-decoration: none;
+            transition: background-color 0.2s, color 0.2s; /* Smooth hover transitions */
+        }
+
+        .frustration1 a:hover {
+            color: turquoise;
+            background-color: rgba(50, 200, 200, 0.15); /* Subtle background on hover */
+        }
+
+        .frustration:hover .frustration1 {
+            display: block;
+        }
+
+
+
+/*=============================================================================================*/
+/*                             ending the webpage with second nav bars                         */
+/*=============================================================================================*/
+
+
+.second{
+    background-color: rgb(27, 24, 24);
+    height: 650px;
+}
+nav.main-navbar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(27, 24, 24);
+    height: 80px;
+    padding: 0 40px;
+}
+.left-2{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+ /* Navigation links on the right */
+.navcontent-2{
+    list-style: none;
+    display: flex;
+    gap: 30px; /* Space between the main navigation links */
+    margin: 0; /* Reset default ul margin */
+    padding: 0; /* Reset default ul padding */
+    margin-left: 50px;/* Space from left side ot=f the nav bar*/
+    margin-top: 25px;/* Space from top of the section*/
+}
+nav.main-navbar ul li a {
+    text-decoration: none;
+    color: white;
+    padding: 16px 0; /* Vertical padding for clickable area */
+    display: block; /* Ensures the whole padded area is clickable */
+    transition: color 0.3s, font-size 0.3s; /* Smooth hover transition */
+}
