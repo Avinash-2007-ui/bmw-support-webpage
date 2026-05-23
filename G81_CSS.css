@@ -181,10 +181,3 @@ nav.main-navbar{
     margin-left: 50px;/* Space from left side ot=f the nav bar*/
     margin-top: 25px;/* Space from top of the section*/
 }
-nav.main-navbar ul li a {
-    text-decoration: none;
-    color: white;
-    padding: 16px 0; /* Vertical padding for clickable area */
-    display: block; /* Ensures the whole padded area is clickable */
-    transition: color 0.3s, font-size 0.3s; /* Smooth hover transition */
-}
