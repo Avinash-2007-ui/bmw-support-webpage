@@ -259,105 +259,11 @@ nav.main-navbar{
 /* ==========================================================================
    HERO TELEMETRY REGISTRY COMPONENT STYLES
    ========================================================================== */
+    .g80-image{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: inline-block;
+        position: relative;
 
-/* Split desktop layout into an asymmetric 2-column grid */
-.hero-telemetry-section {
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr; /* Content gets a bit more breathing room */
-    align-items: center;
-    background-color: #0a0b0e;          /* Deep matte dark slate background */
-    min-height: 65vh;                   /* Fills a solid portion of the screen height */
-    width: 100%;
-    position: relative;
-    box-sizing: border-box;
-    overflow: hidden;
-}
-
-/* --- LEFT WORKSPACE: CONTENT BOX + TRIPLE COLOR ACCENT LINE --- */
-.telemetry-text-block {
-    padding: 60px 80px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-left: 40px;
-    box-sizing: border-box;
-
-    /* Razor-Sharp 3-Color BMW M Linear Gradient Stop Border */
-    border-left: 6px solid;
-    border-image: linear-gradient(
-        to bottom,
-        #009dae 0%, 33.33%,      /* Motorsport Light Blue */
-        #0033a0 33.33%, 66.66%,  /* Motorsport Dark Blue */
-        #e10600 66.66%, 100%     /* Motorsport Red */
-    ) 1;
-}
-
-/* Text Element Design Hierarchy */
-.sub-badge {
-    color: #a0a5b5;
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 3px;
-    margin-bottom: 15px;
-    text-transform: uppercase;
-}
-
-.main-telemetry-title {
-    color: #ffffff;
-    font-size: 3rem;
-    font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -1px;
-    margin: 0 0 20px 0;
-}
-
-.highlight-title {
-    color: #e6e6e6;
-    font-weight: 400;
-    font-size: 2.2rem;
-}
-
-.telemetry-description {
-    color: #8a8f9e;
-    font-size: 1.05rem;
-    line-height: 1.6;
-    max-width: 550px;
-    margin: 0;
-}
-
-/* --- RIGHT WORKSPACE: RESPONSIVE MEDIA TRACK FRAME --- */
-.telemetry-image-block {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    background-color: #000000;
-}
-
-.telemetry-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;               /* Image completely fills container without warping */
-    object-position: center left;    /* Focus locks on the front corner track profile */
-    display: block;
-    transition: transform 0.4s ease; /* Preps a smooth scale transition frame */
-}
-
-/* Elegant visual micro-interaction on image hover */
-.telemetry-image:hover {
-    transform: scale(1.02);
-}
-
-/* Left-edge soft overlay mask to ease image highlights into your dark text theme */
-.telemetry-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* Smooth linear shadow mask overlay blending into clear space */
-    background: linear-gradient(90deg, rgba(10,11,14,0.7) 0%, rgba(10,11,14,0.2) 20%, rgba(0,0,0,0) 100%);
-    pointer-events: none;            /* Lets hover events pass right through to the image below */
-}
+    }
