@@ -257,73 +257,85 @@ nav.main-navbar{
 }
 
 /* ==========================================
-   THE MAIN SECTION BACKDROP
+   THE MAIN HERO SECTION WRAPPER
    ========================================== */
 .bmwg81 {
-    background-color: #0a0b0e;   /* A dark, premium asphalt black */
-    min-height: 75vh;            /* Gives the section a powerful presence */
+    position: relative;          /* This acts as the anchor line for our text layout layer */
+    background-color: #0a0b0e;   /* Dark background backup */
+    min-height: 80vh;            /* Sets an aggressive, massive media frame height */
+    width: 100%;
     overflow: hidden;
 }
 
 /* ==========================================
-   THE TEXT BLOCK & VERTICAL BMW M-STRIPES
+   THE PHOTO CONTAINER (STRETCHED TO FULL WIDTH)
    ========================================== */
-.bmwg81-text {
-    padding: 60px;               /* Generous breathing room for the text */
-    color: #ffffff;              /* Makes your copy crisp white */
-    
-    /* Create a 6px left border space for the racing colors */
-    border-left: 6px solid transparent; 
-    
-    /* Paint the crisp, hard-stop M performance colors top-to-bottom */
-    border-image: linear-gradient(
-        to bottom,
-        #009dae 0%, 33.33%,      /* Light Blue */
-        #0033a0 33.33%, 66.66%,  /* Dark Blue */
-        #e10600 66.66%, 100%     /* Aggressive Red */
-    ) 1;
+.image-bmwg81 {
+    width: 100%;
+    height: 80vh;                /* Matches the hero section block perfectly */
 }
 
-/* Make your heading punchy and modern */
-.bmwg81-text h1 {
-    font-size: 2.8rem;
-    font-weight: 800;
-    letter-spacing: -1px;
-    margin-bottom: 20px;
-    text-transform: uppercase;
-}
-
-/* Give the sub-heading span tag a slightly different feel */
-.bmwg81-text h1 span {
-    color: #009dae;              /* Accent highlight color */
-    font-weight: 400;
-}
-
-/* Make the paragraph description clean and legible */
-.bmwg81-text p {
-    font-size: 1.1rem;
-    color: #a0a5b5;              /* Clean muted grey for text readability */
-    line-height: 1.7;
-    max-width: 600px;            /* Prevents lines from stretching too wide */
-}
-
-/* ==========================================
-   THE IMAGE BLOCK & SMOKY OVERLAY
-   ========================================== */
 .image-bmwg81 img {
     width: 100%;
     height: 100%;
-    object-fit: cover;           /* Prevents the G81 image from distorting */
+    object-fit: cover;           /* Keeps the G81 crisp without stretching distortion */
 }
 
-/* The dark fading gradient overlay that sits directly over the car photo */
+/* ==========================================
+   THE OVERLAY FADE MESH
+   ========================================== */
 .telemetry-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    /* Fades from pure asphalt dark on the left to completely transparent on the right */
-    background: linear-gradient(to right, #0a0b0e 0%, rgba(10, 11, 14, 0) 100%);
-    pointer-events: none;        /* Ensures users can still right-click the image if needed */
+    /* Creates a dark smoky curtain fade from deep black on the left to transparent on the right */
+    background: linear-gradient(to right, rgba(10, 11, 14, 0.95) 0%, rgba(10, 11, 14, 0.4) 50%, rgba(10, 11, 14, 0) 100%);
+    pointer-events: none;
+}
+
+/* ==========================================
+   THE FLOATING TEXT CONTAINER & M-STRIPES
+   ========================================== */
+.bmwg81-text {
+    position: absolute;          /* FLOATS the text box directly over the photo layer */
+    top: 50%;                    /* Centers it vertically inside the section */
+    transform: translateY(-50%); /* Keeps it perfectly vertically balanced */
+    left: 8%;                    /* Pushes the content cleanly out from the left edge */
+    z-index: 2;                  /* Forces it to sit proudly on top of the image and overlay shadow */
+    max-width: 600px;            /* Keeps your reading line widths structured */
+    padding: 30px;
+    color: #ffffff;
+    
+    /* 1. Create a physical 6px left space for the vertical stripe track */
+    border-left: 6px solid transparent; 
+    
+    /* 2. Paint the sharp, hard-stop vertical racing color bands */
+    border-image: linear-gradient(
+        to bottom,
+        #009dae 0%, 33.33%,      /* M Light Blue takes the top third */
+        #0033a0 33.33%, 66.66%,  /* M Dark Blue commands the middle third */
+        #e10600 66.66%, 100%     /* M Power Red snaps into the bottom third */
+    ) 1;
+}
+
+/* Make your headings match the typography style in image_692c97.jpg */
+.bmwg81-text h1 {
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    line-height: 1.1;
+}
+
+.bmwg81-text h1 span {
+    color: #009dae;              /* Matches your light blue telemetry style highlight */
+}
+
+.bmwg81-text p {
+    font-size: 1.1rem;
+    color: #e0e4ee;              /* Increased brightness contrast so it pops over the dark background mesh */
+    line-height: 1.6;
 }
