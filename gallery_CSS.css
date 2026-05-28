@@ -10,19 +10,28 @@ body {
     background-color: #000;
     color: #fff;
 }
-
+     /* ==========================================================================
+   📌 ULTRA-STABLE FLOATING NAVIGATION BAR (YOUTUBE LAYOUT)
+   ========================================================================== */
+header {
+    position: sticky; 
+    top: 20px; /* Keeps it 20px from the top of the viewport for a premium floating effect */
+    width: 90%;
+    max-width: 1200px; /* Limits the width for better aesthetics on large screens */
+    margin: 0 auto; /* Centers the nav bar horizontally */
+    z-index: 9999; /* Forces it to float on top of video grids, headers, and images */
+    background-color: rgba(0, 0, 0, 0.6); /* Opaque premium dark room backdrop */
+    backdrop-filter: blur(10px); /* Sleek background glass blurring effect */
+    border: 1px solid rgba(255, 255, 255, 0.05); /* Technical divider line */
+    border-radius: 50px; /* Subtle pill-shaped rounding for a modern look */
+}
 nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: rgba(0, 0, 0, 0.8);
     height: 80px;
     padding: 0 40px;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
 }
-
 .back-button-container {
     display: flex;
     align-items: center;
