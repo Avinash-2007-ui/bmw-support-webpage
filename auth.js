@@ -1,79 +1,142 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // 🔍 1. Identify which page is currently open in the browser
-    const loginForm = document.getElementById("loginForm"); // Assumes your login form tag has id="loginForm"
+    
+    // =========================================================================
+    // 🔍 PERSISTENCE & SESSION LAYER (Checking who is currently visiting)
+    // =========================================================================
+    
+    // Get active driver session token and the master driver account array from memory
+    const activeDriver = localStorage.getItem("activeDriverSession");
+    let driversDatabase = JSON.parse(localStorage.getItem("driversDatabase")) || [];
+
+    // Elements inside your navbar dropdown layout
+    const guestMenu = document.getElementById("guestMenu");
+    const userMenu = document.getElementById("userMenu");
+    const dropdownUsername = document.getElementById("dropdownUsername");
+    const avatarText = document.querySelector(".avatar-text");
+
+    // Dynamic UI State Sync: Toggle menu layout choices based on session state
+    if (activeDriver) {
+        // If a driver is logged in: Show user controls, hide guest login options
+        if (guestMenu) guestMenu.style.display = "none";
+        if (userMenu) userMenu.style.display = "block";
+        
+        // Inject their custom driver handle into the dashboard dropdown text
+        if (dropdownUsername) dropdownUsername.textContent = activeDriver;
+        
+        // Personalization Easter Egg: Update avatar text to show driver's initials
+        if (avatarText && activeDriver.length >= 2) {
+            avatarText.textContent = activeDriver.substring(0, 2).toUpperCase();
+        }
+    } else {
+        // If no driver is detected: Enforce standard Guest UI view configuration
+        if (guestMenu) guestMenu.style.display = "block";
+        if (userMenu) userMenu.style.display = "none";
+        if (avatarText) avatarText.textContent = "AV";
+    }
+
+    // =========================================================================
+    // 📝 REGISTRATION MECHANICS ENGINE
+    // =========================================================================
     const registrationForm = document.getElementById("registrationForm");
 
-    // =========================================================
-    // 📝 REGISTRATION MECHANICS
-    // =========================================================
     if (registrationForm) {
         registrationForm.addEventListener("submit", (e) => {
-            e.preventDefault(); // Prevents the browser from reloading the page
+            e.preventDefault(); // Blocks browser page refresh behavior
 
-            // Extract the user values from your input field IDs
+            // Gather values entered by user in the text boxes
             const username = document.getElementById("username").value.trim();
             const email = document.getElementById("email").value.trim();
             const password = document.getElementById("password").value;
             const confirmPassword = document.getElementById("confirmPassword").value;
 
-            // Validation Shield: Ensure passwords match perfectly
+            // Security Shield 1: Validate passwords match perfectly
             if (password !== confirmPassword) {
-                alert("Security Error: Passwords do not match. Please verify your typing.");
+                alert("Security Error: Passwords do not match.");
                 return;
             }
 
-            // Fetch existing users from LocalStorage vault, or initialize an empty array if empty
-            let driversDatabase = JSON.parse(localStorage.getItem("driversDatabase")) || [];
-
-            // Validation Shield: Prevent duplicate handles
-            const userExists = driversDatabase.some(user => user.username.toLowerCase() === username.toLowerCase());
-            if (userExists) {
-                alert("Registry Error: This username is already assigned to a driver profile.");
+            // Security Shield 2: Prevent duplicate driver profiles from registering
+            const profileExists = driversDatabase.some(user => user.username.toLowerCase() === username.toLowerCase());
+            if (profileExists) {
+                alert("Registry Error: This username is already assigned to a profile.");
                 return;
             }
 
-            // Package the data into a clean object structure
+            // Construct clean JSON profile data row object mapping
             const newDriverProfile = {
                 username: username,
                 email: email,
-                password: password, // In a real live server, this would be encrypted/hashed
+                password: password, // Store password string matching database layout
                 registeredAt: new Date().toISOString()
             };
 
-            // Commit to the array and stringify back into standard JSON format
+            // Push profile object into database array and commit changes to storage
             driversDatabase.push(newDriverProfile);
             localStorage.setItem("driversDatabase", JSON.stringify(driversDatabase));
 
-            alert("Driver Registry Successful! Redirecting to Authenticator...");
-            
-            // Redirect smoothly back to your login interface
-            window.location.href = "login_HTML.html"; 
+            alert("Driver Profile Registered Successfully!");
+            window.location.href = "login_HTML.html"; // Forward driver to authentication page
         });
     }
 
-    // =========================================================
-    // 🔐 LOGIN AUTHENTICATION MECHANICS
-    // =========================================================
+    // =========================================================================
+    // 🔐 LOGIN AUTHENTICATION MECHANICS ENGINE
+    // =========================================================================
+    const loginForm = document.getElementById("loginForm");
+
     if (loginForm) {
         loginForm.addEventListener("submit", (e) => {
-            e.preventDefault();
+            e.preventDefault(); // Blocks browser page refresh behavior
 
             const usernameInput = document.getElementById("username").value.trim();
             const passwordInput = document.getElementById("password").value;
 
-            // Fetch the stored registry array
-            let driversDatabase = JSON.parse(localStorage.getItem("driversDatabase")) || [];
-
-            // Query the database array to find a matching username match
+            // Search database registry array to locate matching profile credentials
             const validUser = driversDatabase.find(user => user.username.toLowerCase() === usernameInput.toLowerCase());
 
             if (validUser && validUser.password === passwordInput) {
-                alert(`Access Granted. Welcome back, ${validUser.username}!`);
+                // Establish active session token credential in memory vault
+                localStorage.setItem("activeDriverSession", validUser.username);
                 
-                // Redirect user deep into your main index dashboard page
-                window.location.href = "index.html"; 
+                alert(`Access Granted. Welcome back, ${validUser.username}!`);
+                window.location.href = "index.html"; // Forward driver deep into home dash
             } else {
                 alert("Access Denied: Invalid Access Control credentials.");
+            }
+        });
+    }
+
+    // =========================================================================
+    // 🚪 PROFILE TERMINATION & DE-AUTHENTICATION ACTIONS
+    // =========================================================================
+    const logoutBtn = document.getElementById("logoutBtn");
+    const deleteAccountBtn = document.getElementById("deleteAccountBtn");
+
+    // Action A: Log Out Driver Session
+    if (logoutBtn) {
+        logoutBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            localStorage.removeItem("activeDriverSession"); // Evict session token
+            alert("Driver Session Terminated.");
+            window.location.reload(); // Refresh viewport to restore Guest state UI
+        });
+    }
+
+    // Action B: Delete Profile Permanently From Memory Array
+    if (deleteAccountBtn) {
+        deleteAccountBtn.addEventListener("click", (e) => {
+            e.preventDefault();
+            
+            if (confirm("Warning: Are you absolutely sure you want to permanently delete your driver profile? This action cannot be undone.")) {
+                // Filter out the currently active user row from the database array tracking list
+                driversDatabase = driversDatabase.filter(user => user.username.toLowerCase() !== activeDriver.toLowerCase());
+                
+                // Save updated array list back to storage memory and clear active key
+                localStorage.setItem("driversDatabase", JSON.stringify(driversDatabase));
+                localStorage.removeItem("activeDriverSession");
+                
+                alert("Profile purged completely from registry files.");
+                window.location.reload(); // Reload viewport to clear visual footprint
             }
         });
     }
