@@ -72,25 +72,27 @@
                     </li>
                 </ul>
             </div>
-         <div class="avatar-dropdown-wrapper">
+       <div class="avatar-dropdown-wrapper">
+    
     <div class="user-avatar" id="avatarTrigger">
        <span class="avatar-text" data-key="user_avatar">AV</span>
     </div>
 
     <div class="avatar-menu-panel" id="avatarDropdown">
+        
         <a href="login_HTML.html" id="loginLink">🔐 Authenticate Login</a>
         <a href="registration.html" id="registerLink">📝 Register Profile</a>
         
-        <div id="userMenu" style="display: none;">
-            <div class="driver-profile-header">
-               DRIVER: <span id="dropdownUsername">Guest</span>
-            </div>
-            <a href="#settings">⚙️ System Settings</a>
-            <a href="#" id="deleteAccountBtn" class="delete-profile-link">⚠️ Delete Profile</a>
-            <a href="#" id="logoutBtn" class="logout-link">🚪 Logout Driver</a>
+        <div id="driverHeader" class="driver-profile-header" style="display: none;">
+            DRIVER: <span id="dropdownUsername">Guest</span>
         </div>
+        <a href="#settings" id="settingsLink" style="display: none;">⚙️ System Settings</a>
+        <a href="#" id="deleteAccountBtn" class="delete-profile-link" style="display: none;">⚠️ Delete Profile</a>
+        <a href="#" id="logoutBtn" class="logout-link" style="display: none;">🚪 Logout Driver</a>
+
     </div>
 </div>
+        </nav>
     </header>
 
     <main>

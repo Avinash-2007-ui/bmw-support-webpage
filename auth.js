@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     
-    // Automatically initialize database if blank
+    // Automatically initialize database vault if completely blank
     if (!localStorage.getItem("driversDatabase")) {
         localStorage.setItem("driversDatabase", JSON.stringify([]));
     }
@@ -8,46 +8,63 @@ document.addEventListener("DOMContentLoaded", () => {
     const activeDriver = localStorage.getItem("activeDriverSession");
     let driversDatabase = JSON.parse(localStorage.getItem("driversDatabase"));
 
-    // UI Elements
+    // Target UI Elements Directly
     const loginLink = document.getElementById("loginLink");
     const registerLink = document.getElementById("registerLink");
-    const userMenu = document.getElementById("userMenu");
-    const dropdownUsername = document.getElementById("dropdownUsername");
+    const driverHeader = document.getElementById("driverHeader");
+    const settingsLink = document.getElementById("settingsLink");
+    const deleteAccountBtn = document.getElementById("deleteAccountBtn");
+    const logoutBtn = document.getElementById("logoutBtn");
     const avatarText = document.querySelector(".avatar-text");
     
     const registrationForm = document.getElementById("registrationForm");
     const loginForm = document.getElementById("loginForm");
-    const logoutBtn = document.getElementById("logoutBtn");
-    const deleteAccountBtn = document.getElementById("deleteAccountBtn");
 
     // =========================================================================
-    // UI SWITCHER ENGINE
+    // 🔍 CORE NAVBAR STATE CONTROLLER
     // =========================================================================
     if (activeDriver) {
+        // Hide Guest Interface Nodes
         if (loginLink) loginLink.style.setProperty("display", "none", "important");
         if (registerLink) registerLink.style.setProperty("display", "none", "important");
-        if (userMenu) userMenu.style.setProperty("display", "block", "important");
+        
+        // Unfold Driver Panel Interface Nodes
+        if (driverHeader) driverHeader.style.setProperty("display", "block", "important");
+        if (settingsLink) settingsLink.style.setProperty("display", "block", "important");
+        if (deleteAccountBtn) deleteAccountBtn.style.setProperty("display", "block", "important");
+        if (logoutBtn) logoutBtn.style.setProperty("display", "block", "important");
+        
+        // Inject Username Text
+        const dropdownUsername = document.getElementById("dropdownUsername");
         if (dropdownUsername) dropdownUsername.textContent = activeDriver;
         
+        // Generate Driver Initials
         if (avatarText) {
             const initials = activeDriver.trim().split(" ").map(n => n[0]).join("").toUpperCase();
             avatarText.textContent = initials.substring(0, 2);
         }
     } else {
+        // Fallback to Standard Guest UI Configuration
         if (loginLink) loginLink.style.setProperty("display", "block", "important");
         if (registerLink) registerLink.style.setProperty("display", "block", "important");
-        if (userMenu) userMenu.style.setProperty("display", "none", "important");
+        
+        if (driverHeader) driverHeader.style.setProperty("display", "none", "important");
+        if (settingsLink) settingsLink.style.setProperty("display", "none", "important");
+        if (deleteAccountBtn) deleteAccountBtn.style.setProperty("display", "none", "important");
+        if (logoutBtn) logoutBtn.style.setProperty("display", "none", "important");
+        
         if (avatarText) avatarText.textContent = "AV";
     }
 
     // =========================================================================
-    // FORMS & INTERACTION HANDLERS
+    // 🔐 AUTHENTICATION SYSTEMS
     // =========================================================================
     if (loginForm) {
         loginForm.addEventListener("submit", (e) => {
             e.preventDefault(); 
             const usernameInput = document.getElementById("username").value.trim();
             const passwordInput = document.getElementById("password").value;
+            
             const validUser = driversDatabase.find(user => user.username.toLowerCase() === usernameInput.toLowerCase());
 
             if (validUser && validUser.password === passwordInput) {
@@ -86,6 +103,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // =========================================================================
+    // 🚪 INTERACTIVE PANEL INTERACTORS
+    // =========================================================================
     if (logoutBtn) {
         logoutBtn.addEventListener("click", (e) => {
             e.preventDefault();
@@ -101,7 +121,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const currentDriver = localStorage.getItem("activeDriverSession");
             if (!currentDriver) return;
 
-            if (confirm("Warning: Permanently delete your profile? This cannot be undone.")) {
+            if (confirm("Warning: Permanently delete your profile? This action cannot be undone.")) {
                 let db = JSON.parse(localStorage.getItem("driversDatabase")) || [];
                 db = db.filter(user => user.username.toLowerCase() !== currentDriver.toLowerCase());
                 localStorage.setItem("driversDatabase", JSON.stringify(db));
