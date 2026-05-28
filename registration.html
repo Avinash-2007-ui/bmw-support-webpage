@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M-Performance Support | Register Profile</title>
+    <link rel="stylesheet" href="registration_CSS.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <img src="BMW-logo2.png" alt="BMW Logo" class="login-logo">
+                <h2>Profile Registration</h2>
+                <p>Create your account to access diagnostics and support</p>
+            </div>
+
+            <form id="registrationForm">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" required autocomplete="off" placeholder="Choose a username">
+                </div>
+
+                <div class="input-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" required autocomplete="off" placeholder="e.g., user@example.com">
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required placeholder="Create a strong password">   
+                </div>
+                <div class="input-group">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" id="confirmPassword" required placeholder="Verify your password">   
+                </div>
+
+                <button type="submit" class="login-btn">Register Profile</button>
+            </form>
+
+            <div class="m-stripes-divider"></div>
+        </div>
+    </div>
+    <script src="auth.js"></script>
+</body>
+</html>

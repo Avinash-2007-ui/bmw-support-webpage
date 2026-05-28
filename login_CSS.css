@@ -115,3 +115,22 @@ body {
         #e10600 66.66% 100%    /* Track Red */
     );
 }
+.login-logo {
+    display: block;
+    width: 130px;         /* Keeps it huge and prominent */
+    height: 130px;        /* Matches width for a perfect circle aspect ratio */
+    object-fit: contain;  /* Guarantees the roundel vector doesn't warp or stretch */
+    margin: 0 auto;       /* Centers it horizontally inside the card flow */
+    
+    /* The Bleed Effect: Pulls it up into the card padding area safely */
+    margin-top: -20px;    
+    margin-bottom: 15px;  /* Creates crisp spacing above the Access Control title */
+    
+    opacity: 0.95;        /* Premium subtle blending touch */
+    transition: transform 0.3s ease;
+}
+
+/* Optional interactive easter egg when hovering over the card asset */
+.login-card:hover .login-logo {
+    transform: scale(1.03); /* Subtle high-performance engine pulse */
+}
