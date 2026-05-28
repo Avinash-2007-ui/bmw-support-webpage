@@ -9,17 +9,7 @@
             background-color: rgb(0, 0, 0);
             color: white;
         }
-
-        nav {
-            display: flex;
-            align-items: center;
-            justify-content: space-between; /* Pushes left and right sections to opposite ends */
-            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
-            height: 80px;
-            padding: 0 40px; /* Padding on the sides of the navbar */
-        }
-
-        /* Group for logo and brand text */
+            /* Group for logo and brand text */
         .left-section {
             display: flex;
             align-items: center; /* Vertically aligns the image and the text container */
@@ -54,16 +44,17 @@
    📌 ULTRA-STABLE FLOATING NAVIGATION BAR (YOUTUBE LAYOUT)
    ========================================================================== */
 header {
-    position: fixed; /* Completely locks the header bar to the screen glass */
-    top: 0;
-    left: 0;
-    width: 100%;
+    position: sticky; 
+    top: 20px; /* Keeps it 20px from the top of the viewport for a premium floating effect */
+    width: 90%;
+    max-width: 1200px; /* Limits the width for better aesthetics on large screens */
+    margin: 0 auto; /* Centers the nav bar horizontally */
     z-index: 9999; /* Forces it to float on top of video grids, headers, and images */
     background-color: rgba(0, 0, 0, 0.9); /* Opaque premium dark room backdrop */
     backdrop-filter: blur(10px); /* Sleek background glass blurring effect */
     border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Technical divider line */
+    border-radius: 50px; /* Subtle pill-shaped rounding for a modern look */
 }
-
 nav {
     display: flex;
     align-items: center;
@@ -92,6 +83,15 @@ nav {
         nav ul li a:hover {
             color: rgb(127, 255, 212);
             font-size: 1.1rem; /* Slight size increase on hover */
+        }
+        .user-avatar {
+            width: 45px;
+            height: 45px;
+            background-color: rgb(255, 255, 255);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         /*===============================================================================================================*/
