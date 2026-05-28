@@ -160,6 +160,80 @@ nav {
             font-weight: bold;
             font-size: 1.1rem;
         }
+        /* ==========================================================================
+   👤 DEDICATED AVATAR DROPDOWN (ADAPTED FROM ORIGINAL BRAND MOTORSPORT STYLES)
+   ========================================================================== */
+
+/* Outer container holding the avatar circle */
+.avatar-dropdown-wrapper {
+    position: relative; /* Essential for positioning the dropdown content */
+    display: inline-block;
+    height: 100%;       /* Stretches container to match your full nav height block */
+    display: flex;      /* Align the avatar circle perfectly in the middle vertical axis */
+    align-items: center;
+}
+
+/* The custom menu panel box inheriting your exact theme values */
+.avatar-menu-panel {
+    display: none;      /* Inherits original behavior: Hidden until parent wrapper is hovered */
+    position: absolute;
+    z-index: 1000;      /* Ensures dropdown is above other content */
+    
+    /* Exact Color and Transparency extracted from your .frustration1 rules */
+    background-color: rgba(7, 7, 7, 0.9); 
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 4px; 
+    overflow: hidden;   /* Ensures content respects border-radius */
+    min-width: 180px;
+
+    /* 🚀 THE ACCURACY FIX: Anchors it flush with the bottom of your 80px navbar block */
+    top: 100%; 
+    right: 0;           /* Flushes smoothly against your right window margins */
+}
+
+/* Base text links configuration inside the panel */
+.avatar-menu-panel a {
+    color: white;
+    display: block;
+    text-align: left;   /* Align dropdown items to the left */
+    padding: 10px 15px; /* Exact spacing from original dropdown items layout */
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: background-color 0.2s, color 0.2s; /* Smooth hover transitions */
+}
+
+/* Hover state matching your exact corporate signature styling */
+.avatar-menu-panel a:hover {
+    color: turquoise;
+    background-color: rgba(50, 200, 200, 0.15); /* Subtle background on hover */
+}
+
+/* 🔥 THE HOVER TRIGGER: Shows the panel cleanly when cursor enters the wrapper box area */
+.avatar-dropdown-wrapper:hover .avatar-menu-panel {
+    display: block;
+}
+
+/* --- Internal Layout Adjustments For Driver Authentication States --- */
+.driver-profile-header {
+    color: aquamarine;  /* Matches your link font hover color highlights */
+    padding: 10px 15px;
+    font-weight: bold;
+    font-size: 0.85rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    letter-spacing: 0.5px;
+}
+
+.avatar-menu-panel .delete-profile-link {
+    color: #ff4d4d !important; /* Highlights profile deletion warning system alerts */
+}
+
+.avatar-menu-panel .delete-profile-link:hover {
+    background-color: rgba(255, 77, 77, 0.1) !important;
+}
+
+.avatar-menu-panel .logout-link {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
             /*===============================================================================================================*/
         .image-container{
             width: 1348px;
