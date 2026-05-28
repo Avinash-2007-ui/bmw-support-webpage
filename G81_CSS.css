@@ -9,22 +9,17 @@
             background-color: rgb(0, 0, 0);
             color: white;
         }
-            /* Group for logo and brand text */
+         /* Group for logo and brand text */
         .left-section {
             display: flex;
-            align-items: center; /* Vertically aligns the image and the text container */
-            gap: 15px; /* Space between the logo and the text */
-            Background-color: transparent; /* Forces the container to drop any hidden background shades */
+            align-items: center; 
+            gap: 15px; 
         }
 
         .left-section img {
             height: 60px;
             width: 60px;
-            border-radius: 50%; /* Smoothly rounds off the sharp black corners */
-            object-fit: cover; /* Ensures the logo scales cleanly into the new shape */
-            border-radius: 50%; /* Perfectly circular shape for the logo */
-            background-color: transparent !important; /* Ensures the logo itself has no background color, allowing the image to shine through without any unwanted shading */
-            background: transparent !important; /* Reinforces the transparent background for the logo, ensuring it remains clear and vibrant against the nav bar's backdrop */
+            object-fit: contain; /* Keeps the stripes perfectly sharp and un-stretched */
         }
         .back-button-container {
             Background-color: transparent;
