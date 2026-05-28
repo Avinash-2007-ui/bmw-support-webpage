@@ -279,7 +279,7 @@ nav.main-navbar{
     height: 80vh;
     display:block;
     margin-top: -150px;
-    padding-top: 150px;
+    padding-top: -150px;
    }
    .g81-image{
     width: 100%;
