@@ -82,6 +82,20 @@ nav {
     font-size: 1.1rem;
     
 }
+.user-avatar {
+            width: 45px;
+            height: 45px;
+            background-color: rgb(255, 255, 255);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .user-avatar span{
+            color: rgb(0, 0, 0);
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
 
 /* Slideshow Section */
 .slideshow-container {
