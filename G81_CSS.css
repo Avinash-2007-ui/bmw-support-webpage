@@ -19,6 +19,7 @@
         .left-section img {
             height: 60px;
             width: 60px;
+            mix-blend-mode: screen; /* Blends the logo with the background for a sleek effect */
         }
 
         /* Container for "Performance" and "The Beast" */
@@ -52,7 +53,7 @@ header {
     z-index: 9999; /* Forces it to float on top of video grids, headers, and images */
     background-color: rgba(0, 0, 0, 0.6); /* Opaque premium dark room backdrop */
     backdrop-filter: blur(10px); /* Sleek background glass blurring effect */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Technical divider line */
+    border: 1px solid rgba(255, 255, 255, 0.05); /* Technical divider line */
     border-radius: 50px; /* Subtle pill-shaped rounding for a modern look */
 }
 nav {
@@ -92,6 +93,11 @@ nav {
             display: flex;
             justify-content: center;
             align-items: center;
+        }
+        .user-avatar span{
+            color: rgb(0, 0, 0);
+            font-weight: bold;
+            font-size: 1.1rem;
         }
         
 
