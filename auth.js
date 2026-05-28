@@ -1,47 +1,72 @@
 // =========================================================================
-// 🔍 1. THE USER NAV MENU TOGGLE SWITCH (Runs on ALL pages)
+// 🔄 UNIFIED AUTHENTICATION & UI LIFECYCLE ENGINE
 // =========================================================================
-function syncDriverUIState() {
-    const activeDriver = localStorage.getItem("activeDriverSession");
+document.addEventListener("DOMContentLoaded", () => {
     
+    // 1. Fetch persistent data from Chrome storage vault
+    const activeDriver = localStorage.getItem("activeDriverSession");
+    let driversDatabase = JSON.parse(localStorage.getItem("driversDatabase")) || [];
+
+    // 2. Locate all layout elements across your pages
     const guestMenu = document.getElementById("guestMenu");
     const userMenu = document.getElementById("userMenu");
     const dropdownUsername = document.getElementById("dropdownUsername");
     const avatarText = document.querySelector(".avatar-text");
+    
+    const registrationForm = document.getElementById("registrationForm");
+    const loginForm = document.getElementById("loginForm");
+    const logoutBtn = document.getElementById("logoutBtn");
+    const deleteAccountBtn = document.getElementById("deleteAccountBtn");
 
+    // =========================================================================
+    // 🔍 NAVBAR UI STATE SYNC (Hides/Shows Dropdown Options)
+    // =========================================================================
     if (activeDriver) {
-        // If a valid session ticket is found, hide guest options and show user menu
+        // Driver is logged in: hide Guest choices, show Driver controls
         if (guestMenu) guestMenu.style.setProperty("display", "none", "important");
         if (userMenu) userMenu.style.setProperty("display", "block", "important");
         if (dropdownUsername) dropdownUsername.textContent = activeDriver;
         
-        // Dynamically split initials (e.g., "Avinash Vyas" -> "AV")
+        // Split full name into two initials (e.g., "Avinash Vyas" -> "AV")
         if (avatarText) {
             const initials = activeDriver.trim().split(" ").map(n => n[0]).join("").toUpperCase();
             avatarText.textContent = initials.substring(0, 2);
         }
     } else {
-        // If no user session is found, show default guest options
+        // No active session: force default Guest view layout
         if (guestMenu) guestMenu.style.setProperty("display", "block", "important");
         if (userMenu) userMenu.style.setProperty("display", "none", "important");
         if (avatarText) avatarText.textContent = "AV";
     }
-}
 
-// Fire the menu toggle checking mechanism immediately on load
-syncDriverUIState();
-document.addEventListener("DOMContentLoaded", syncDriverUIState);
+    // =========================================================================
+    // 🔐 LOGIN HANDLER ENGINE (Always forwards directly to index.html)
+    // =========================================================================
+    if (loginForm) {
+        loginForm.addEventListener("submit", (e) => {
+            e.preventDefault(); 
 
+            const usernameInput = document.getElementById("username").value.trim();
+            const passwordInput = document.getElementById("password").value;
 
-// =========================================================================
-// 📝 2. GLOBAL ACTIONS & FORM HANDLERS (Runs safely without throwing errors)
-// =========================================================================
-document.addEventListener("DOMContentLoaded", () => {
-    // Shared Database Vault
-    let driversDatabase = JSON.parse(localStorage.getItem("driversDatabase")) || [];
+            const validUser = driversDatabase.find(user => user.username.toLowerCase() === usernameInput.toLowerCase());
 
-    // --- REGISTRATION PAGE MECHANICS ---
-    const registrationForm = document.getElementById("registrationForm");
+            if (validUser && validUser.password === passwordInput) {
+                // Save the exact user handle to memory
+                localStorage.setItem("activeDriverSession", validUser.username);
+                alert(`Access Granted. Welcome back, ${validUser.username}!`);
+                
+                // FORCE REDIRECT TARGET RIGHT HERE TO YOUR ROOT PAGE
+                window.location.href = "index.html"; 
+            } else {
+                alert("Access Denied: Invalid Access Control credentials.");
+            }
+        });
+    }
+
+    // =========================================================================
+    // 📝 REGISTRATION HANDLER ENGINE
+    // =========================================================================
     if (registrationForm) {
         registrationForm.addEventListener("submit", (e) => {
             e.preventDefault();
@@ -77,57 +102,32 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- LOGIN PAGE MECHANICS ---
-    const loginForm = document.getElementById("loginForm");
-    if (loginForm) {
-        loginForm.addEventListener("submit", (e) => {
-            e.preventDefault();
-
-            const usernameInput = document.getElementById("username").value.trim();
-            const passwordInput = document.getElementById("password").value;
-
-            const validUser = driversDatabase.find(user => user.username.toLowerCase() === usernameInput.toLowerCase());
-
-            if (validUser && validUser.password === passwordInput) {
-                localStorage.setItem("activeDriverSession", validUser.username);
-                alert(`Access Granted. Welcome back, ${validUser.username}!`);
-                
-                // Flexible redirection: checks if you have a custom dashboard or index file
-                if (window.location.pathname.includes("G81_HTML.html")) {
-                    window.location.href = "G81_HTML.html";
-                } else {
-                    window.location.href = "index.html";
-                }
-            } else {
-                alert("Access Denied: Invalid Access Control credentials.");
-            }
-        });
-    }
-
-    // --- DROPDOWN BUTTON ACTIONS (Logout & Delete) ---
-    const logoutBtn = document.getElementById("logoutBtn");
+    // =========================================================================
+    // 🚪 DROPDOWN INTERACTIVE ACTIONS (Logout & Account Destruction)
+    // =========================================================================
     if (logoutBtn) {
         logoutBtn.addEventListener("click", (e) => {
             e.preventDefault();
             localStorage.removeItem("activeDriverSession");
             alert("Driver Session Terminated.");
-            window.location.reload();
+            window.location.href = "index.html"; // Redirects cleanly to clear view state
         });
     }
 
-    const deleteAccountBtn = document.getElementById("deleteAccountBtn");
     if (deleteAccountBtn) {
         deleteAccountBtn.addEventListener("click", (e) => {
             e.preventDefault();
-            const activeDriver = localStorage.getItem("activeDriverSession");
             if (!activeDriver) return;
 
             if (confirm("Warning: Are you absolutely sure you want to permanently delete your driver profile? This action cannot be undone.")) {
+                // Remove user profile row from database array completely
                 driversDatabase = driversDatabase.filter(user => user.username.toLowerCase() !== activeDriver.toLowerCase());
                 localStorage.setItem("driversDatabase", JSON.stringify(driversDatabase));
+                
+                // Clear session tokens
                 localStorage.removeItem("activeDriverSession");
                 alert("Profile purged completely from registry files.");
-                window.location.reload();
+                window.location.href = "index.html";
             }
         });
     }
