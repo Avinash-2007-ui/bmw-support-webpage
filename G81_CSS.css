@@ -276,8 +276,10 @@ nav.main-navbar{
     position: relative;
     overflow: hidden;
     width: 100%;
-    height: 75vh;
+    height: 80vh;
     display:block;
+    margin-top: -100px;
+    padding-top: 100px;
    }
    .g81-image{
     width: 100%;
