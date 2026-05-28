@@ -174,7 +174,7 @@ nav {
 .avatar-menu-panel {
     display: none; /* Kept hidden until your mouse hovers over it */
     position: absolute;
-    top: 55px; /* Sits perfectly right below your 45px white avatar circle */
+    top: 48px; /* Sits perfectly right below your 45px white avatar circle */
     right: 0; /* Flushes cleanly against the right edge of your navbar */
     background-color: rgba(7, 7, 7, 0.95); /* Matches your semi-transparent dark theme */
     backdrop-filter: blur(10px); /* Sleek glass blurring effect */
