@@ -1,5 +1,5 @@
 // =========================================================================
-// 🔍 1. THE NEW INITIALIZATION ENGINE (Put this right at the top)
+// 🔍 1. THE USER NAV MENU TOGGLE SWITCH (Runs on ALL pages)
 // =========================================================================
 function syncDriverUIState() {
     const activeDriver = localStorage.getItem("activeDriverSession");
@@ -10,40 +10,41 @@ function syncDriverUIState() {
     const avatarText = document.querySelector(".avatar-text");
 
     if (activeDriver) {
+        // If a valid session ticket is found, hide guest options and show user menu
         if (guestMenu) guestMenu.style.setProperty("display", "none", "important");
         if (userMenu) userMenu.style.setProperty("display", "block", "important");
         if (dropdownUsername) dropdownUsername.textContent = activeDriver;
         
+        // Dynamically split initials (e.g., "Avinash Vyas" -> "AV")
         if (avatarText) {
-            // Splits "Avinash Vyas" into "A" and "V" automatically
             const initials = activeDriver.trim().split(" ").map(n => n[0]).join("").toUpperCase();
             avatarText.textContent = initials.substring(0, 2);
         }
     } else {
+        // If no user session is found, show default guest options
         if (guestMenu) guestMenu.style.setProperty("display", "block", "important");
         if (userMenu) userMenu.style.setProperty("display", "none", "important");
         if (avatarText) avatarText.textContent = "AV";
     }
 }
 
-// Forces Chrome to fire the synchronization immediately
-if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", syncDriverUIState);
-} else {
-    syncDriverUIState();
-}
+// Fire the menu toggle checking mechanism immediately on load
+syncDriverUIState();
+document.addEventListener("DOMContentLoaded", syncDriverUIState);
 
 
 // =========================================================================
-// 📝 2. YOUR ORIGINAL REGISTRATION MECHANICS ENGINE (Kept completely identical)
+// 📝 2. GLOBAL ACTIONS & FORM HANDLERS (Runs safely without throwing errors)
 // =========================================================================
 document.addEventListener("DOMContentLoaded", () => {
+    // Shared Database Vault
     let driversDatabase = JSON.parse(localStorage.getItem("driversDatabase")) || [];
-    const registrationForm = document.getElementById("registrationForm");
 
+    // --- REGISTRATION PAGE MECHANICS ---
+    const registrationForm = document.getElementById("registrationForm");
     if (registrationForm) {
         registrationForm.addEventListener("submit", (e) => {
-            e.preventDefault(); 
+            e.preventDefault();
 
             const username = document.getElementById("username").value.trim();
             const email = document.getElementById("email").value.trim();
@@ -64,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const newDriverProfile = {
                 username: username,
                 email: email,
-                password: password, 
+                password: password,
                 registeredAt: new Date().toISOString()
             };
 
@@ -72,18 +73,15 @@ document.addEventListener("DOMContentLoaded", () => {
             localStorage.setItem("driversDatabase", JSON.stringify(driversDatabase));
 
             alert("Driver Profile Registered Successfully!");
-            window.location.href = "login_HTML.html"; 
+            window.location.href = "login_HTML.html";
         });
     }
 
-    // =========================================================================
-    // 🔐 3. LOGIN AUTHENTICATION MECHANICS ENGINE
-    // =========================================================================
+    // --- LOGIN PAGE MECHANICS ---
     const loginForm = document.getElementById("loginForm");
-
     if (loginForm) {
         loginForm.addEventListener("submit", (e) => {
-            e.preventDefault(); 
+            e.preventDefault();
 
             const usernameInput = document.getElementById("username").value.trim();
             const passwordInput = document.getElementById("password").value;
@@ -93,38 +91,43 @@ document.addEventListener("DOMContentLoaded", () => {
             if (validUser && validUser.password === passwordInput) {
                 localStorage.setItem("activeDriverSession", validUser.username);
                 alert(`Access Granted. Welcome back, ${validUser.username}!`);
-                window.location.href = "G81_HTML.html"; // Redirects straight to your core dash page
+                
+                // Flexible redirection: checks if you have a custom dashboard or index file
+                if (window.location.pathname.includes("G81_HTML.html")) {
+                    window.location.href = "G81_HTML.html";
+                } else {
+                    window.location.href = "index.html";
+                }
             } else {
                 alert("Access Denied: Invalid Access Control credentials.");
             }
         });
     }
 
-    // =========================================================================
-    // 🚪 4. PROFILE TERMINATION & DE-AUTHENTICATION ACTIONS
-    // =========================================================================
+    // --- DROPDOWN BUTTON ACTIONS (Logout & Delete) ---
     const logoutBtn = document.getElementById("logoutBtn");
-    const deleteAccountBtn = document.getElementById("deleteAccountBtn");
-
     if (logoutBtn) {
         logoutBtn.addEventListener("click", (e) => {
             e.preventDefault();
-            localStorage.removeItem("activeDriverSession"); 
+            localStorage.removeItem("activeDriverSession");
             alert("Driver Session Terminated.");
-            window.location.reload(); 
+            window.location.reload();
         });
     }
 
+    const deleteAccountBtn = document.getElementById("deleteAccountBtn");
     if (deleteAccountBtn) {
         deleteAccountBtn.addEventListener("click", (e) => {
             e.preventDefault();
+            const activeDriver = localStorage.getItem("activeDriverSession");
+            if (!activeDriver) return;
+
             if (confirm("Warning: Are you absolutely sure you want to permanently delete your driver profile? This action cannot be undone.")) {
-                const activeDriver = localStorage.getItem("activeDriverSession");
                 driversDatabase = driversDatabase.filter(user => user.username.toLowerCase() !== activeDriver.toLowerCase());
                 localStorage.setItem("driversDatabase", JSON.stringify(driversDatabase));
                 localStorage.removeItem("activeDriverSession");
                 alert("Profile purged completely from registry files.");
-                window.location.reload(); 
+                window.location.reload();
             }
         });
     }
