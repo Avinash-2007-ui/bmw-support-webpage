@@ -14,6 +14,7 @@
             display: flex;
             align-items: center; /* Vertically aligns the image and the text container */
             gap: 15px; /* Space between the logo and the text */
+            isolation: isolate;
         }
 
         .left-section img {
@@ -21,6 +22,12 @@
             width: 60px;
             mix-blend-mode: screen; /* Blends the logo with the background for a sleek effect */
             display: block; /* Ensures the image behaves as a block element for better alignment */
+        }
+        .back-button-container {
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         /* Container for "Performance" and "The Beast" */
