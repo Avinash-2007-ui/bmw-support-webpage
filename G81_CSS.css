@@ -159,76 +159,77 @@ nav {
         .frustration:hover .frustration1 {
             display: block;
         }
-        /* ==========================================================================
-   👤 DEDICATED AVATAR DROPDOWN COMPONENT STYLES
+   /* ==========================================================================
+   👤 DEDICATED AVATAR DROPDOWN (ADAPTED FROM ORIGINAL BRAND MOTORSPORT STYLES)
    ========================================================================== */
 
-/* The outer container holding the avatar and its menu */
+/* Outer container holding the avatar circle */
 .avatar-dropdown-wrapper {
-    position: relative;
+    position: relative; /* Essential for positioning the dropdown content */
     display: inline-block;
-    cursor: pointer;
+    height: 100%;       /* Stretches container to match your full nav height block */
+    display: flex;      /* Align the avatar circle perfectly in the middle vertical axis */
+    align-items: center;
 }
 
-/* The custom menu panel layout box */
+/* The custom menu panel box inheriting your exact theme values */
 .avatar-menu-panel {
-    display: none; /* Kept hidden until your mouse hovers over it */
+    display: none;      /* Inherits original behavior: Hidden until parent wrapper is hovered */
     position: absolute;
-    top: 48px; /* Sits perfectly right below your 45px white avatar circle */
-    right: 0; /* Flushes cleanly against the right edge of your navbar */
-    background-color: rgba(7, 7, 7, 0.95); /* Matches your semi-transparent dark theme */
-    backdrop-filter: blur(10px); /* Sleek glass blurring effect */
-    min-width: 200px;
-    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.05); /* Technical subtle border line */
-    border-radius: 8px; /* Smooth rounded corners for the menu box */
-    overflow: hidden; /* Ensures background colors don't bleed out of corners */
-    z-index: 10000; /* Forces it to sit comfortably above video grids or images */
+    z-index: 1000;      /* Ensures dropdown is above other content */
+    
+    /* Exact Color and Transparency extracted from your .frustration1 rules */
+    background-color: rgba(7, 7, 7, 0.9); 
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 4px; 
+    overflow: hidden;   /* Ensures content respects border-radius */
+    min-width: 180px;
+
+    /* 🚀 THE ACCURACY FIX: Anchors it flush with the bottom of your 80px navbar block */
+    top: 100%; 
+    right: 0;           /* Flushes smoothly against your right window margins */
 }
 
-/* Individual links layout inside the menu */
+/* Base text links configuration inside the panel */
 .avatar-menu-panel a {
     color: white;
     display: block;
-    text-align: left;
-    padding: 12px 16px;
+    text-align: left;   /* Align dropdown items to the left */
+    padding: 10px 15px; /* Exact spacing from original dropdown items layout */
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
     transition: background-color 0.2s, color 0.2s; /* Smooth hover transitions */
 }
 
-/* Hovering interactive links state */
+/* Hover state matching your exact corporate signature styling */
 .avatar-menu-panel a:hover {
-    color: turquoise; /* High-performance accent glow color */
-    background-color: rgba(50, 200, 200, 0.1); /* Subtle dark glow backdrop */
+    color: turquoise;
+    background-color: rgba(50, 200, 200, 0.15); /* Subtle background on hover */
 }
 
-/* 🔥 THE HOVER ENGINE: Shows the panel automatically when hovering over the wrapper */
+/* 🔥 THE HOVER TRIGGER: Shows the panel cleanly when cursor enters the wrapper box area */
 .avatar-dropdown-wrapper:hover .avatar-menu-panel {
     display: block;
 }
 
-/* --- Premium Layout Details Inside the Active Menu --- */
+/* --- Internal Layout Adjustments For Driver Authentication States --- */
 .driver-profile-header {
-    padding: 12px 16px;
+    color: aquamarine;  /* Matches your link font hover color highlights */
+    padding: 10px 15px;
     font-weight: bold;
-    color: turquoise;
     font-size: 0.85rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     letter-spacing: 0.5px;
 }
 
-/* Specific styling for the delete option warning */
 .avatar-menu-panel .delete-profile-link {
-    color: #ff4d4d;
+    color: #ff4d4d !important; /* Highlights profile deletion warning system alerts */
 }
 
 .avatar-menu-panel .delete-profile-link:hover {
-    background-color: rgba(255, 77, 77, 0.1);
-    color: #ff6666;
+    background-color: rgba(255, 77, 77, 0.1) !important;
 }
 
-/* Adds a clean separator line right above the logout anchor */
 .avatar-menu-panel .logout-link {
     border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
