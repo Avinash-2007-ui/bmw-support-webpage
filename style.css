@@ -167,6 +167,8 @@ nav {
             max-width: 100%;
             overflow: hidden;
             position: relative;
+            margin-top: -100px;
+            padding-top: -100px;
         }
         .image-container img{
             display: block;
