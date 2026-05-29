@@ -69,7 +69,7 @@ nav {
     justify-content: flex-start; /* Aligns items to the left, with space for the logo */
     gap: 50px; /* Space between the logo and the navigation links */
     height: 80px;
-    width: 100%;
+    width: 100% !important;
     padding: 0 40px;
 }
 
