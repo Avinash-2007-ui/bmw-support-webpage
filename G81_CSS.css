@@ -54,7 +54,7 @@ header {
     position: sticky; 
     top: 20px; /* Keeps it 20px from the top of the viewport for a premium floating effect */
     width: 90%;
-    max-width: 800px; /* Limits the width for better aesthetics on large screens */
+    max-width: 900px; /* Limits the width for better aesthetics on large screens */
     margin: 0 auto; /* Centers the nav bar horizontally */
     z-index: 9999; /* Forces it to float on top of video grids, headers, and images */
     background-color: rgba(0, 0, 0, 0.6); /* Opaque premium dark room backdrop */
