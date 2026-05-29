@@ -78,7 +78,9 @@ nav {
         .navcontent {
             list-style: none;
             display: flex;
-            gap: 30px; /* Space between the main navigation links */
+            justify-content: center; 
+            align-items: center;
+            gap: 35px; /* Space between the main navigation links */
             margin: 0; /* Reset default ul margin */
             padding: 0; /* Reset default ul padding */
         }
