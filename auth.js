@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+    console.log("DEBUG: Active Session Status ->", localStorage.getItem("activeDriverSession"));
     
     // Automatically initialize database if blank
     if (!localStorage.getItem("driversDatabase")) {
@@ -8,41 +9,58 @@ document.addEventListener("DOMContentLoaded", () => {
     const activeDriver = localStorage.getItem("activeDriverSession");
     let driversDatabase = JSON.parse(localStorage.getItem("driversDatabase")) || [];
 
-    // Select the wrapper containers
-    const guestMenuContainer = document.getElementById("guestMenuContainer");
-    const driverMenuContainer = document.getElementById("driverMenuContainer");
+    // Select menu elements
+    const loginLink = document.getElementById("loginLink");
+    const registerLink = document.getElementById("registerLink");
+    const driverHeader = document.getElementById("driverHeader");
     const dropdownUsername = document.getElementById("dropdownUsername");
+    const settingsLink = document.getElementById("settingsLink");
+    const deleteAccountBtn = document.getElementById("deleteAccountBtn");
+    const logoutBtn = document.getElementById("logoutBtn");
     const avatarText = document.querySelector(".avatar-text");
     
     // Select form and action triggers
     const registrationForm = document.getElementById("registrationForm");
     const loginForm = document.getElementById("loginForm");
-    const logoutBtn = document.getElementById("logoutBtn");
-    const deleteAccountBtn = document.getElementById("deleteAccountBtn");
 
     // =========================================================================
-    // 🎛️ SAFE LIFECYCLE STATE SWITCHER
+    // 🎛️ UPDATE DROPDOWN MENU BASED ON AUTH STATE
     // =========================================================================
-    if (activeDriver) {
-        // Driver logged in: Hide guest view wrapper, display user view wrapper
-        if (guestMenuContainer) guestMenuContainer.style.setProperty("display", "none", "important");
-        if (driverMenuContainer) driverMenuContainer.style.setProperty("display", "block", "important");
-        if (dropdownUsername) dropdownUsername.textContent = activeDriver;
+    function updateDropdownMenu() {
+        const currentDriver = localStorage.getItem("activeDriverSession");
         
-        // Render custom driver handle initials
-        if (avatarText) {
-            const initials = activeDriver.trim().split(" ").map(n => n[0]).join("").toUpperCase();
-            avatarText.textContent = initials.substring(0, 2);
+        if (currentDriver) {
+            // User is logged in - show authenticated menu
+            if (loginLink) loginLink.style.display = "none";
+            if (registerLink) registerLink.style.display = "none";
+            if (driverHeader) driverHeader.style.display = "block";
+            if (settingsLink) settingsLink.style.display = "block";
+            if (deleteAccountBtn) deleteAccountBtn.style.display = "block";
+            if (logoutBtn) logoutBtn.style.display = "block";
+            if (dropdownUsername) dropdownUsername.textContent = currentDriver;
+            
+            // Update avatar with initials
+            if (avatarText) {
+                const initials = currentDriver.trim().split(" ").map(n => n[0]).join("").toUpperCase();
+                avatarText.textContent = initials.substring(0, 2);
+            }
+        } else {
+            // User is guest - show login/register menu
+            if (loginLink) loginLink.style.display = "block";
+            if (registerLink) registerLink.style.display = "block";
+            if (driverHeader) driverHeader.style.display = "none";
+            if (settingsLink) settingsLink.style.display = "none";
+            if (deleteAccountBtn) deleteAccountBtn.style.display = "none";
+            if (logoutBtn) logoutBtn.style.display = "none";
+            if (avatarText) avatarText.textContent = "AV";
         }
-    } else {
-        // Visitor is guest: Enforce standard default state layouts
-        if (guestMenuContainer) guestMenuContainer.style.setProperty("display", "block", "important");
-        if (driverMenuContainer) driverMenuContainer.style.setProperty("display", "none", "important");
-        if (avatarText) avatarText.textContent = "AV";
     }
 
+    // Initialize dropdown on page load
+    updateDropdownMenu();
+
     // =========================================================================
-    // 🔐 AUTHENTICATION LOGIC SUBSYSTEMS
+    // 🔐 LOGIN FORM HANDLER
     // =========================================================================
     if (loginForm) {
         loginForm.addEventListener("submit", (e) => {
@@ -62,6 +80,9 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
+    // =========================================================================
+    // 📝 REGISTRATION FORM HANDLER
+    // =========================================================================
     if (registrationForm) {
         registrationForm.addEventListener("submit", (e) => {
             e.preventDefault();
@@ -88,17 +109,21 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // =========================================================================
-    // 🚪 INTERACTIVE TRIGGER HANDLERS
+    // 🚪 LOGOUT HANDLER
     // =========================================================================
     if (logoutBtn) {
         logoutBtn.addEventListener("click", (e) => {
             e.preventDefault();
             localStorage.removeItem("activeDriverSession");
             alert("Driver Session Terminated.");
+            updateDropdownMenu();
             window.location.href = "index.html"; 
         });
     }
 
+    // =========================================================================
+    // ⚠️ DELETE ACCOUNT HANDLER
+    // =========================================================================
     if (deleteAccountBtn) {
         deleteAccountBtn.addEventListener("click", (e) => {
             e.preventDefault();

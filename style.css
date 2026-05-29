@@ -213,6 +213,11 @@ nav {
     display: block;
 }
 
+/* Click-based toggle for mobile and desktop support */
+.avatar-menu-panel.active {
+    display: block !important;
+}
+
 /* --- Internal Layout Adjustments For Driver Authentication States --- */
 .driver-profile-header {
     color: aquamarine;  /* Matches your link font hover color highlights */
