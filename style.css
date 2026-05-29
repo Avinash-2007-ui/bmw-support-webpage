@@ -177,7 +177,7 @@ nav {
     display: flex;      /* Align the avatar circle perfectly in the middle vertical axis */
     align-items: center;
     margin-left: 0 !important;
-    justify-content: center; /* Space from the right edge of the nav bar */
+    justify-content: end; /* Space from the right edge of the nav bar */
 }
 
 /* The custom menu panel box inheriting your exact theme values */
