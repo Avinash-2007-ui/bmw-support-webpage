@@ -63,11 +63,13 @@ header {
     border-radius: 50px; /* Subtle pill-shaped rounding for a modern look */
 }
 nav {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr; /* Left section for logo, right section for navigation links */
     align-items: center;
     justify-content: flex-start; /* Aligns items to the left, with space for the logo */
     gap: 50px; /* Space between the logo and the navigation links */
     height: 80px;
+    width: 100%;
     padding: 0 40px;
 }
 
@@ -75,7 +77,9 @@ nav {
         .navcontent {
             list-style: none;
             display: flex;
-            gap: 30px; /* Space between the main navigation links */
+            justify-content: center; 
+            align-items: center;
+            gap: 35px; /* Space between the main navigation links */
             margin: 0; /* Reset default ul margin */
             padding: 0; /* Reset default ul padding */
         }
@@ -171,6 +175,8 @@ nav {
     height: 100%;       /* Stretches container to match your full nav height block */
     display: flex;      /* Align the avatar circle perfectly in the middle vertical axis */
     align-items: center;
+    margin-left: 0 !important;
+    justify-content: end; /* Space from the right edge of the nav bar */
 }
 
 /* The custom menu panel box inheriting your exact theme values */
