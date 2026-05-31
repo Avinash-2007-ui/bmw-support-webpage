@@ -667,12 +667,6 @@ nav {
     text-decoration: none;
     width: 100%;
 }
-/* --- Shared Styles for BOTH navbars (Optional) --- */
-nav {
-    width: 100%;
-    padding: 10px;
-}
-
 
 
 /*=============================================================================================*/
