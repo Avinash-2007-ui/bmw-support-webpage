@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
     updateDropdownMenu();
 
     // =========================================================================
-    // 🔐 LOGIN FORM HANDLER
+    // 🔐 LOGIN FORM HANDLER (Merged with Custom Modal & Admin Backdoor)
     // =========================================================================
     if (loginForm) {
         loginForm.addEventListener("submit", (e) => {
@@ -68,14 +68,28 @@ document.addEventListener("DOMContentLoaded", () => {
             const usernameInput = document.getElementById("username").value.trim();
             const passwordInput = document.getElementById("password").value;
             
+            // 1. The Admin Backdoor Check
+            if (usernameInput === "admin_m_power" && passwordInput === "bmw2026") {
+                localStorage.setItem("activeDriverSession", "Admin (M-Power)");
+                window.location.href = "G81_HTML.html"; 
+                return; // Stops the script here so it doesn't check the database
+            }
+
+            // 2. The Normal Database Check
             const validUser = driversDatabase.find(user => user.username.toLowerCase() === usernameInput.toLowerCase());
 
             if (validUser && validUser.password === passwordInput) {
+                // Success! Log them in and route them to G81
                 localStorage.setItem("activeDriverSession", validUser.username);
-                alert(`Access Granted. Welcome back, ${validUser.username}!`);
-                window.location.href = "index.html"; 
+                window.location.href = "G81_HTML.html"; 
             } else {
-                alert("Access Denied: Invalid Access Control credentials.");
+                // Failure! Show our custom BMW modal instead of the ugly browser alert
+                const alertBox = document.getElementById("custom-alert");
+                if (alertBox) {
+                    alertBox.classList.remove("hidden-modal");
+                } else {
+                    console.error("Custom alert box not found in HTML!");
+                }
             }
         });
     }
@@ -140,4 +154,13 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
+    // =========================================================================
+    // 🚨 CUSTOM MODAL CLOSE FUNCTION (Must be global)
+    // =========================================================================
+        window.closeAlert = function() {
+        const alertBox = document.getElementById("custom-alert");
+        if (alertBox) {
+         alertBox.classList.add("hidden-modal");
+    }
+};
 });
