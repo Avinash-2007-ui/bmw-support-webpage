@@ -101,7 +101,12 @@ body {
 .login-btn {
     width: 100%;
     padding: 14px;
-    background-color: white;
+    background: linear-gradient(to right,
+        #009dae 0% 33.33%,     /* Light Blue */
+        #0033a0 33.33% 66.66%, /* Dark Blue */
+        #e10600 66.66% 100% ,   /* Track Red */
+        transparent 50% 50%
+    );
     color: black;
     border: none;
     border-radius: 40px;
@@ -152,6 +157,9 @@ body {
 .login-card:hover .login-logo {
     transform: scale(1.03); /* Subtle high-performance engine pulse */
 }
+//////////////////////////////////////////////////////////
+Login Failure Modal Styles
+//////////////////////////////////////////////////////////
 
 /* Custom Modal Background Overlay */
 #custom-alert {
