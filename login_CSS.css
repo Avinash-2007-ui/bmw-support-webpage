@@ -101,9 +101,9 @@ body {
 .login-btn {
     width: 100%;
     padding: 14px;
-    background: radial-gradient(circle at top left, rgba(7, 211, 233, 0.3) 0%, transparent 40%),  /* Light Blue Glow */
-    radial-gradient(circle at top right, rgba(225, 6, 0, 0.3) 0%, transparent 40%),   /* Red Glow */
-    radial-gradient(circle at bottom center, rgba(0, 53, 166, 0.3) 0%, transparent 40%); /* Dark Blue Glow */
+    background: radial-gradient(circle at bottom left, rgba(7, 210, 233, 0.596) 0%, transparent 40%),  /* Light Blue Glow */
+    radial-gradient(circle at bottom right, rgba(225, 7, 0, 0.559) 0%, transparent 40%),   /* Red Glow */
+    radial-gradient(circle at bottom center, rgba(0, 53, 166, 0.596) 0%, transparent 40%); /* Dark Blue Glow */
     color: black;
     border: none;
     border-radius: 40px;
