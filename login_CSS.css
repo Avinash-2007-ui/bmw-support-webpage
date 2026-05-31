@@ -101,12 +101,9 @@ body {
 .login-btn {
     width: 100%;
     padding: 14px;
-    background: linear-gradient(to right,
-        #009dae 0% 33.33%,     /* Light Blue */
-        #0033a0 33.33% 66.66%, /* Dark Blue */
-        #e10600 66.66% 100% ,   /* Track Red */
-        transparent 50% 50%
-    );
+    background: radial-gradient(circle at top left, rgba(7, 211, 233, 0.3) 0%, transparent 40%),  /* Light Blue Glow */
+    radial-gradient(circle at top right, rgba(225, 6, 0, 0.3) 0%, transparent 40%),   /* Red Glow */
+    radial-gradient(circle at bottom center, rgba(0, 53, 166, 0.3) 0%, transparent 40%); /* Dark Blue Glow */
     color: black;
     border: none;
     border-radius: 40px;
@@ -157,9 +154,9 @@ body {
 .login-card:hover .login-logo {
     transform: scale(1.03); /* Subtle high-performance engine pulse */
 }
-//////////////////////////////////////////////////////////
-Login Failure Modal Styles
-//////////////////////////////////////////////////////////
+/*/////////////////////////////////////////////////////////*/
+/* Login Failure Modal Styles */
+/*/////////////////////////////////////////////////////////*/
 
 /* Custom Modal Background Overlay */
 #custom-alert {
