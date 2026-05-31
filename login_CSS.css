@@ -12,6 +12,21 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    /* 1. The base canvas color (Deep dark grey/black) */
+    background-color: #0f0f12; 
+
+    /* 2. The glowing orbs */
+    background-image: 
+        /* Bottom Left: The M-Performance Cyan Glow */
+        radial-gradient(circle at bottom left, rgba(0, 204, 255, 0.25) 0%, transparent 50%),
+        
+        /* Bottom Right: The M-Performance Red/Magenta Glow */
+        radial-gradient(circle at bottom right, rgba(255, 0, 85, 0.25) 0%, transparent 50%);
+
+    /* 3. Keep the glow locked in place even if the user scrolls */
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 /* Centered Layout Card Container */
