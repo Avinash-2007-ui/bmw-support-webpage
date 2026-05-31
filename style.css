@@ -177,7 +177,7 @@ nav {
     display: flex;      /* Align the avatar circle perfectly in the middle vertical axis */
     align-items: center;
     margin-left: 0 !important;
-    justify-content: end; /* Aligns the avatar to the right edge of the nav bar */
+    justify-content: end; /* Space from the right edge of the nav bar */
 }
 
 /* The custom menu panel box inheriting your exact theme values */
@@ -191,8 +191,8 @@ nav {
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
     border-radius: 4px; 
     overflow: hidden;   /* Ensures content respects border-radius */
-    min-width: 180px;
-
+    min-width: 220px;
+    white-space: nowrap; /* Prevents text from breaking into multiple lines */
     /* 🚀 THE ACCURACY FIX: Anchors it flush with the bottom of your 80px navbar block */
     top: 100%; 
     right: 0;           /* Flushes smoothly against your right window margins */
@@ -220,11 +220,6 @@ nav {
     display: block;
 }
 
-/* Click-based toggle for mobile and desktop support */
-.avatar-menu-panel.active {
-    display: block !important;
-}
-
 /* --- Internal Layout Adjustments For Driver Authentication States --- */
 .driver-profile-header {
     color: aquamarine;  /* Matches your link font hover color highlights */
@@ -246,6 +241,7 @@ nav {
 .avatar-menu-panel .logout-link {
     border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
+
             /*===============================================================================================================*/
         .image-container{
             width: 100%;
