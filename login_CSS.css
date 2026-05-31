@@ -34,6 +34,9 @@ body {
     width: 100%;
     max-width: 420px;
     padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05); 
+    border-radius: 16px;
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .login-card {
@@ -79,7 +82,7 @@ body {
 
 .input-group input {
     width: 100%;
-    padding: 12px 16px;
+    padding: 14px 15px;
     background-color: rgba(255, 255, 255, 0.03);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 8px;
@@ -106,7 +109,7 @@ body {
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.2s ease, transform 0.1s ease;
-    margin-top: 10px;
+    margin-top: 40px;
 }
 
 .login-btn:hover {
