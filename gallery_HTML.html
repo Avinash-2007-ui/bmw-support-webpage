@@ -21,23 +21,76 @@
         </div>
     </div>
     
-    <header>
+     <header>
         <nav>
             <div class="left-section">
-                <a class="back-button-container" id="backButton" href="https://avinash-2007-ui.github.io/bmw-support-webpage/index.html">
-                    <img src="stripes.png" alt="BMW Logo">
-                    <div class="brand-text">
-                        <span class="main-brand-name">Back</span>
-                        <span class="sub-brand-name">to Home</span>
-                    </div>
+                <a class="back-button-container" id="backButton" href="index.html">
+                    <img src="stripes-2.png" alt="BMW Logo">
                 </a>
+                <div class="brand-text">
+                    <span class="main-brand-name" data-key="brand_main">Performance</span>
+                    <span class="sub-brand-name" data-key="brand_sub">Sheer Driving Pleasure</span>
+                </div>
             </div>
+
             <div class="rightnav">
-                <a href="https://avinash-2007-ui.github.io/bmw-support-webpage/index.html">&#8617 Home</a>
+                <ul class="navcontent">
+                    <li><a href="index.html" data-key="nav_home">Home</a></li>
+
+                    <li class="frustration">
+                        <a class="morefrustration" href="javascript:void(0)" data-key="nav_m3">M3 Series</a>
+                        <div class="frustration1">
+                            <a href="#" data-key="m3_G80">G80</a>
+                            <a href="#" data-key="m3_Competition_xDrive">Competition xDrive</a>
+                            <a href="G81_HTML.html" data-key="m3_G81">G81</a>
+                            <a href="#" data-key="m3_CS_Club_Sport">CS (Club Sport)</a>
+                            <a href="#" data-key="m3_CS_Handschalter">CS (Handschalter)</a>
+                        </div>
+                    </li>
+
+                    <li class="frustration">
+                        <a class="morefrustration" href="javascript:void(0)" data-key="nav_m4">M4 Series</a>
+                        <div class="frustration1">
+                            <a href="#" data-key="m4_competition">M4 Competition</a>
+                            <a href="#" data-key="m4_xdrive">M4 Competition with M xDrive</a>
+                            <a href="#" data-key="m4_cs">M4 CS</a>
+                            <a href="#" data-key="m4_csl">M4 CSL</a>
+                            <a href="#" data-key="m4_coupe">M4 Coupe</a>
+                        </div>
+                    </li>
+
+                    <li class="frustration">
+                        <a class="morefrustration" href="javascript:void(0)" data-key="nav_m5">M5 Series</a>
+                        <div class="frustration1">
+                            <a href="#" data-key="m5_e28">E28 M5 (1985-1988)</a>
+                            <a href="#" data-key="m5_e34">E34 M5 (1988-1995)</a>
+                            <a href="#" data-key="m5_e39_1">E39 M5 (1998-2003)</a>
+                            <a href="#" data-key="m5_e39_2">E39 M5 (1998-2003)</a>
+                            <a href="#" data-key="m5_e39_3">E39 M5 (1998-2003)</a>
+                        </div>
+                    </li>
+                </ul>
             </div>
-            <div class="user-avatar">
-                <span class="avatar-text">AV</span>
-             </div>
+       <div class="avatar-dropdown-wrapper">
+    
+    <div class="user-avatar" id="avatarTrigger">
+       <span class="avatar-text" data-key="user_avatar">AV</span>
+    </div>
+
+    <div class="avatar-menu-panel" id="avatarDropdown">
+        
+        <a href="login_HTML.html" id="loginLink">🔐 Authenticate Login</a>
+        <a href="registration.html" id="registerLink">📝 Register Profile</a>
+        
+        <div id="driverHeader" class="driver-profile-header" style="display: none;">
+            DRIVER: <span id="dropdownUsername">Guest</span>
+        </div>
+        <a href="#settings" id="settingsLink" style="display: none;">⚙️ System Settings</a>
+        <a href="#" id="deleteAccountBtn" class="delete-profile-link" style="display: none;">⚠️ Delete Profile</a>
+        <a href="#" id="logoutBtn" class="logout-link" style="display: none;">🚪 Logout Driver</a>
+
+    </div>
+</div>
         </nav>
     </header>
 

@@ -10,14 +10,52 @@ body {
     background-color: #000;
     color: #fff;
 }
-     /* ==========================================================================
+   /* Group for logo and brand text */
+        .left-section {
+            display: flex;
+            align-items: center; 
+            gap: 15px; 
+        }
+
+        .left-section img {
+            height: 60px;
+            width: 60px;
+            object-fit: contain; /* Keeps the stripes perfectly sharp and un-stretched */
+        }
+        .back-button-container {
+            Background-color: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Container for "Performance" and "The Beast" */
+        .brand-text {
+            display: flex;
+            flex-direction: column; /* Stacks the text vertically */
+            justify-content: center; /* Centers the text vertically within its space */
+        }
+
+        .main-brand-name {
+            font-size: 1.4em; /* Larger for "Performance" */
+            font-weight: bold;
+            color: white;
+            margin-bottom: 2px; /* Small space between the two lines of text */
+        }
+
+        .sub-brand-name {
+            font-size: 0.9em; /* Smaller for "The Beast" */
+            color: lightgray; /* Slightly muted color */
+        }
+
+        /* ==========================================================================
    📌 ULTRA-STABLE FLOATING NAVIGATION BAR (YOUTUBE LAYOUT)
    ========================================================================== */
 header {
     position: sticky; 
     top: 20px; /* Keeps it 20px from the top of the viewport for a premium floating effect */
     width: 90%;
-    max-width: 1200px; /* Limits the width for better aesthetics on large screens */
+    max-width: 850px; /* Limits the width for better aesthetics on large screens */
     margin: 0 auto; /* Centers the nav bar horizontally */
     z-index: 9999; /* Forces it to float on top of video grids, headers, and images */
     background-color: rgba(0, 0, 0, 0.6); /* Opaque premium dark room backdrop */
@@ -26,63 +64,40 @@ header {
     border-radius: 50px; /* Subtle pill-shaped rounding for a modern look */
 }
 nav {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr; /* Left section for logo, right section for navigation links */
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start; /* Aligns items to the left, with space for the logo */
+    gap: 50px; /* Space between the logo and the navigation links */
     height: 80px;
+    width: 100% !important;
     padding: 0 40px;
 }
-.back-button-container {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    text-decoration: none;
-    cursor: pointer;
-}
 
-.back-button-container img {
-    height: 60px;
-    width: 60px;
-}
+        /* Navigation links on the right */
+        .navcontent {
+            list-style: none;
+            display: flex;
+            justify-content: center; 
+            align-items: center;
+            gap: 35px; /* Space between the main navigation links */
+            margin: 0; /* Reset default ul margin */
+            padding: 0; /* Reset default ul padding */
+        }
 
-.brand-text {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            padding: 16px 0; /* Vertical padding for clickable area */
+            display: block; /* Ensures the whole padded area is clickable */
+            transition: color 0.3s, font-size 0.3s; /* Smooth hover transition */
+        }
 
-.main-brand-name {
-    font-size: 1.4em;
-    font-weight: bold;
-    color: white;
-    margin-bottom: 2px;
-}
-
-.sub-brand-name {
-    font-size: 0.9em;
-    color: lightgray;
-}
-
-.rightnav {
-    display: flex;
-    align-items: center;
-}
-
-.rightnav a {
-    text-decoration: none;
-    color: rgb(255, 255, 255);
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition:  0.2s ease;
-}
-
-.rightnav a:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: aquamarine;
-    font-size: 1.1rem;
-    
-}
-.user-avatar {
+        nav ul li a:hover {
+            color: rgb(127, 255, 212);
+            font-size: 1.1rem; /* Slight size increase on hover */
+        }
+        .user-avatar {
             width: 45px;
             height: 45px;
             background-color: rgb(255, 255, 255);
@@ -96,6 +111,136 @@ nav {
             font-weight: bold;
             font-size: 1.1rem;
         }
+        
+
+        /*=================================================z==============================================================*/
+        /* DROPDOWN */
+        /*===============================================================================================================*/
+        li.frustration {
+            position: relative; /* Essential for positioning the dropdown content */
+            display: inline-block;
+        }
+
+        .morefrustration {
+            padding: 16px 0; /* Consistent padding with other nav links */
+            display: block;
+            text-align: center;
+        }
+
+
+        li a:hover,
+        .frustration:hover .morefrustration {
+            color: aquamarine;
+            font-size: 1.1rem; /* Consistent hover size */
+        }
+
+        .frustration1 {
+            display: none;
+            position: absolute;
+            z-index: 1000; /* Ensures dropdown is above other content */
+            background-color: rgba(7, 7, 7, 0.9); /* Semi-transparent background */
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            border-radius: 4px; /* Optional: subtle rounded corners */
+            overflow: hidden; /* Ensures content respects border-radius */
+            left: 50%; /* Start dropdown at 50% from parent's left edge */
+            transform: translateX(-50%); /* Adjust to truly center it */
+            top: 100%; /* Position directly below the parent link */
+        }
+
+        .frustration1 a {
+            color: white;
+            display: block;
+            text-align: left; /* Align dropdown items to the left */
+            padding: 10px 15px; /* Padding for dropdown items */
+            text-decoration: none;
+            transition: background-color 0.2s, color 0.2s; /* Smooth hover transitions */
+        }
+
+        .frustration1 a:hover {
+            color: turquoise;
+            background-color: rgba(50, 200, 200, 0.15); /* Subtle background on hover */
+        }
+
+        .frustration:hover .frustration1 {
+            display: block;
+        }
+   /* ==========================================================================
+   👤 DEDICATED AVATAR DROPDOWN (ADAPTED FROM ORIGINAL BRAND MOTORSPORT STYLES)
+   ========================================================================== */
+
+/* Outer container holding the avatar circle */
+.avatar-dropdown-wrapper {
+    position: relative; /* Essential for positioning the dropdown content */
+    display: inline-block;
+    height: 100%;       /* Stretches container to match your full nav height block */
+    display: flex;      /* Align the avatar circle perfectly in the middle vertical axis */
+    align-items: center;
+    margin-left: 0 !important;
+    justify-content: end; /* Space from the right edge of the nav bar */
+}
+
+/* The custom menu panel box inheriting your exact theme values */
+.avatar-menu-panel {
+    display: none;      /* Inherits original behavior: Hidden until parent wrapper is hovered */
+    position: absolute;
+    z-index: 1000;      /* Ensures dropdown is above other content */
+    
+    /* Exact Color and Transparency extracted from your .frustration1 rules */
+    background-color: rgba(7, 7, 7, 0.9); 
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    border-radius: 4px; 
+    overflow: hidden;   /* Ensures content respects border-radius */
+    min-width: 220px;
+    white-space: nowrap; /* Prevents text from breaking into multiple lines */
+    /* 🚀 THE ACCURACY FIX: Anchors it flush with the bottom of your 80px navbar block */
+    top: 100%; 
+    right: 0;           /* Flushes smoothly against your right window margins */
+}
+
+/* Base text links configuration inside the panel */
+.avatar-menu-panel a {
+    color: white;
+    display: block;
+    text-align: left;   /* Align dropdown items to the left */
+    padding: 10px 15px; /* Exact spacing from original dropdown items layout */
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: background-color 0.2s, color 0.2s; /* Smooth hover transitions */
+}
+
+/* Hover state matching your exact corporate signature styling */
+.avatar-menu-panel a:hover {
+    color: turquoise;
+    background-color: rgba(50, 200, 200, 0.15); /* Subtle background on hover */
+}
+
+/* 🔥 THE HOVER TRIGGER: Shows the panel cleanly when cursor enters the wrapper box area */
+.avatar-dropdown-wrapper:hover .avatar-menu-panel {
+    display: block;
+}
+
+/* --- Internal Layout Adjustments For Driver Authentication States --- */
+.driver-profile-header {
+    color: aquamarine;  /* Matches your link font hover color highlights */
+    padding: 10px 15px;
+    font-weight: bold;
+    font-size: 0.85rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    letter-spacing: 0.5px;
+}
+
+.avatar-menu-panel .delete-profile-link {
+    color: #ff4d4d !important; /* Highlights profile deletion warning system alerts */
+}
+
+.avatar-menu-panel .delete-profile-link:hover {
+    background-color: rgba(255, 77, 77, 0.1) !important;
+}
+
+.avatar-menu-panel .logout-link {
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
 
 /* Slideshow Section */
 .slideshow-container {
