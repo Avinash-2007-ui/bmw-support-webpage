@@ -1,4 +1,26 @@
+# Your Custom Exclusions
 Live_Deploy/
-# Triggering Pipeline
-# Fix Typo
-# Final Execution
+
+# 1. Security & Environment Variables
+.env
+.env.local
+.env.*
+*.pem
+
+# 2. Operating System Hidden Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# 3. Editor Configurations
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
