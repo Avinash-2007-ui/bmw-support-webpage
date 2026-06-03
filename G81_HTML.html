@@ -1,137 +1,138 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BMW G81 Touring</title>
     <link rel="icon" href="BMW-logo2.png" type="image/x-icon">
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="G81_CSS.css">
-    
-    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body class="bg-zinc-950 text-zinc-100 antialiased overflow-x-hidden">
+<body>
 
-    <div id="preloader" class="fixed inset-0 z-[9999] flex items-center justify-center bg-zinc-950">
-        <div class="preloader-content flex flex-col items-center">
-            <img src="BMW-logo2.png" alt="BMW Logo" class="loader-logo w-16 mb-4">
-            <div class="waving-dots flex gap-1">
-                <span class="w-2 h-2 bg-white rounded-full"></span>
-                <span class="w-2 h-2 bg-white rounded-full"></span>
-                <span class="w-2 h-2 bg-white rounded-full"></span>
+    <div id="preloader">
+        <div class="preloader-content">
+            <img src="BMW-logo2.png" alt="BMW Logo" class="loader-logo">
+            <div class="waving-dots">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
     </div>
 
-    <header class="w-full fixed top-0 z-50 bg-zinc-950/80 backdrop-blur-md border-b border-zinc-800/50">
-        <nav class="flex flex-wrap md:flex-nowrap items-center justify-between w-full max-w-7xl mx-auto px-4 py-3 gap-4">
-            
-            <div class="left-section flex items-center gap-3">
-                <a class="back-button-container shrink-0" id="backButton" href="index.html">
-                    <img src="stripes-2.png" alt="BMW Logo" class="h-8 w-auto">
+    <header>
+        <nav>
+            <div class="left-section">
+                <a class="back-button-container" id="backButton" href="index.html">
+                    <img src="stripes-2.png" alt="BMW Logo">
                 </a>
-                <div class="brand-text flex flex-col">
-                    <span class="main-brand-name font-black text-lg leading-tight uppercase tracking-wide" data-key="brand_main">Performance</span>
-                    <span class="sub-brand-name text-xs text-zinc-400" data-key="brand_sub">Sheer Driving Pleasure</span>
+                <div class="brand-text">
+                    <span class="main-brand-name" data-key="brand_main">Performance</span>
+                    <span class="sub-brand-name" data-key="brand_sub">Sheer Driving Pleasure</span>
                 </div>
             </div>
 
-            <div class="rightnav w-full md:w-auto overflow-x-auto pb-2 md:pb-0">
-                <ul class="navcontent flex items-center gap-6 text-sm font-medium whitespace-nowrap px-2">
-                    <li><a href="index.html" class="hover:text-blue-500 transition-colors" data-key="nav_home">Home</a></li>
+            <div class="rightnav">
+                <ul class="navcontent">
+                    <li><a href="index.html" data-key="nav_home">Home</a></li>
 
-                    <li class="frustration group relative">
-                        <a class="morefrustration hover:text-blue-500 transition-colors" href="javascript:void(0)" data-key="nav_m3">M3 Series</a>
-                        <div class="frustration1 absolute left-0 top-full hidden group-hover:flex flex-col bg-zinc-900 border border-zinc-800 rounded-lg p-3 mt-2 min-w-[150px] shadow-xl z-50">
-                            <a href="#" class="py-1 hover:text-blue-400" data-key="m3_G80">G80</a>
-                            <a href="#" class="py-1 hover:text-blue-400" data-key="m3_Competition_xDrive">Competition xDrive</a>
-                            <a href="G81_HTML.html" class="py-1 hover:text-blue-400" data-key="m3_G81">G81</a>
-                            <a href="#" class="py-1 hover:text-blue-400" data-key="m3_CS_Club_Sport">CS (Club Sport)</a>
-                            <a href="#" class="py-1 hover:text-blue-400" data-key="m3_CS_Handschalter">CS (Handschalter)</a>
+                    <li class="frustration">
+                        <a class="morefrustration" href="javascript:void(0)" data-key="nav_m3">M3 Series</a>
+                        <div class="frustration1">
+                            <a href="#" data-key="m3_G80">G80</a>
+                            <a href="#" data-key="m3_Competition_xDrive">Competition xDrive</a>
+                            <a href="G81_HTML.html" data-key="m3_G81">G81</a>
+                            <a href="#" data-key="m3_CS_Club_Sport">CS (Club Sport)</a>
+                            <a href="#" data-key="m3_CS_Handschalter">CS (Handschalter)</a>
                         </div>
                     </li>
 
-                    <li class="frustration group relative">
-                        <a class="morefrustration hover:text-blue-500 transition-colors" href="javascript:void(0)" data-key="nav_m4">M4 Series</a>
-                        <div class="frustration1 absolute left-0 top-full hidden group-hover:flex flex-col bg-zinc-900 border border-zinc-800 rounded-lg p-3 mt-2 min-w-[200px] shadow-xl z-50">
-                            <a href="#" class="py-1 hover:text-blue-400" data-key="m4_competition">M4 Competition</a>
-                            <a href="#" class="py-1 hover:text-blue-400" data-key="m4_xdrive">M4 Comp xDrive</a>
-                            <a href="#" class="py-1 hover:text-blue-400" data-key="m4_cs">M4 CS</a>
-                            <a href="#" class="py-1 hover:text-blue-400" data-key="m4_csl">M4 CSL</a>
-                            <a href="#" class="py-1 hover:text-blue-400" data-key="m4_coupe">M4 Coupe</a>
+                    <li class="frustration">
+                        <a class="morefrustration" href="javascript:void(0)" data-key="nav_m4">M4 Series</a>
+                        <div class="frustration1">
+                            <a href="#" data-key="m4_competition">M4 Competition</a>
+                            <a href="#" data-key="m4_xdrive">M4 Competition with M xDrive</a>
+                            <a href="#" data-key="m4_cs">M4 CS</a>
+                            <a href="#" data-key="m4_csl">M4 CSL</a>
+                            <a href="#" data-key="m4_coupe">M4 Coupe</a>
                         </div>
                     </li>
 
-                    <li class="frustration group relative">
-                        <a class="morefrustration hover:text-blue-500 transition-colors" href="javascript:void(0)" data-key="nav_m5">M5 Series</a>
-                        <div class="frustration1 absolute left-0 top-full hidden group-hover:flex flex-col bg-zinc-900 border border-zinc-800 rounded-lg p-3 mt-2 min-w-[180px] shadow-xl z-50">
-                            <a href="#" class="py-1 hover:text-blue-400" data-key="m5_e28">E28 M5</a>
-                            <a href="#" class="py-1 hover:text-blue-400" data-key="m5_e34">E34 M5</a>
-                            <a href="#" class="py-1 hover:text-blue-400" data-key="m5_e39_1">E39 M5</a>
+                    <li class="frustration">
+                        <a class="morefrustration" href="javascript:void(0)" data-key="nav_m5">M5 Series</a>
+                        <div class="frustration1">
+                            <a href="#" data-key="m5_e28">E28 M5 (1985-1988)</a>
+                            <a href="#" data-key="m5_e34">E34 M5 (1988-1995)</a>
+                            <a href="#" data-key="m5_e39_1">E39 M5 (1998-2003)</a>
+                            <a href="#" data-key="m5_e39_2">E39 M5 (1998-2003)</a>
+                            <a href="#" data-key="m5_e39_3">E39 M5 (1998-2003)</a>
                         </div>
                     </li>
                 </ul>
             </div>
-            
-            <div class="avatar-dropdown-wrapper relative shrink-0">
-                <div class="user-avatar w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center cursor-pointer hover:bg-blue-500 transition-colors" id="avatarTrigger">
-                   <span class="avatar-text font-bold text-sm" data-key="user_avatar">AV</span>
-                </div>
-                <div class="avatar-menu-panel absolute right-0 top-full mt-2 w-48 bg-zinc-900 border border-zinc-800 rounded-lg shadow-2xl p-2 hidden" id="avatarDropdown">
-                    <a href="login_HTML.html" class="block px-4 py-2 text-sm hover:bg-zinc-800 rounded" id="loginLink">🔐 Authenticate Login</a>
-                    <a href="registration.html" class="block px-4 py-2 text-sm hover:bg-zinc-800 rounded" id="registerLink">📝 Register Profile</a>
-                </div>
-            </div>
+       <div class="avatar-dropdown-wrapper">
+    
+    <div class="user-avatar" id="avatarTrigger">
+       <span class="avatar-text" data-key="user_avatar">AV</span>
+    </div>
+
+    <div class="avatar-menu-panel" id="avatarDropdown">
+        
+        <a href="login_HTML.html" id="loginLink">🔐 Authenticate Login</a>
+        <a href="registration.html" id="registerLink">📝 Register Profile</a>
+        
+        <div id="driverHeader" class="driver-profile-header" style="display: none;">
+            DRIVER: <span id="dropdownUsername">Guest</span>
+        </div>
+        <a href="#settings" id="settingsLink" style="display: none;">⚙️ System Settings</a>
+        <a href="#" id="deleteAccountBtn" class="delete-profile-link" style="display: none;">⚠️ Delete Profile</a>
+        <a href="#" id="logoutBtn" class="logout-link" style="display: none;">🚪 Logout Driver</a>
+
+    </div>
+</div>
         </nav>
     </header>
 
-    <main class="pt-28 md:pt-32 pb-12 px-4 max-w-7xl mx-auto">
+    <main>
 
-        <div class="bmwg81-intro flex flex-col md:flex-row items-center gap-8 md:gap-16">
-            
-            <div class="g81-image w-full md:w-1/2 relative rounded-2xl overflow-hidden shadow-2xl shadow-blue-900/20">
-                <img src="G8122.jpg" alt="G81 Touring" class="w-full h-auto object-cover aspect-[4/3] md:aspect-auto">
-                <div class="overlay absolute inset-0 bg-gradient-to-t from-zinc-950/80 to-transparent md:hidden"></div>
+            <div class="bmwg81-intro">
+                <div class="g81-image">
+                    <img src="G8122.jpg" alt="G81 Touring">
+                    <div class="overlay"></div>
+                </div>
+                <div class="g81-text">
+                    <span class="g81-title" data-key="g81_title">BMW G81 Touring</span>
+                    <h1 class="g81-subtitle" data-key="g81_subtitle">The Ultimate Driving Machine</h1>
+                    <p>
+                       The BMW M3 G81, launched in 2023, is the latest evolution of the iconic M3 series. With its aggressive styling, powerful engine options, and cutting-edge technology, the G81 continues to embody BMW's commitment to performance and driving pleasure.
+                    </p>
+                </div>
             </div>
-            
-            <div class="g81-text w-full md:w-1/2 text-center md:text-left space-y-4">
-                <span class="g81-title inline-block px-3 py-1 bg-blue-900/30 text-blue-400 border border-blue-800/50 rounded-full text-xs font-bold uppercase tracking-widest mb-2" data-key="g81_title">
-                    BMW G81 Touring
-                </span>
-                <h1 class="g81-subtitle text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight" data-key="g81_subtitle">
-                    The Ultimate Driving Machine
-                </h1>
-                <p class="text-zinc-400 text-base md:text-lg leading-relaxed max-w-xl mx-auto md:mx-0">
-                   The BMW M3 G81, launched in 2023, is the latest evolution of the iconic M3 series. With its aggressive styling, powerful engine options, and cutting-edge technology, the G81 continues to embody BMW's commitment to performance and driving pleasure.
-                </p>
-            </div>
-        </div>
 
-        <section class="second mt-24 pt-8 border-t border-zinc-800/60">
+        <section class="second">
             <nav class="main-navbar">
-                <ul class="navcontent-2 flex flex-wrap justify-center gap-x-6 gap-y-3 text-sm font-medium text-zinc-500">
-                    <li><a href="#" class="hover:text-white transition-colors" data-lang="en">English</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors" data-lang="es">Español</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors" data-lang="de">Deutsch</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors" data-lang="it">Italiano</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors" data-lang="fr">Français</a></li>
-                    <li><a href="#" class="hover:text-white transition-colors" data-lang="zh">中文</a></li>
+              <ul class="navcontent-2">
+                 <li><a href="#" data-lang="en">English</a></li>
+                 <li><a href="#" data-lang="es">Español</a></li>
+                 <li><a href="#" data-lang="de">Deutsch</a></li>
+                 <li><a href="#" data-lang="it">Italiano</a></li>
+                 <li><a href="#" data-lang="fr">Français</a></li>
+                 <li><a href="#" data-lang="zh">中文</a></li>
                 </ul>
             </nav>
         </section>
 
-        <section class="third mt-8 pt-8 border-t border-zinc-800/60">
-            <nav class="footer-navbar flex justify-center">
-                <ul class="flex items-center gap-8 text-xs text-zinc-500">
-                    <li><a href="#privacy" class="hover:text-white transition-colors" data-key="footer_privacy">Privacy Policy</a></li>
-                    <li><a href="#terms" class="hover:text-white transition-colors" data-key="footer_terms">Terms of Service</a></li>
+        <section class="third">
+            <nav class="footer-navbar">
+                <ul>
+                    <li><a href="#privacy" data-key="footer_privacy">Privacy Policy</a></li>
+                    <li><a href="#terms" data-key="footer_terms">Terms of Service</a></li>
                 </ul>
             </nav>
         </section>
     </main>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="translate.js"></script> 
     <script src="auth.js"></script>
