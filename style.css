@@ -721,9 +721,8 @@ nav.main-navbar{
     display: block;
 }
 
-
 /* ==========================================================================
-   Floating Action Button (FAB) Setup
+   Floating Action Button (FAB) Setup - Premium Black Theme
    ========================================================================== */
 #bmwAiToggleBtn {
     position: fixed;
@@ -732,26 +731,31 @@ nav.main-navbar{
     width: 60px;
     height: 60px;
     border-radius: 50%;
-    background-color: #0066cc;
-    border: none;
+    /* Swapped color to deep black to match vehicle background style */
+    background-color: #111111; 
+    border: 1px solid #333;
     cursor: pointer;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
     display: flex;
     align-items: center;
     justify-content: center;
     z-index: 100000;
-    transition: transform 0.2s ease, background-color 0.2s ease;
+    transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
 }
 
 #bmwAiToggleBtn:hover {
-    background-color: #0052a3;
+    background-color: #1c1c1c;
+    border-color: #0066cc;
 }
 
-/* FIX: Target the logo inside the floating button to ensure it displays white */
-#bmwAiToggleBtn .gemini-logo-icon path {
-    fill: #ffffff;
-    stroke: #ffffff;
-    stroke-width: 1;
+/* ==========================================================================
+   Global Gemini Logo Gradient Style Application
+   ========================================================================== */
+.gemini-logo-icon path {
+    /* Directs browser to fill the paths with our multi-color linear scale map */
+    fill: url(#geminiGradient);
+    stroke: url(#geminiGradient);
+    stroke-width: 0.5;
 }
 
 /* ==========================================================================
@@ -760,13 +764,13 @@ nav.main-navbar{
 #bmwAiSidePanel {
     position: fixed;
     top: 0;
-    right: -400px; /* Kept out of viewport initially */
+    right: -400px;
     width: 400px;
     height: 100vh;
     background-color: #1c1c1c;
     border-left: 1px solid #333;
     box-shadow: -4px 0 24px rgba(0, 0, 0, 0.5);
-    z-index: 99999; /* Higher priority layer to stack over top nav bars */
+    z-index: 99999;
     transition: right 0.3s ease-in-out;
     display: flex;
     flex-direction: column;
@@ -785,7 +789,6 @@ nav.main-navbar{
     background-color: #111111;
 }
 
-/* Inline flex alignment for text and logo inside header */
 #bmwAiSidePanel .brand-wrapper {
     display: flex;
     align-items: center;
@@ -798,13 +801,6 @@ nav.main-navbar{
     font-size: 15px;
     letter-spacing: 0.5px;
     font-weight: bold;
-}
-
-/* FIX: Target the header logo specifically to display blue */
-#bmwAiSidePanel .header-logo path {
-    fill: #0066cc;
-    stroke: #0066cc;
-    stroke-width: 1;
 }
 
 #bmwAiSidePanel .close-btn {
@@ -852,7 +848,6 @@ nav.main-navbar{
     letter-spacing: 0.5px;
 }
 
-/* AI Terminal Screen Component */
 #aiOutputView {
     background-color: #222222;
     padding: 15px;
