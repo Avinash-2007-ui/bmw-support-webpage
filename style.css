@@ -735,7 +735,7 @@ nav.main-navbar{
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1000;
+    z-index: 100000;
     transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
@@ -753,7 +753,7 @@ nav.main-navbar{
     background-color: #1c1c1c;
     border-left: 1px solid #333;
     box-shadow: -4px 0 24px rgba(0, 0, 0, 0.5);
-    z-index: 999;
+    z-index: 99999;
     transition: right 0.3s ease-in-out;
     display: flex;
     flex-direction: column;
