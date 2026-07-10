@@ -54,17 +54,25 @@ async function runSystemCheck() {
         if (data.candidates && data.candidates[0].content && data.candidates[0].content.parts && data.candidates[0].content.parts[0].text) {
             outputDiv.innerText = data.candidates[0].content.parts[0].text;
         } 
-        // 2. Safely parse out error messages without casting them to "[object Object]"
-        else if (data.error) {
-            if (typeof data.error === 'object') {
-                outputDiv.innerText = data.error.message || JSON.stringify(data.error);
+        // 2. Intercept Error responses for Presentation Fallback Mode
+        else if (data.error || data.message) {
+            const errorMessage = typeof data.error === 'object' 
+                ? (data.error.message || "") 
+                : (data.error || data.message || "");
+            
+            // If the endpoint is unavailable, rate limited, or experiencing high demand
+            if (errorMessage.toLowerCase().includes("demand") || 
+                errorMessage.toLowerCase().includes("limit") || 
+                errorMessage.toLowerCase().includes("available")) {
+                
+                outputDiv.innerHTML = `<strong>⚠️ [Presentation Demo Mode Enabled - Google API Rate Limited]</strong>\n\n` + 
+                                      `<strong>BMW Core Diagnostic Telemetry Baseline:</strong>\n` +
+                                      `• Analysis Status: Localized Baseline Rule-Check\n` +
+                                      `• User Report Log: "${textInput}"\n` +
+                                      `• Recommended Action: Check fluid pressure, inspect physical alignment parameters, and scan the OBD-II module for diagnostic trouble codes (DTCs).`;
             } else {
-                outputDiv.innerText = data.error;
+                outputDiv.innerText = "Backend Error: " + errorMessage;
             }
-        } 
-        // 3. Fallback handle if it's a direct API error response wrapper
-        else if (data.message) {
-            outputDiv.innerText = data.message;
         }
         else {
             outputDiv.innerText = "Response received, but format structure was unrecognized. Check browser console (F12).";
@@ -74,7 +82,6 @@ async function runSystemCheck() {
         outputDiv.innerText = "Could not reach the backend server. Verify your terminal JRE session is still running on port 5000.";
     }
 }
-
 function toggleBmwSidePanel() {
     const panel = document.getElementById('bmwAiSidePanel');
     const toggleBtn = document.getElementById('bmwAiToggleBtn');
