@@ -39,11 +39,12 @@ async function runSystemCheck() {
     outputDiv.innerText = "Connecting to secure Java gateway...";
     
     try {
-        const response = await fetch('http://localhost:5000/api/diagnose', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ description: textInput })
-        });
+        // This link is now linked 24/7 to your live cloud server container!
+const response = await fetch('https://bmw-support-webpage.onrender.com/api/diagnose', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ description: textInput })
+});
         
         const data = await response.json();
         console.log("Raw Backend Response Data:", data);
