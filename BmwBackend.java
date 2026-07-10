@@ -39,11 +39,9 @@ public class BmwBackend {
                 try {
                     String requestBody = new String(exchange.getRequestBody().readAllBytes(), StandardCharsets.UTF_8);
                     
-                    // Robust string extraction that strips out surrounding brackets and accidental quotes
                     String userDescription = "";
                     if (requestBody.contains("\"description\"")) {
                         int startIdx = requestBody.indexOf("\"description\"");
-                        // Look for the value after the description key
                         String remaining = requestBody.substring(startIdx + 13);
                         int firstQuote = remaining.indexOf("\"");
                         int secondQuote = remaining.indexOf("\"", firstQuote + 1);
@@ -53,7 +51,6 @@ public class BmwBackend {
                         }
                     }
 
-                    // Absolute safety check: Remove any remaining double quotes to prevent JSON payload breaking
                     userDescription = userDescription.replace("\"", "\\\"").replace("\n", " ").replace("\r", " ").trim();
 
                     if (userDescription.isEmpty()) {
@@ -68,9 +65,10 @@ public class BmwBackend {
                     String instructionPrompt = "You are the BMW Global Support Assistant. Provide professional, short, actionable diagnostic telemetry steps for this issue: " + userDescription;
                     String jsonPayload = "{\"contents\":[{\"parts\":[{\"text\":\"" + instructionPrompt + "\"}]}]}";
 
+                    // SWAPPED HERE: Updated endpoint target parameter string link directly to gemini-3.5-flash
                     HttpClient client = HttpClient.newHttpClient();
                     HttpRequest request = HttpRequest.newBuilder()
-                        .uri(URI.create("https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" + apiKey))
+                        .uri(URI.create("https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=" + apiKey))
                         .header("Content-Type", "application/json")
                         .POST(HttpRequest.BodyPublishers.ofString(jsonPayload))
                         .build();
