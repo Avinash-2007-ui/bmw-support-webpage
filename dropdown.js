@@ -46,42 +46,48 @@ async function runSystemCheck() {
         });
         
         const data = await response.json();
-        
-        // DEBUG: Print the raw response data to your browser console to inspect it
         console.log("Raw Backend Response Data:", data);
         
-        // 1. Check if Gemini returned a standard successful content response text block
+        // CHECK 1: If the HTTP request failed due to rate limits (Status 429 or 503)
+        if (response.status === 429 || response.status === 503) {
+            triggerDemoMode(textInput, outputDiv);
+            return;
+        }
+
+        // CHECK 2: Live AI Response Success
         if (data.candidates && data.candidates[0].content && data.candidates[0].content.parts && data.candidates[0].content.parts[0].text) {
             outputDiv.innerText = data.candidates[0].content.parts[0].text;
         } 
-        // 2. Intercept Error responses for Presentation Fallback Mode
-        else if (data.error || data.message) {
-            const errorMessage = typeof data.error === 'object' 
-                ? (data.error.message || "") 
-                : (data.error || data.message || "");
+        // CHECK 3: The server sent a custom error block object back
+        else if (data.error) {
+            const errorStr = typeof data.error === 'object' ? (data.error.message || "") : data.error;
             
-            // If the endpoint is unavailable, rate limited, or experiencing high demand
-            if (errorMessage.toLowerCase().includes("demand") || 
-                errorMessage.toLowerCase().includes("limit") || 
-                errorMessage.toLowerCase().includes("available")) {
-                
-                outputDiv.innerHTML = `<strong>⚠️ [Presentation Demo Mode Enabled - Google API Rate Limited]</strong>\n\n` + 
-                                      `<strong>BMW Core Diagnostic Telemetry Baseline:</strong>\n` +
-                                      `• Analysis Status: Localized Baseline Rule-Check\n` +
-                                      `• User Report Log: "${textInput}"\n` +
-                                      `• Recommended Action: Check fluid pressure, inspect physical alignment parameters, and scan the OBD-II module for diagnostic trouble codes (DTCs).`;
+            // Check if the actual error data is structural throttling
+            if (errorStr.toLowerCase().includes("demand") || errorStr.toLowerCase().includes("limit") || errorStr.toLowerCase().includes("quota")) {
+                triggerDemoMode(textInput, outputDiv);
             } else {
-                outputDiv.innerText = "Backend Error: " + errorMessage;
+                outputDiv.innerText = "Backend Error: " + errorStr;
             }
-        }
+        } 
         else {
-            outputDiv.innerText = "Response received, but format structure was unrecognized. Check browser console (F12).";
+            outputDiv.innerText = "Response received, but format structure was unrecognized.";
         }
     } catch (err) {
         console.error("Connection failed:", err);
         outputDiv.innerText = "Could not reach the backend server. Verify your terminal JRE session is still running on port 5000.";
     }
 }
+
+// Clean helper function to render the fallback card cleanly if needed
+function triggerDemoMode(textInput, outputDiv) {
+    outputDiv.innerHTML = `<strong>⚠️ [Presentation Demo Mode Enabled - Google API Rate Limited]</strong>\n\n` + 
+                          `<strong>BMW Core Diagnostic Telemetry Baseline:</strong>\n` +
+                          `• Analysis Status: Localized Baseline Rule-Check\n` +
+                          `• User Report Log: "${textInput}"\n` +
+                          `• Recommended Action: Check fluid pressure, inspect physical alignment parameters, and scan the OBD-II module for diagnostic trouble codes (DTCs).`;
+}
+
+
 function toggleBmwSidePanel() {
     const panel = document.getElementById('bmwAiSidePanel');
     const toggleBtn = document.getElementById('bmwAiToggleBtn');
