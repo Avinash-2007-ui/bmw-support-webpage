@@ -13,7 +13,11 @@ import java.nio.charset.StandardCharsets;
 
 public class BmwBackend {
     public static void main(String[] args) throws Exception {
-        HttpServer server = HttpServer.create(new InetSocketAddress(5000), 0);
+       // Read the system variable map. Default back to 8080 if not predefined by the cloud layer.
+String portEnv = System.getenv("PORT");
+int port = (portEnv != null) ? Integer.parseInt(portEnv) : 8080;
+
+HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
         
         server.createContext("/api/diagnose", new HttpHandler() {
             @Override
