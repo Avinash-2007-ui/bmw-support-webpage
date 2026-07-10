@@ -1,8 +1,7 @@
-import com.sun.net.httpserver.HttpServer;
-import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpExchange;
+import com.sun.net.httpserver.HttpHandler;
+import com.sun.net.httpserver.HttpServer;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.URI;
@@ -13,76 +12,96 @@ import java.nio.charset.StandardCharsets;
 
 public class BmwBackend {
     public static void main(String[] args) throws Exception {
-       /// Change this line inside your javascript file:
-const response = await fetch('https://8080-cs-af2f8faa-612c-4521-bea4-c5737ee327ba.cs-asia-southeast1-ajrg.cloudshell.dev/api/diagnose', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ description: textInput })
-});
+        // Read the environment port dynamically provided by the cloud
+        String portEnv = System.getenv("PORT");
+        int port = (portEnv != null) ? Integer.parseInt(portEnv) : 8080;
         
-        server.createContext("/api/diagnose", new HttpHandler() {
-            @Override
-            public void handle(HttpExchange exchange) throws IOException {
-                // Consolidated CORS and configuration headers
-                exchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
-                exchange.getResponseHeaders().add("Access-Control-Allow-Methods", "POST, OPTIONS");
-                exchange.getResponseHeaders().add("Access-Control-Allow-Headers", "Content-Type");
-                
-                if ("OPTIONS".equalsIgnoreCase(exchange.getRequestMethod())) {
-                    exchange.sendResponseHeaders(204, -1);
-                    return;
-                }
-
-                if ("POST".equalsIgnoreCase(exchange.getRequestMethod())) {
-                    try {
-                        InputStream is = exchange.getRequestBody();
-                        String body = new String(is.readAllBytes(), StandardCharsets.UTF_8);
-                        
-                        // Clean extraction of description content
-                        String description = body.contains("\"description\":\"") ? 
-                            body.split("\"description\":\"")[1].split("\"")[0] : "Empty Report";
-
-                        String apiKey = System.getenv("GEMINI_API_KEY");
-                        if (apiKey == null || apiKey.isEmpty()) {
-                            sendResponse(exchange, "{\"error\":\"Missing GEMINI_API_KEY on system environment.\"}", 500);
-                            return;
-                        }
-
-                        // Structured minimal payload targeting the stable gemini-2.5-flash engine
-                        // 1. Update the payload string to point to gemini-3.5-flash
-                            String prompt = "You are the BMW Global Support Assistant. Analyze vehicle damage: " + description;
-                            String jsonPayload = "{\"model\": \"models/gemini-3.5-flash\", \"contents\": [{\"parts\": [{\"text\": \"" + prompt + "\"}]}]}";
-
-                            HttpClient client = HttpClient.newHttpClient();
-                            HttpRequest request = HttpRequest.newBuilder()
-                        // 2. Update the target Endpoint URL structure to match gemini-3.5-flash
-                            .uri(URI.create("https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=" + apiKey))
-                            .header("Content-Type", "application/json")
-                            .POST(HttpRequest.BodyPublishers.ofString(jsonPayload))
-                            .build();
-
-                        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-                        sendResponse(exchange, response.body(), 200);
-
-                    } catch (Exception e) {
-                        sendResponse(exchange, "{\"error\":\"Internal operational execution failure.\"}", 500);
-                    }
-                } else {
-                    sendResponse(exchange, "{\"error\":\"Method not allowed\"}", 405);
-                }
-            }
-        });
-
-        System.out.println("Secure BMW Java Backend actively listening on http://localhost:5000");
+        HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
+        
+        // Map the diagnostic API endpoint route
+        server.createContext("/api/diagnose", new DiagnoseHandler());
+        
+        // Handle global thread execution safely
+        server.setExecutor(null);
+        
+        System.out.println("Secure BMW Java Backend actively listening on port: " + port);
         server.start();
     }
 
-    private static void sendResponse(HttpExchange exchange, String response, int statusCode) throws IOException {
-        exchange.getResponseHeaders().set("Content-Type", "application/json");
-        byte[] bytes = response.getBytes(StandardCharsets.UTF_8);
-        exchange.sendResponseHeaders(statusCode, bytes.length);
-        try (OutputStream os = exchange.getResponseBody()) {
-            os.write(bytes);
+    static class DiagnoseHandler implements HttpHandler {
+        @Override
+        public void handle(HttpExchange exchange) throws IOException {
+            // Manage CORS Preflight requirements for cross-origin browser fetching
+            exchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
+            exchange.getResponseHeaders().add("Access-Control-Allow-Methods", "POST, OPTIONS");
+            exchange.getResponseHeaders().add("Access-Control-Allow-Headers", "Content-Type");
+
+            if ("OPTIONS".equalsIgnoreCase(exchange.getRequestMethod())) {
+                exchange.sendResponseHeaders(204, -1);
+                return;
+            }
+
+            if ("POST".equalsIgnoreCase(exchange.getRequestMethod())) {
+                try {
+                    // Read request payload input string
+                    String requestBody = new String(exchange.getRequestBody().readAllBytes(), StandardCharsets.UTF_8);
+                    
+                    // Extract data text securely from simple JSON format
+                    String userDescription = "";
+                    if (requestBody.contains("\"description\"")) {
+                        int startIdx = requestBody.indexOf("\"description\"") + 14;
+                        int endIdx = requestBody.lastIndexOf("\"");
+                        // Safe bounds check extraction
+                        if (startIdx > 14 && endIdx > startIdx) {
+                            userDescription = requestBody.substring(startIdx, endIdx).replace(":", "").replace("{", "").replace("}", "").trim();
+                        }
+                    }
+
+                    if (userDescription.isEmpty()) {
+                        userDescription = "Generic vehicle telemetry status check requested.";
+                    }
+
+                    // Fetch the API environment variable securely mapped in Render
+                    String apiKey = System.getenv("GEMINI_API_KEY");
+                    if (apiKey == null || apiKey.isEmpty()) {
+                        throw new IllegalStateException("GEMINI_API_KEY environment variable is not configured.");
+                    }
+
+                    // Build clean structured JSON block for the Gemini model target
+                    String instructionPrompt = "You are the BMW Global Support Assistant. Provide professional, short, actionable diagnostic telemetry steps for this issue: " + userDescription;
+                    String jsonPayload = "{\"contents\":[{\"parts\":[{\"text\":\"" + instructionPrompt + "\"}]}]}";
+
+                    // Run the HTTP handshake with Google's API endpoint network loop
+                    HttpClient client = HttpClient.newHttpClient();
+                    HttpRequest request = HttpRequest.newBuilder()
+                        .uri(URI.create("https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=" + apiKey))
+                        .header("Content-Type", "application/json")
+                        .POST(HttpRequest.BodyPublishers.ofString(jsonPayload))
+                        .build();
+
+                    HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+                    
+                    // Return response string straight back to the UI panel environment
+                    byte[] responseBytes = response.body().getBytes(StandardCharsets.UTF_8);
+                    exchange.getResponseHeaders().set("Content-Type", "application/json");
+                    exchange.sendResponseHeaders(200, responseBytes.length);
+                    
+                    OutputStream os = exchange.getResponseBody();
+                    os.write(responseBytes);
+                    os.close();
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    String errorMsg = "{\"error\":\"Internal Server Error: " + e.getMessage() + "\"}";
+                    byte[] errorBytes = errorMsg.getBytes(StandardCharsets.UTF_8);
+                    exchange.sendResponseHeaders(500, errorBytes.length);
+                    OutputStream os = exchange.getResponseBody();
+                    os.write(errorBytes);
+                    os.close();
+                }
+            } else {
+                exchange.sendResponseHeaders(405, -1); // Method Not Allowed
+            }
         }
     }
 }
