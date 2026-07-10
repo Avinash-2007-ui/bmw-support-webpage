@@ -13,11 +13,12 @@ import java.nio.charset.StandardCharsets;
 
 public class BmwBackend {
     public static void main(String[] args) throws Exception {
-       // Read the system variable map. Default back to 8080 if not predefined by the cloud layer.
-String portEnv = System.getenv("PORT");
-int port = (portEnv != null) ? Integer.parseInt(portEnv) : 8080;
-
-HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
+       /// Change this line inside your javascript file:
+const response = await fetch('https://8080-cs-af2f8faa-612c-4521-bea4-c5737ee327ba.cs-asia-southeast1-ajrg.cloudshell.dev/api/diagnose', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ description: textInput })
+});
         
         server.createContext("/api/diagnose", new HttpHandler() {
             @Override
