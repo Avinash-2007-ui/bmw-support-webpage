@@ -715,8 +715,8 @@ nav.main-navbar{
 
 /* Specific styling for the actual iframe tag inside the container */
 .bmw-map-container iframe {
-    width: 100%;
-    height: 480px;
+    width: 140px;
+    height: 180px;
     border: 0;
     display: block;
 }
