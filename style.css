@@ -720,7 +720,11 @@ nav.main-navbar{
     border: 0;
     display: block;
 }
-/* Floating Action Button Setup */
+
+
+/* ==========================================================================
+   Floating Action Button (FAB) Setup
+   ========================================================================== */
 #bmwAiToggleBtn {
     position: fixed;
     bottom: 30px;
@@ -743,7 +747,16 @@ nav.main-navbar{
     background-color: #0052a3;
 }
 
-/* VS Code Style Sidebar Base Layer */
+/* FIX: Target the logo inside the floating button to ensure it displays white */
+#bmwAiToggleBtn .gemini-logo-icon path {
+    fill: #ffffff;
+    stroke: #ffffff;
+    stroke-width: 1;
+}
+
+/* ==========================================================================
+   VS Code Style Sidebar Base Layer
+   ========================================================================== */
 #bmwAiSidePanel {
     position: fixed;
     top: 0;
@@ -753,7 +766,7 @@ nav.main-navbar{
     background-color: #1c1c1c;
     border-left: 1px solid #333;
     box-shadow: -4px 0 24px rgba(0, 0, 0, 0.5);
-    z-index: 99999;
+    z-index: 99999; /* Higher priority layer to stack over top nav bars */
     transition: right 0.3s ease-in-out;
     display: flex;
     flex-direction: column;
@@ -762,7 +775,7 @@ nav.main-navbar{
     box-sizing: border-box;
 }
 
-/* Header Area */
+/* Header Area Alignment Configuration */
 #bmwAiSidePanel .panel-header {
     padding: 20px;
     border-bottom: 1px solid #333;
@@ -772,12 +785,26 @@ nav.main-navbar{
     background-color: #111111;
 }
 
+/* Inline flex alignment for text and logo inside header */
+#bmwAiSidePanel .brand-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
 #bmwAiSidePanel .panel-header h3 {
     color: #0066cc;
     margin: 0;
-    font-size: 16px;
+    font-size: 15px;
     letter-spacing: 0.5px;
     font-weight: bold;
+}
+
+/* FIX: Target the header logo specifically to display blue */
+#bmwAiSidePanel .header-logo path {
+    fill: #0066cc;
+    stroke: #0066cc;
+    stroke-width: 1;
 }
 
 #bmwAiSidePanel .close-btn {
@@ -793,7 +820,9 @@ nav.main-navbar{
     color: #fff;
 }
 
-/* Content Area */
+/* ==========================================================================
+   Content Area & Text Elements
+   ========================================================================== */
 #bmwAiSidePanel .panel-content {
     flex: 1;
     overflow-y: auto;
@@ -836,7 +865,9 @@ nav.main-navbar{
     line-height: 1.5;
 }
 
-/* Footer Processing Interface */
+/* ==========================================================================
+   Footer Input Fields & Button Controls
+   ========================================================================== */
 #bmwAiSidePanel .panel-footer {
     padding: 20px;
     border-top: 1px solid #333;

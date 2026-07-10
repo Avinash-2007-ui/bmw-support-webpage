@@ -257,11 +257,11 @@
         </section>
 
         <!-- Floating Action Button (FAB) -->
-        <button id="bmwAiToggleBtn" onclick="toggleBmwSidePanel()">
+<button id="bmwAiToggleBtn" onclick="toggleBmwSidePanel()">
     <!-- Gemini Sparkle SVG Logo -->
-        <svg class="gemini-logo-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2C12 2 12 7 9 10C6 13 2 12 2 12C2 12 7 12 10 15C13 18 12 22 12 22C12 22 12 17 15 14C18 11 22 12 22 12C22 12 17 12 14 9C11 6 12 2 12 2Z"/>
-        </svg>
+    <svg class="gemini-logo-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2C12 2 12 7 9 10C6 13 2 12 2 12C2 12 7 12 10 15C13 18 12 22 12 22C12 22 12 17 15 14C18 11 22 12 22 12C22 12 17 12 14 9C11 6 12 2 12 2Z"/>
+    </svg>
 </button>
 
 <!-- Smooth Sliding VS Code-style Side Panel -->
@@ -269,7 +269,13 @@
     
     <!-- Panel Header -->
     <div class="panel-header">
-        <h3>BMW GLOBAL SUPPORT AI</h3>
+        <div class="brand-wrapper">
+            <!-- Header Gemini Sparkle SVG Logo -->
+            <svg class="gemini-logo-icon header-logo" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2C12 2 12 7 9 10C6 13 2 12 2 12C2 12 7 12 10 15C13 18 12 22 12 22C12 22 12 17 15 14C18 11 22 12 22 12C22 12 17 12 14 9C11 6 12 2 12 2Z"/>
+            </svg>
+            <h3>BMW GLOBAL SUPPORT AI</h3>
+        </div>
         <!-- Close Button -->
         <button class="close-btn" onclick="toggleBmwSidePanel()">&times;</button>
     </div>
