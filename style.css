@@ -704,8 +704,8 @@ nav.main-navbar{
 
 /* Container to wrap the map and give it clean borders/shadows */
 .bmw-map-container {
-    width: 140px;
-    max-width: 140px;
+    width: 220px;
+    max-width: 220px;
     margin: 30px auto;
     border-radius: 14px;
     overflow: hidden; /* Crucial to keep the iframe corners rounded */
@@ -715,8 +715,8 @@ nav.main-navbar{
 
 /* Specific styling for the actual iframe tag inside the container */
 .bmw-map-container iframe {
-    width: 140px;
-    height: 180px;
+    width: 220px;
+    height: 220px;
     border: 0;
     display: block;
 }
