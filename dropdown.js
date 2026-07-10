@@ -89,6 +89,7 @@ async function runSystemCheck() {
         console.error("Connection failed:", err);
         outputDiv.innerText = "Could not reach the backend server.";
     }
+}
 
 // Clean helper function to render the fallback card cleanly if needed
 function triggerDemoMode(textInput, outputDiv) {
