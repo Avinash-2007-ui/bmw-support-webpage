@@ -39,7 +39,6 @@ async function runSystemCheck() {
     outputDiv.innerText = "Connecting to secure Java gateway...";
     
     try {
-        // Safe backend request - no API keys exposed here!
         const response = await fetch('http://localhost:5000/api/diagnose', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -48,16 +47,31 @@ async function runSystemCheck() {
         
         const data = await response.json();
         
-        if (data.candidates && data.candidates[0].content.parts[0].text) {
+        // DEBUG: Print the raw response data to your browser console to inspect it
+        console.log("Raw Backend Response Data:", data);
+        
+        // 1. Check if Gemini returned a standard successful content response text block
+        if (data.candidates && data.candidates[0].content && data.candidates[0].content.parts && data.candidates[0].content.parts[0].text) {
             outputDiv.innerText = data.candidates[0].content.parts[0].text;
-        } else if (data.error) {
-            outputDiv.innerText = "Backend Error: " + data.error;
-        } else {
-            outputDiv.innerText = "Received unexpected data format from backend.";
+        } 
+        // 2. Safely parse out error messages without casting them to "[object Object]"
+        else if (data.error) {
+            if (typeof data.error === 'object') {
+                outputDiv.innerText = data.error.message || JSON.stringify(data.error);
+            } else {
+                outputDiv.innerText = data.error;
+            }
+        } 
+        // 3. Fallback handle if it's a direct API error response wrapper
+        else if (data.message) {
+            outputDiv.innerText = data.message;
+        }
+        else {
+            outputDiv.innerText = "Response received, but format structure was unrecognized. Check browser console (F12).";
         }
     } catch (err) {
         console.error("Connection failed:", err);
-        outputDiv.innerText = "Could not reach the backend server. Make sure the Java terminal is still running!";
+        outputDiv.innerText = "Could not reach the backend server. Verify your terminal JRE session is still running on port 5000.";
     }
 }
 
