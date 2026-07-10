@@ -48,46 +48,47 @@ async function runSystemCheck() {
     
     // ... rest of your fetch code stays exactly the same ...
     
-    try {
-        // This link is now linked 24/7 to your live cloud server container!
-const response = await fetch('https://bmw-support-webpage.onrender.com/api/diagnose', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ description: textInput })
-}); 
+   try {
+        const response = await fetch('https://bmw-support-webpage.onrender.com/api/diagnose', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ description: textInput })
+        }); 
+        
+        // NEW DIAGNOSTIC ALERT: See the exact HTTP response code
+        console.log("HTTP Response Status:", response.status);
+        if (response.status !== 200) {
+            outputDiv.innerText = `Server returned HTTP Status: ${response.status}. Waiting for cold boot or fixing endpoint error.`;
+            return;
+        }
         
         const data = await response.json();
         console.log("Raw Backend Response Data:", data);
-        
-        // CHECK 1: If the HTTP request failed due to rate limits (Status 429 or 503)
-        if (response.status === 429 || response.status === 503) {
-            triggerDemoMode(textInput, outputDiv);
-            return;
+
+        let aiTextResponse = "";
+        if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
+            aiTextResponse = data.candidates[0].content.parts[0].text;
+        } else if (data.text) {
+            aiTextResponse = data.text;
+        } else if (data.content && typeof data.content === 'string') {
+            aiTextResponse = data.content;
         }
 
-        // CHECK 2: Live AI Response Success
-        if (data.candidates && data.candidates[0].content && data.candidates[0].content.parts && data.candidates[0].content.parts[0].text) {
-            outputDiv.innerText = data.candidates[0].content.parts[0].text;
+        if (aiTextResponse) {
+            outputDiv.innerText = aiTextResponse;
         } 
-        // CHECK 3: The server sent a custom error block object back
         else if (data.error) {
-            const errorStr = typeof data.error === 'object' ? (data.error.message || "") : data.error;
-            
-            // Check if the actual error data is structural throttling
-            if (errorStr.toLowerCase().includes("demand") || errorStr.toLowerCase().includes("limit") || errorStr.toLowerCase().includes("quota")) {
-                triggerDemoMode(textInput, outputDiv);
-            } else {
-                outputDiv.innerText = "Backend Error: " + errorStr;
-            }
+            const errorStr = typeof data.error === 'object' ? (data.error.message || JSON.stringify(data.error)) : data.error;
+            // Print the actual backend error on screen so we can read it!
+            outputDiv.innerText = "Actual Backend Error: " + errorStr;
         } 
         else {
-            outputDiv.innerText = "Response received, but format structure was unrecognized.";
+            outputDiv.innerText = "Raw Response Object: " + JSON.stringify(data);
         }
     } catch (err) {
         console.error("Connection failed:", err);
-        outputDiv.innerText = "Could not reach the backend server. Verify your terminal JRE session is still running on port 5000.";
+        outputDiv.innerText = "Could not reach the backend server.";
     }
-}
 
 // Clean helper function to render the fallback card cleanly if needed
 function triggerDemoMode(textInput, outputDiv) {
