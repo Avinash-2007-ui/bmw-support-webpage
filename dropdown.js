@@ -28,7 +28,15 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 async function runSystemCheck() {
-    const textInput = document.getElementById('userDamageReport').value.trim();
+    // 1. Try to find the desktop text area first; if null, look for the mobile layout variation
+    const inputElement = document.getElementById('userDamageReport') || document.querySelector('.mobile-damage-input');
+    
+    if (!inputElement) {
+        console.error("Critical Frontend Error: Could not locate the input text box element in the current layout view.");
+        return;
+    }
+
+    const textInput = inputElement.value.trim();
     const outputDiv = document.getElementById('aiOutputView');
     
     if (!textInput) {
@@ -38,13 +46,15 @@ async function runSystemCheck() {
     
     outputDiv.innerText = "Connecting to secure Java gateway...";
     
+    // ... rest of your fetch code stays exactly the same ...
+    
     try {
         // This link is now linked 24/7 to your live cloud server container!
 const response = await fetch('https://bmw-support-webpage.onrender.com/api/diagnose', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ description: textInput })
-});
+}); 
         
         const data = await response.json();
         console.log("Raw Backend Response Data:", data);
