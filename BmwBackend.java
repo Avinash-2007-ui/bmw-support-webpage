@@ -44,12 +44,14 @@ public class BmwBackend {
                         }
 
                         // Structured minimal payload targeting the stable gemini-2.5-flash engine
-                        String prompt = "You are the BMW Global Support Assistant. Analyze vehicle damage: " + description;
-                        String jsonPayload = "{\"contents\": [{\"parts\": [{\"text\": \"" + prompt + "\"}]}]}";
+                        // 1. Update the payload string to point to gemini-3.5-flash
+                            String prompt = "You are the BMW Global Support Assistant. Analyze vehicle damage: " + description;
+                            String jsonPayload = "{\"model\": \"models/gemini-3.5-flash\", \"contents\": [{\"parts\": [{\"text\": \"" + prompt + "\"}]}]}";
 
-                        HttpClient client = HttpClient.newHttpClient();
-                        HttpRequest request = HttpRequest.newBuilder()
-                            .uri(URI.create("https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=" + apiKey))
+                            HttpClient client = HttpClient.newHttpClient();
+                            HttpRequest request = HttpRequest.newBuilder()
+                        // 2. Update the target Endpoint URL structure to match gemini-3.5-flash
+                            .uri(URI.create("https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash:generateContent?key=" + apiKey))
                             .header("Content-Type", "application/json")
                             .POST(HttpRequest.BodyPublishers.ofString(jsonPayload))
                             .build();
