@@ -99,7 +99,7 @@ public class BmwBackend {
     }
 }
 
-public class BmwBackend {
+public class BmwBackendEmail {
     public static void main(String[] args) throws Exception {
         String portEnv = System.getenv("PORT");
         int port = (portEnv != null) ? Integer.parseInt(portEnv) : 8080;
