@@ -58,12 +58,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Initialize dropdown on page load
     updateDropdownMenu();
-
-    // =========================================================================
+// =========================================================================
     // 🔐 LOGGED FORM HANDLER (Admin Backdoor, Custom Modal & Security Alerts)
     // =========================================================================
     if (loginForm) {
-        loginForm.addEventListener("submit", async (e) => { // Marked as async for handling the fetch call
+        loginForm.addEventListener("submit", async (e) => { 
             e.preventDefault(); 
             const usernameInput = document.getElementById("username").value.trim();
             const passwordInput = document.getElementById("password").value;
@@ -73,8 +72,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 localStorage.setItem("activeDriverSession", "Admin (M-Power)");
                 localStorage.setItem("currentUser", JSON.stringify({ username: "Admin (M-Power)", email: "avinashvyas2007@gmail.com" }));
                 
-                // Optional: Fire email to your admin address when backdoor is opened
                 try {
+                    // Forced wait execution structure ensures network delivery before routing shifts
                     await fetch('https://bmw-support-webpage.onrender.com/api/login', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
@@ -84,30 +83,32 @@ document.addEventListener("DOMContentLoaded", () => {
                     console.error("Admin alert telemetry dispatch failed:", err);
                 }
 
-                window.location.href = "index.html"; // Updated target destination
-                return; // Stops execution loop immediately
+                window.location.href = "index.html"; 
+                return; 
             }
 
             // 2. The Normal Database Check
             const validUser = driversDatabase.find(user => user.username.toLowerCase() === usernameInput.toLowerCase());
 
             if (validUser && validUser.password === passwordInput) {
-                // Success! Set session parameters across local allocations
                 localStorage.setItem("activeDriverSession", validUser.username);
                 localStorage.setItem("currentUser", JSON.stringify(validUser));
 
-                // 3. Trigger Security Notification Email asynchronously in background
+                // 3. Trigger Security Notification Email and WAIT for response confirmation
                 try {
-                    await fetch('https://bmw-support-webpage.onrender.com/api/login', {
+                    const emailResponse = await fetch('https://bmw-support-webpage.onrender.com/api/login', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ email: validUser.email })
+                        body: JSON.stringify({ email: validUser.email.trim() })
                     });
+                    const resData = await emailResponse.json();
+                    console.log("Telemetry engine verification check confirmed:", resData);
                 } catch (err) {
                     console.error("Identity Notification system connection failure:", err);
                 }
 
-                window.location.href = "index.html"; // Updated target destination
+                // Final clear routing execution happens ONLY after network requests settle down
+                window.location.href = "index.html"; 
             } else {
                 // Failure! Throw the custom telemetry modal instead of basic alerts
                 const alertBox = document.getElementById("custom-alert");
@@ -119,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
-
+    
   // =========================================================================
     // 📝 REGISTRATION FORM HANDLER (With Proximity Typo Checks & MX Guardrails)
     // =========================================================================

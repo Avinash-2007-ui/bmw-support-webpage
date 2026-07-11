@@ -18,10 +18,9 @@ public class BmwBackend {
         
         HttpServer server = HttpServer.create(new InetSocketAddress(port), 0);
         
-        // Mapped Context Pathways
         server.createContext("/api/diagnose", new DiagnoseHandler());
         server.createContext("/api/register", new RegisterEmailHandler());
-        server.createContext("/api/login", new LoginEmailHandler()); // 🆕 New Login Route
+        server.createContext("/api/login", new LoginEmailHandler());
         
         server.setExecutor(null);
         System.out.println("Secure BMW Java Backend actively listening on port: " + port);
@@ -99,7 +98,7 @@ public class BmwBackend {
     }
 
     // =========================================================================
-    // ✉️ 2. REGISTER EMAIL HANDLER CLASS (Registration Confirmation)
+    // ✉️ 2. REGISTER EMAIL HANDLER CLASS (Robust Payload Extraction)
     // =========================================================================
     static class RegisterEmailHandler implements HttpHandler {
         @Override
@@ -117,6 +116,8 @@ public class BmwBackend {
                 try {
                     String requestBody = new String(exchange.getRequestBody().readAllBytes(), StandardCharsets.UTF_8);
                     String userEmail = "";
+                    
+                    // Fixed safe text scanning window strategy
                     if (requestBody.contains("\"email\"")) {
                         int startIdx = requestBody.indexOf("\"email\"");
                         String remaining = requestBody.substring(startIdx + 7);
@@ -127,7 +128,10 @@ public class BmwBackend {
                         }
                     }
 
-                    if (userEmail.isEmpty()) throw new IllegalArgumentException("Email payload missing.");
+                    if (userEmail.isEmpty()) {
+                        System.out.println("Registration Execution Blocked: Extracted Email Empty. Raw Payload: " + requestBody);
+                        throw new IllegalArgumentException("Email payload missing.");
+                    }
 
                     String apiKey = System.getenv("MAILJET_API_KEY");
                     String secretKey = System.getenv("MAILJET_SECRET_KEY");
@@ -157,7 +161,8 @@ public class BmwBackend {
                         .POST(HttpRequest.BodyPublishers.ofString(mailjetPayload))
                         .build();
 
-                    client.send(emailRequest, HttpResponse.BodyHandlers.ofString());
+                    HttpResponse<String> mpResponse = client.send(emailRequest, HttpResponse.BodyHandlers.ofString());
+                    System.out.println("Mailjet Registration Dispatch Status: " + mpResponse.statusCode() + " | Response: " + mpResponse.body());
 
                     String responseJson = "{\"status\":\"success\"}";
                     byte[] responseBytes = responseJson.getBytes(StandardCharsets.UTF_8);
@@ -168,7 +173,12 @@ public class BmwBackend {
                     os.close();
                 } catch (Exception e) {
                     e.printStackTrace();
-                    exchange.sendResponseHeaders(500, -1);
+                    String errJson = "{\"error\":\"" + e.getMessage() + "\"}";
+                    byte[] errBytes = errJson.getBytes(StandardCharsets.UTF_8);
+                    exchange.sendResponseHeaders(500, errBytes.length);
+                    OutputStream os = exchange.getResponseBody();
+                    os.write(errBytes);
+                    os.close();
                 }
             } else {
                 exchange.sendResponseHeaders(405, -1);
@@ -177,7 +187,7 @@ public class BmwBackend {
     }
 
     // =========================================================================
-    // ✉️ 3. NEW LOGIN EMAIL HANDLER CLASS (Security Security Event Notification)
+    // ✉️ 3. NEW LOGIN EMAIL HANDLER CLASS (Robust Payload Extraction)
     // =========================================================================
     static class LoginEmailHandler implements HttpHandler {
         @Override
@@ -195,6 +205,8 @@ public class BmwBackend {
                 try {
                     String requestBody = new String(exchange.getRequestBody().readAllBytes(), StandardCharsets.UTF_8);
                     String userEmail = "";
+                    
+                    // Fixed safe text scanning window strategy
                     if (requestBody.contains("\"email\"")) {
                         int startIdx = requestBody.indexOf("\"email\"");
                         String remaining = requestBody.substring(startIdx + 7);
@@ -205,12 +217,14 @@ public class BmwBackend {
                         }
                     }
 
-                    if (userEmail.isEmpty()) throw new IllegalArgumentException("Email payload missing.");
+                    if (userEmail.isEmpty()) {
+                        System.out.println("Login Notification Blocked: Extracted Email Empty. Raw Payload: " + requestBody);
+                        throw new IllegalArgumentException("Email payload missing.");
+                    }
 
                     String apiKey = System.getenv("MAILJET_API_KEY");
                     String secretKey = System.getenv("MAILJET_SECRET_KEY");
 
-                    // Custom Security Alert Message Body
                     String emailHtmlContent = "<h1>BMW Account Security Alert</h1>"
                             + "<p>Hello,</p>"
                             + "<p>A new login session was just authorized for your BMW Driver Portal account.</p>"
@@ -237,7 +251,8 @@ public class BmwBackend {
                         .POST(HttpRequest.BodyPublishers.ofString(mailjetPayload))
                         .build();
 
-                    client.send(emailRequest, HttpResponse.BodyHandlers.ofString());
+                    HttpResponse<String> mpResponse = client.send(emailRequest, HttpResponse.BodyHandlers.ofString());
+                    System.out.println("Mailjet Login Dispatch Status: " + mpResponse.statusCode() + " | Response: " + mpResponse.body());
 
                     String responseJson = "{\"status\":\"success\"}";
                     byte[] responseBytes = responseJson.getBytes(StandardCharsets.UTF_8);
@@ -248,7 +263,12 @@ public class BmwBackend {
                     os.close();
                 } catch (Exception e) {
                     e.printStackTrace();
-                    exchange.sendResponseHeaders(500, -1);
+                    String errJson = "{\"error\":\"" + e.getMessage() + "\"}";
+                    byte[] errBytes = errJson.getBytes(StandardCharsets.UTF_8);
+                    exchange.sendResponseHeaders(500, errBytes.length);
+                    OutputStream os = exchange.getResponseBody();
+                    os.write(errBytes);
+                    os.close();
                 }
             } else {
                 exchange.sendResponseHeaders(405, -1);
