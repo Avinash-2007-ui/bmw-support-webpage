@@ -153,7 +153,6 @@ public class BmwBackend {
 
                     // NOTE: Change "your_verified_email@gmail.com" to the email you verified on Mailjet!
                     String mailjetPayload = "{"
-                            //  TO YOUR ACTIVE MAILJET ADDRESS EXACTLY LIKE THIS:
                             + "\"FromEmail\":\"avinashvyas2007@gmail.com\"," 
                             + "\"FromName\":\"BMW Support Systems\","
                             + "\"Subject\":\"Driver Profile Registration Success!\","
