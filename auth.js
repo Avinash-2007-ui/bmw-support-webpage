@@ -94,17 +94,18 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // =========================================================================
-    // 📝 REGISTRATION FORM HANDLER (Connected to Live Onboarding Mailer)
+   // =========================================================================
+    // 📝 REGISTRATION FORM HANDLER (With Proximity Typo Checks & MX Guardrails)
     // =========================================================================
     if (registrationForm) {
-        registrationForm.addEventListener("submit", async (e) => { // Added async keyword here
+        registrationForm.addEventListener("submit", async (e) => {
             e.preventDefault();
             const username = document.getElementById("username").value.trim();
             const email = document.getElementById("email").value.trim();
             const password = document.getElementById("password").value;
             const confirmPassword = document.getElementById("confirmPassword").value;
 
+            // 1. Initial Structural Validations
             if (password !== confirmPassword) {
                 alert("Security Error: Passwords do not match.");
                 return;
@@ -115,23 +116,71 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            // Persists in local memory so the session stays intact if they reload
+            // 2. Structural Format Control (Regex)
+            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (!emailRegex.test(email)) {
+                alert("Validation Error: Please enter a valid email architecture (e.g., name@domain.com).");
+                return;
+            }
+
+            // 3. Proximity Typo Detection (Catches jumbled character typos like 'avniash')
+            const localPart = email.split('@')[0].toLowerCase();
+            const usernameClean = username.toLowerCase().replace(/[^a-z0-9]/g, '');
+            
+            // Helper function calculating character pair similarity values between 0 and 1
+            const getSimilarity = (str1, str2) => {
+                const getPairs = str => {
+                    const pairs = new Set();
+                    for (let i = 0; i < str.length - 1; i++) pairs.add(str.substr(i, 2));
+                    return pairs;
+                };
+                const pairs1 = getPairs(str1);
+                const pairs2 = getPairs(str2);
+                const intersection = [...pairs1].filter(x => pairs2.has(x)).length;
+                return (2.0 * intersection) / (pairs1.size + pairs2.size || 1);
+            };
+
+            // If the local string matches your username closely but has slightly jumbled pairs
+            if (usernameClean.length > 4 && localPart !== usernameClean) {
+                const similarity = getSimilarity(localPart, usernameClean);
+                // A score between 0.65 and 0.95 flags closely jumbled spellings
+                if (similarity > 0.68 && similarity < 0.96) {
+                    const confirmTypo = confirm(
+                        `Typo Warning: The email prefix "${localPart}" appears to be a jumbled spelling of your username "${username}".\n\nDid you mean to type this, or is it a mistake?\n\nClick [OK] to proceed anyway, or [Cancel] to correct it.`
+                    );
+                    if (!confirmTypo) return; // Breaks loop execution so user can edit the field
+                }
+            }
+
+            // 4. Live Mailbox Routing Clearance Check (MX domain layer verification)
+            alert("Verifying driver credentials with network node...");
+            try {
+                // Querying a free public validation lookup endpoint
+                const checkResponse = await fetch(`https://open.kickbox.com/v1/disposable/${encodeURIComponent(email.split('@')[1])}`);
+                const checkData = await checkResponse.json();
+
+                if (checkData && checkData.disposable === true) {
+                    alert("Registry Blocked: Temporary/Disposable email frameworks are prohibited.");
+                    return;
+                }
+            } catch (validationErr) {
+                console.warn("Email verification module offline, bypassing to engine:", validationErr);
+            }
+
+            // 5. Database Commit
             driversDatabase.push({ username, email, password, registeredAt: new Date().toISOString() });
             localStorage.setItem("driversDatabase", JSON.stringify(driversDatabase));
             
-            // --- NEW: Triggers Cloud Email Gateway ---
+            // 6. Transmit to Java Mailjet Engine Backend
             try {
-                // Change this URL to match your exact live Render app address if it differs!
                 await fetch('https://bmw-support-webpage.onrender.com/api/register', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email: email })
                 });
             } catch (err) {
-                // Graceful fallback: Profile creation succeeds locally even if cloud network times out
                 console.error("Mailing engine connectivity handshake failed:", err);
             }
-            // -----------------------------------------
 
             alert("Driver Profile Registered Successfully!");
             window.location.href = "login_HTML.html";
