@@ -59,8 +59,8 @@ document.addEventListener("DOMContentLoaded", () => {
     // Initialize dropdown on page load
     updateDropdownMenu();
 
-/// =========================================================================
-    // 🔐 FIXED LOGIN HANDLER (Strict Async Network Resolution)
+// =========================================================================
+    // 🔐 RESET LOGIN HANDLER (No Race Conditions, Direct Fetch)
     // =========================================================================
     if (loginForm) {
         loginForm.addEventListener("submit", async (e) => {
@@ -68,67 +68,59 @@ document.addEventListener("DOMContentLoaded", () => {
             const usernameInput = document.getElementById("username").value.trim();
             const passwordInput = document.getElementById("password").value;
             
-            // 1. The Admin Backdoor Check
+            // 1. Admin Backdoor Check
             if (usernameInput === "admin_m_power" && passwordInput === "bmw2026") {
                 localStorage.setItem("activeDriverSession", "Admin (M-Power)");
                 localStorage.setItem("currentUser", JSON.stringify({ username: "Admin (M-Power)", email: "avinashvyas2007@gmail.com" }));
                 
                 try {
-                    // Force the browser to complete the network handshake BEFORE redirecting
-                    const response = await fetch('https://bmw-support-webpage.onrender.com/api/login', {
+                    console.log("Sending Admin Login Mail...");
+                    await fetch('https://bmw-support-webpage.onrender.com/api/login', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ email: "avinashvyas2007@gmail.com" })
                     });
-                    await response.json(); // Wait for body resolution
                 } catch (err) {
-                    console.error("Admin alert telemetry dispatch failed:", err);
+                    console.error("Admin mail request failed:", err);
                 }
-
                 window.location.href = "index.html"; 
                 return; 
             }
 
-            // 2. The Normal Database Check
+            // 2. Normal Database Check
             const validUser = driversDatabase.find(user => user.username.toLowerCase() === usernameInput.toLowerCase());
 
             if (validUser && validUser.password === passwordInput) {
                 localStorage.setItem("activeDriverSession", validUser.username);
                 localStorage.setItem("currentUser", JSON.stringify(validUser));
 
-                // 3. Trigger Security Notification Email and lock redirect until complete
+                // 3. Trigger Email Alert and WAIT until it finishes
+                console.log("Attempting to send login email to:", validUser.email);
                 try {
-                    console.log("Transmitting login alert payload for:", validUser.email);
-                    const emailResponse = await fetch('https://bmw-support-webpage.onrender.com/api/login', {
+                    const response = await fetch('https://bmw-support-webpage.onrender.com/api/login', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ email: validUser.email.trim() })
                     });
-                    
-                    if (!emailResponse.ok) {
-                        console.error(`Server rejected mail dispatch with status: ${emailResponse.status}`);
-                    } else {
-                        const resData = await emailResponse.json();
-                        console.log("Telemetry engine login check confirmed:", resData);
-                    }
+                    console.log("Server responded to login mail request with status:", response.status);
                 } catch (err) {
-                    console.error("Identity Notification system connectivity failure:", err);
+                    console.error("Network error during login mail fetch:", err);
                 }
 
-                // Explicitly route to landing terminal ONLY after the fetch cycle closes
+                // NOW redirect safely after fetch completely finishes
                 window.location.href = "index.html"; 
             } else {
                 const alertBox = document.getElementById("custom-alert");
                 if (alertBox) {
                     alertBox.classList.remove("hidden-modal");
                 } else {
-                    console.error("Custom alert box not found in HTML!");
+                    console.error("Custom alert box missing!");
                 }
             }
         });
     }
   // =========================================================================
-    // 📝 FIXED REGISTRATION HANDLER (Bulletproof Fallbacks & Order Preservation)
+    // 📝 RESET REGISTRATION HANDLER (Simple, Direct Email Trigger)
     // =========================================================================
     if (registrationForm) {
         registrationForm.addEventListener("submit", async (e) => {
@@ -138,81 +130,33 @@ document.addEventListener("DOMContentLoaded", () => {
             const password = document.getElementById("password").value;
             const confirmPassword = document.getElementById("confirmPassword").value;
 
+            // Simple Password Match Check
             if (password !== confirmPassword) {
-                alert("Security Error: Passwords do not match.");
+                alert("Passwords do not match.");
                 return;
             }
 
+            // Simple Duplicate Username Check
             if (driversDatabase.some(user => user.username.toLowerCase() === username.toLowerCase())) {
-                alert("Registry Error: This username is already assigned to a profile.");
+                alert("Username is already taken.");
                 return;
             }
 
-            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-            if (!emailRegex.test(email)) {
-                alert("Validation Error: Please enter a valid email address.");
-                return;
-            }
-
-            // Typo Similarity Proximity Engine
-            const localPart = email.split('@')[0].toLowerCase();
-            const usernameClean = username.toLowerCase().replace(/[^a-z0-9]/g, '');
-            
-            const getSimilarity = (str1, str2) => {
-                const getPairs = str => {
-                    const pairs = new Set();
-                    for (let i = 0; i < str.length - 1; i++) pairs.add(str.substr(i, 2));
-                    return pairs;
-                };
-                const pairs1 = getPairs(str1);
-                const pairs2 = getPairs(str2);
-                const intersection = [...pairs1].filter(x => pairs2.has(x)).length;
-                return (2.0 * intersection) / (pairs1.size + pairs2.size || 1);
-            };
-
-            if (usernameClean.length > 4 && localPart !== usernameClean) {
-                const similarity = getSimilarity(localPart, usernameClean);
-                if (similarity > 0.68 && similarity < 0.96) {
-                    const confirmTypo = confirm(`Typo Warning: The email prefix "${localPart}" appears to be a jumbled spelling of your username "${username}". Do you wish to proceed?`);
-                    if (!confirmTypo) return;
-                }
-            }
-
-            // Guardrail: External validation failures won't break the registration pipeline anymore
-            try {
-                const checkResponse = await fetch(`https://open.kickbox.com/v1/disposable/${encodeURIComponent(email.split('@')[1])}`);
-                if (checkResponse.ok) {
-                    const checkData = await checkResponse.json();
-                    if (checkData && checkData.disposable === true) {
-                        alert("Registry Blocked: Temporary/Disposable email frameworks are prohibited.");
-                        return;
-                    }
-                }
-            } catch (validationErr) {
-                console.warn("External validation check skipped or offline:", validationErr);
-            }
-
-            // Commit to Local Storage First
+            // Save user locally
             driversDatabase.push({ username, email, password, registeredAt: new Date().toISOString() });
             localStorage.setItem("driversDatabase", JSON.stringify(driversDatabase));
             
-            // Dispatch to Render backend and wait for the response body to fully resolve
+            // Trigger Registration Email and WAIT until it completely clears the network
+            console.log("Attempting to send registration email to:", email);
             try {
-                console.log("Transmitting registration payload for:", email);
-                const backendResponse = await fetch('https://bmw-support-webpage.onrender.com/api/register', {
+                const response = await fetch('https://bmw-support-webpage.onrender.com/api/register', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email: email })
                 });
-                
-                if (backendResponse.ok) {
-                    const data = await backendResponse.json();
-                    console.log("Registration confirmation response received:", data);
-                } else {
-                    console.error(`Backend failed registration route with status: ${backendResponse.status}`);
-                }
+                console.log("Server responded to registration mail request with status:", response.status);
             } catch (err) {
-                console.error("Mailing engine connectivity handshake failed:", err);
+                console.error("Network error during registration mail fetch:", err);
             }
 
             alert("Driver Profile Registered Successfully!");
