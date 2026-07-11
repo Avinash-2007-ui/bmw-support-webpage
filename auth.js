@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-   // =========================================================================
+  // =========================================================================
     // 📝 REGISTRATION FORM HANDLER (With Proximity Typo Checks & MX Guardrails)
     // =========================================================================
     if (registrationForm) {
@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const password = document.getElementById("password").value;
             const confirmPassword = document.getElementById("confirmPassword").value;
 
-            // 1. Initial Structural Validations
+            // 1. Structural Validations
             if (password !== confirmPassword) {
                 alert("Security Error: Passwords do not match.");
                 return;
@@ -127,7 +127,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const localPart = email.split('@')[0].toLowerCase();
             const usernameClean = username.toLowerCase().replace(/[^a-z0-9]/g, '');
             
-            // Helper function calculating character pair similarity values between 0 and 1
             const getSimilarity = (str1, str2) => {
                 const getPairs = str => {
                     const pairs = new Set();
@@ -140,22 +139,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 return (2.0 * intersection) / (pairs1.size + pairs2.size || 1);
             };
 
-            // If the local string matches your username closely but has slightly jumbled pairs
             if (usernameClean.length > 4 && localPart !== usernameClean) {
                 const similarity = getSimilarity(localPart, usernameClean);
-                // A score between 0.65 and 0.95 flags closely jumbled spellings
                 if (similarity > 0.68 && similarity < 0.96) {
                     const confirmTypo = confirm(
                         `Typo Warning: The email prefix "${localPart}" appears to be a jumbled spelling of your username "${username}".\n\nDid you mean to type this, or is it a mistake?\n\nClick [OK] to proceed anyway, or [Cancel] to correct it.`
                     );
-                    if (!confirmTypo) return; // Breaks loop execution so user can edit the field
+                    if (!confirmTypo) return;
                 }
             }
 
-            // 4. Live Mailbox Routing Clearance Check (MX domain layer verification)
+            // 4. Live Mailbox Routing Clearance Check
             alert("Verifying driver credentials with network node...");
             try {
-                // Querying a free public validation lookup endpoint
                 const checkResponse = await fetch(`https://open.kickbox.com/v1/disposable/${encodeURIComponent(email.split('@')[1])}`);
                 const checkData = await checkResponse.json();
 
@@ -171,7 +167,7 @@ document.addEventListener("DOMContentLoaded", () => {
             driversDatabase.push({ username, email, password, registeredAt: new Date().toISOString() });
             localStorage.setItem("driversDatabase", JSON.stringify(driversDatabase));
             
-            // 6. Transmit to Java Mailjet Engine Backend
+            // 6. Transmit to Combined Java Backend
             try {
                 await fetch('https://bmw-support-webpage.onrender.com/api/register', {
                     method: 'POST',
