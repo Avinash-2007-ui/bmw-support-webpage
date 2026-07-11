@@ -95,10 +95,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // =========================================================================
-    // 📝 REGISTRATION FORM HANDLER (With Live Cloud Email Integration)
+    // 📝 REGISTRATION FORM HANDLER (Connected to Live Onboarding Mailer)
     // =========================================================================
     if (registrationForm) {
-        registrationForm.addEventListener("submit", async (e) => { // Added async here
+        registrationForm.addEventListener("submit", async (e) => { // Added async keyword here
             e.preventDefault();
             const username = document.getElementById("username").value.trim();
             const email = document.getElementById("email").value.trim();
@@ -115,25 +115,25 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            // Save to browser LocalStorage securely so it persists across refreshes
+            // Persists in local memory so the session stays intact if they reload
             driversDatabase.push({ username, email, password, registeredAt: new Date().toISOString() });
             localStorage.setItem("driversDatabase", JSON.stringify(driversDatabase));
             
-            // --- NEW: Cloud Email Handshake Trigger ---
+            // --- NEW: Triggers Cloud Email Gateway ---
             try {
-                // Instantly fires the user's email address to your live Render gateway
+                // Change this URL to match your exact live Render app address if it differs!
                 await fetch('https://bmw-support-webpage.onrender.com/api/register', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email: email })
                 });
             } catch (err) {
-                // Silent fallback: If the email fails to dispatch, the user profile creation still succeeds locally
-                console.error("Mailing service could not reach the cloud engine:", err);
+                // Graceful fallback: Profile creation succeeds locally even if cloud network times out
+                console.error("Mailing engine connectivity handshake failed:", err);
             }
-            // ------------------------------------------
+            // -----------------------------------------
 
-            alert("Driver Profile Registered Successfully! Welcome email dispatched.");
+            alert("Driver Profile Registered Successfully!");
             window.location.href = "login_HTML.html";
         });
     }
