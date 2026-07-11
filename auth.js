@@ -60,10 +60,10 @@ document.addEventListener("DOMContentLoaded", () => {
     updateDropdownMenu();
 
     // =========================================================================
-    // 🔐 LOGIN FORM HANDLER (Merged with Custom Modal & Admin Backdoor)
+    // 🔐 LOGGED FORM HANDLER (Admin Backdoor, Custom Modal & Security Alerts)
     // =========================================================================
     if (loginForm) {
-        loginForm.addEventListener("submit", (e) => {
+        loginForm.addEventListener("submit", async (e) => { // Marked as async for handling the fetch call
             e.preventDefault(); 
             const usernameInput = document.getElementById("username").value.trim();
             const passwordInput = document.getElementById("password").value;
@@ -71,19 +71,45 @@ document.addEventListener("DOMContentLoaded", () => {
             // 1. The Admin Backdoor Check
             if (usernameInput === "admin_m_power" && passwordInput === "bmw2026") {
                 localStorage.setItem("activeDriverSession", "Admin (M-Power)");
-                window.location.href = "G81_HTML.html"; 
-                return; // Stops the script here so it doesn't check the database
+                localStorage.setItem("currentUser", JSON.stringify({ username: "Admin (M-Power)", email: "avinashvyas2007@gmail.com" }));
+                
+                // Optional: Fire email to your admin address when backdoor is opened
+                try {
+                    await fetch('https://bmw-support-webpage.onrender.com/api/login', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email: "avinashvyas2007@gmail.com" })
+                    });
+                } catch (err) {
+                    console.error("Admin alert telemetry dispatch failed:", err);
+                }
+
+                window.location.href = "index.html"; // Updated target destination
+                return; // Stops execution loop immediately
             }
 
             // 2. The Normal Database Check
             const validUser = driversDatabase.find(user => user.username.toLowerCase() === usernameInput.toLowerCase());
 
             if (validUser && validUser.password === passwordInput) {
-                // Success! Log them in and route them to G81
+                // Success! Set session parameters across local allocations
                 localStorage.setItem("activeDriverSession", validUser.username);
-                window.location.href = "G81_HTML.html"; 
+                localStorage.setItem("currentUser", JSON.stringify(validUser));
+
+                // 3. Trigger Security Notification Email asynchronously in background
+                try {
+                    await fetch('https://bmw-support-webpage.onrender.com/api/login', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ email: validUser.email })
+                    });
+                } catch (err) {
+                    console.error("Identity Notification system connection failure:", err);
+                }
+
+                window.location.href = "index.html"; // Updated target destination
             } else {
-                // Failure! Show our custom BMW modal instead of the ugly browser alert
+                // Failure! Throw the custom telemetry modal instead of basic alerts
                 const alertBox = document.getElementById("custom-alert");
                 if (alertBox) {
                     alertBox.classList.remove("hidden-modal");
