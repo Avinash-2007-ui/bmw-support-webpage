@@ -58,11 +58,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Initialize dropdown on page load
     updateDropdownMenu();
-// =========================================================================
-    // 🔐 LOGGED FORM HANDLER (Admin Backdoor, Custom Modal & Security Alerts)
+
+/// =========================================================================
+    // 🔐 FIXED LOGIN HANDLER (Strict Async Network Resolution)
     // =========================================================================
     if (loginForm) {
-        loginForm.addEventListener("submit", async (e) => { 
+        loginForm.addEventListener("submit", async (e) => {
             e.preventDefault(); 
             const usernameInput = document.getElementById("username").value.trim();
             const passwordInput = document.getElementById("password").value;
@@ -73,12 +74,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 localStorage.setItem("currentUser", JSON.stringify({ username: "Admin (M-Power)", email: "avinashvyas2007@gmail.com" }));
                 
                 try {
-                    // Forced wait execution structure ensures network delivery before routing shifts
-                    await fetch('https://bmw-support-webpage.onrender.com/api/login', {
+                    // Force the browser to complete the network handshake BEFORE redirecting
+                    const response = await fetch('https://bmw-support-webpage.onrender.com/api/login', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ email: "avinashvyas2007@gmail.com" })
                     });
+                    await response.json(); // Wait for body resolution
                 } catch (err) {
                     console.error("Admin alert telemetry dispatch failed:", err);
                 }
@@ -94,23 +96,28 @@ document.addEventListener("DOMContentLoaded", () => {
                 localStorage.setItem("activeDriverSession", validUser.username);
                 localStorage.setItem("currentUser", JSON.stringify(validUser));
 
-                // 3. Trigger Security Notification Email and WAIT for response confirmation
+                // 3. Trigger Security Notification Email and lock redirect until complete
                 try {
+                    console.log("Transmitting login alert payload for:", validUser.email);
                     const emailResponse = await fetch('https://bmw-support-webpage.onrender.com/api/login', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify({ email: validUser.email.trim() })
                     });
-                    const resData = await emailResponse.json();
-                    console.log("Telemetry engine verification check confirmed:", resData);
+                    
+                    if (!emailResponse.ok) {
+                        console.error(`Server rejected mail dispatch with status: ${emailResponse.status}`);
+                    } else {
+                        const resData = await emailResponse.json();
+                        console.log("Telemetry engine login check confirmed:", resData);
+                    }
                 } catch (err) {
-                    console.error("Identity Notification system connection failure:", err);
+                    console.error("Identity Notification system connectivity failure:", err);
                 }
 
-                // Final clear routing execution happens ONLY after network requests settle down
+                // Explicitly route to landing terminal ONLY after the fetch cycle closes
                 window.location.href = "index.html"; 
             } else {
-                // Failure! Throw the custom telemetry modal instead of basic alerts
                 const alertBox = document.getElementById("custom-alert");
                 if (alertBox) {
                     alertBox.classList.remove("hidden-modal");
@@ -120,9 +127,8 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
-    
   // =========================================================================
-    // 📝 REGISTRATION FORM HANDLER (With Proximity Typo Checks & MX Guardrails)
+    // 📝 FIXED REGISTRATION HANDLER (Bulletproof Fallbacks & Order Preservation)
     // =========================================================================
     if (registrationForm) {
         registrationForm.addEventListener("submit", async (e) => {
@@ -132,7 +138,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const password = document.getElementById("password").value;
             const confirmPassword = document.getElementById("confirmPassword").value;
 
-            // 1. Structural Validations
             if (password !== confirmPassword) {
                 alert("Security Error: Passwords do not match.");
                 return;
@@ -143,14 +148,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            // 2. Structural Format Control (Regex)
             const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
             if (!emailRegex.test(email)) {
-                alert("Validation Error: Please enter a valid email architecture (e.g., name@domain.com).");
+                alert("Validation Error: Please enter a valid email address.");
                 return;
             }
 
-            // 3. Proximity Typo Detection (Catches jumbled character typos like 'avniash')
+            // Typo Similarity Proximity Engine
             const localPart = email.split('@')[0].toLowerCase();
             const usernameClean = username.toLowerCase().replace(/[^a-z0-9]/g, '');
             
@@ -169,38 +173,44 @@ document.addEventListener("DOMContentLoaded", () => {
             if (usernameClean.length > 4 && localPart !== usernameClean) {
                 const similarity = getSimilarity(localPart, usernameClean);
                 if (similarity > 0.68 && similarity < 0.96) {
-                    const confirmTypo = confirm(
-                        `Typo Warning: The email prefix "${localPart}" appears to be a jumbled spelling of your username "${username}".\n\nDid you mean to type this, or is it a mistake?\n\nClick [OK] to proceed anyway, or [Cancel] to correct it.`
-                    );
+                    const confirmTypo = confirm(`Typo Warning: The email prefix "${localPart}" appears to be a jumbled spelling of your username "${username}". Do you wish to proceed?`);
                     if (!confirmTypo) return;
                 }
             }
 
-            // 4. Live Mailbox Routing Clearance Check
-            alert("Verifying driver credentials with network node...");
+            // Guardrail: External validation failures won't break the registration pipeline anymore
             try {
                 const checkResponse = await fetch(`https://open.kickbox.com/v1/disposable/${encodeURIComponent(email.split('@')[1])}`);
-                const checkData = await checkResponse.json();
-
-                if (checkData && checkData.disposable === true) {
-                    alert("Registry Blocked: Temporary/Disposable email frameworks are prohibited.");
-                    return;
+                if (checkResponse.ok) {
+                    const checkData = await checkResponse.json();
+                    if (checkData && checkData.disposable === true) {
+                        alert("Registry Blocked: Temporary/Disposable email frameworks are prohibited.");
+                        return;
+                    }
                 }
             } catch (validationErr) {
-                console.warn("Email verification module offline, bypassing to engine:", validationErr);
+                console.warn("External validation check skipped or offline:", validationErr);
             }
 
-            // 5. Database Commit
+            // Commit to Local Storage First
             driversDatabase.push({ username, email, password, registeredAt: new Date().toISOString() });
             localStorage.setItem("driversDatabase", JSON.stringify(driversDatabase));
             
-            // 6. Transmit to Combined Java Backend
+            // Dispatch to Render backend and wait for the response body to fully resolve
             try {
-                await fetch('https://bmw-support-webpage.onrender.com/api/register', {
+                console.log("Transmitting registration payload for:", email);
+                const backendResponse = await fetch('https://bmw-support-webpage.onrender.com/api/register', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ email: email })
                 });
+                
+                if (backendResponse.ok) {
+                    const data = await backendResponse.json();
+                    console.log("Registration confirmation response received:", data);
+                } else {
+                    console.error(`Backend failed registration route with status: ${backendResponse.status}`);
+                }
             } catch (err) {
                 console.error("Mailing engine connectivity handshake failed:", err);
             }
