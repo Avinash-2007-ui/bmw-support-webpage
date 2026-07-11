@@ -115,17 +115,22 @@ public class BmwBackend {
             if ("POST".equalsIgnoreCase(exchange.getRequestMethod())) {
                 try {
                     String requestBody = new String(exchange.getRequestBody().readAllBytes(), StandardCharsets.UTF_8);
+                    // =========================================================================
+                    // ✅ FIXED BULLETPROOF EMAIL PARSING
+                    // =========================================================================
                     String userEmail = "";
-                    
-                    // Fixed safe text scanning window strategy
-                    if (requestBody.contains("\"email\"")) {
-                        int startIdx = requestBody.indexOf("\"email\"");
-                        String remaining = requestBody.substring(startIdx + 7);
-                        int firstQuote = remaining.indexOf("\"");
-                        int secondQuote = remaining.indexOf("\"", firstQuote + 1);
-                        if (firstQuote != -1 && secondQuote != -1) {
-                            userEmail = remaining.substring(firstQuote + 1, secondQuote).trim();
-                        }
+                if (requestBody.contains("\"email\"")) {
+                    int startIdx = requestBody.indexOf("\"email\"");
+                    // Slice everything AFTER the "email" key label
+                    String remaining = requestBody.substring(startIdx + 7); 
+    
+                    // Dynamically locate the actual quote marks enclosing the value string
+                    int firstQuote = remaining.indexOf("\"");
+                    int secondQuote = remaining.indexOf("\"", firstQuote + 1);
+    
+                    if (firstQuote != -1 && secondQuote != -1) {
+                    userEmail = remaining.substring(firstQuote + 1, secondQuote).trim();
+                }
                     }
 
                     if (userEmail.isEmpty()) {
@@ -204,18 +209,23 @@ public class BmwBackend {
             if ("POST".equalsIgnoreCase(exchange.getRequestMethod())) {
                 try {
                     String requestBody = new String(exchange.getRequestBody().readAllBytes(), StandardCharsets.UTF_8);
+                    // =========================================================================
+                    // ✅ FIXED BULLETPROOF EMAIL PARSING
+                    // =========================================================================
                     String userEmail = "";
-                    
-                    // Fixed safe text scanning window strategy
-                    if (requestBody.contains("\"email\"")) {
-                        int startIdx = requestBody.indexOf("\"email\"");
-                        String remaining = requestBody.substring(startIdx + 7);
+                if (requestBody.contains("\"email\"")) {
+                    int startIdx = requestBody.indexOf("\"email\"");
+                    // Slice everything AFTER the "email" key label
+                    String remaining = requestBody.substring(startIdx + 7); 
+    
+                     // Dynamically locate the actual quote marks enclosing the value string
                         int firstQuote = remaining.indexOf("\"");
-                        int secondQuote = remaining.indexOf("\"", firstQuote + 1);
-                        if (firstQuote != -1 && secondQuote != -1) {
-                            userEmail = remaining.substring(firstQuote + 1, secondQuote).trim();
-                        }
+                     int secondQuote = remaining.indexOf("\"", firstQuote + 1);
+    
+                    if (firstQuote != -1 && secondQuote != -1) {
+                    userEmail = remaining.substring(firstQuote + 1, secondQuote).trim();
                     }
+                }
 
                     if (userEmail.isEmpty()) {
                         System.out.println("Login Notification Blocked: Extracted Email Empty. Raw Payload: " + requestBody);
