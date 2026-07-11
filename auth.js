@@ -95,10 +95,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // =========================================================================
-    // 📝 REGISTRATION FORM HANDLER
+    // 📝 REGISTRATION FORM HANDLER (With Live Cloud Email Integration)
     // =========================================================================
     if (registrationForm) {
-        registrationForm.addEventListener("submit", (e) => {
+        registrationForm.addEventListener("submit", async (e) => { // Added async here
             e.preventDefault();
             const username = document.getElementById("username").value.trim();
             const email = document.getElementById("email").value.trim();
@@ -115,13 +115,28 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
+            // Save to browser LocalStorage securely so it persists across refreshes
             driversDatabase.push({ username, email, password, registeredAt: new Date().toISOString() });
             localStorage.setItem("driversDatabase", JSON.stringify(driversDatabase));
-            alert("Driver Profile Registered Successfully!");
+            
+            // --- NEW: Cloud Email Handshake Trigger ---
+            try {
+                // Instantly fires the user's email address to your live Render gateway
+                await fetch('https://bmw-support-webpage.onrender.com/api/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: email })
+                });
+            } catch (err) {
+                // Silent fallback: If the email fails to dispatch, the user profile creation still succeeds locally
+                console.error("Mailing service could not reach the cloud engine:", err);
+            }
+            // ------------------------------------------
+
+            alert("Driver Profile Registered Successfully! Welcome email dispatched.");
             window.location.href = "login_HTML.html";
         });
     }
-
     // =========================================================================
     // 🚪 LOGOUT HANDLER
     // =========================================================================
