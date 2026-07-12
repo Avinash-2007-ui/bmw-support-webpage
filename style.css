@@ -669,7 +669,7 @@ nav {
 }
 
 
-//*=============================================================================================*/
+/*=============================================================================================*/
 /*                             Ending Webpage Footer Structure                                 */
 /*=============================================================================================*/
 
@@ -683,7 +683,7 @@ nav {
 /* Single linear container row matching SKITS alignment */
 .footer-skits-row {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-between; /* Distributes left, center, and right items evenly */
     align-items: center; /* Locks map, languages, and socials to the middle horizontal line */
     max-width: 1400px;
     margin: 0 auto;
@@ -749,7 +749,7 @@ nav.main-navbar {
 }
 
 .footer-brand-text {
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 600;
     letter-spacing: 0.15em;
     color: white;
@@ -784,7 +784,7 @@ nav.main-navbar {
 .social-link-icon {
     color: white;
     text-decoration: none;
-    font-size: 0.95rem;
+    font-size: 1rem;
     letter-spacing: 0.05em;
     display: inline-flex;
     align-items: center;
@@ -796,7 +796,7 @@ nav.main-navbar {
 }
 
 .legal-links a {
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
 /* Preserves your original text-shadow properties and neon glow responses */
@@ -806,7 +806,7 @@ nav.main-navbar {
     color: rgb(127, 255, 212) !important; 
     text-shadow: 0 0 10px rgba(127, 255, 212, 0.6);
     cursor: pointer;    
-    transform: scale(1.08); /* Fluid layout scaling */
+    transform: scale(1.1); /* Fluid layout scaling */
 }
 
 /* --- Bottom Copyright Row (Clean next-line inclusion) --- */
@@ -821,25 +821,11 @@ nav.main-navbar {
 .footer-copyright-row p {
     margin: 0;
     font-size: 0.8rem;
-    color: #666666;
+    color: white;
+    text-align: center;
     letter-spacing: 0.05em;
 }
 
-/* --- Responsive Adjustments --- */
-@media screen and (max-width: 868px) {
-    .footer-skits-row {
-        flex-direction: column;
-        gap: 25px;
-    }
-    .footer-left-item, 
-    .footer-right-item {
-        justify-content: center;
-    }
-    .footer-social-container {
-        flex-direction: column;
-        gap: 8px;
-    }
-}
 
 /* ==========================================================================
    Floating Action Button (FAB) Setup - Premium Black Theme
