@@ -675,7 +675,7 @@ nav {
 
 .second {
     background-color: rgb(27, 24, 24);
-    padding: 20px 60px; /* Shorter vertical padding like the SKITS footer layout */
+    padding: 25px 60px; /* Shorter vertical padding like the SKITS footer layout */
     width: 100%;
     box-sizing: border-box;
 }
@@ -720,6 +720,7 @@ nav {
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    height: auto;
     gap: 18px;
 }
 
@@ -733,7 +734,7 @@ nav.main-navbar {
 .navcontent-2 {
     list-style: none;
     display: flex;
-    gap: 15px;
+    gap: 18px;
     margin: 0;
     padding: 0;
 }
@@ -753,7 +754,7 @@ nav.main-navbar {
 }
 
 .footer-brand-text {
-    font-size: 1rem;
+    font-size: 0.4rem;
     font-weight: 600;
     letter-spacing: 0.15em;
     color: white;
@@ -810,7 +811,7 @@ nav.main-navbar {
 .legal-links a:hover, 
 .social-link-icon:hover {
     color: rgb(127, 255, 212) !important; 
-    text-shadow: 0 0 10px rgba(127, 255, 212, 0.6);
+    text-shadow: 0 0 10px rgba(4, 179, 120, 0.6);
     cursor: pointer;    
     transform: scale(1.1); /* Fluid layout scaling */
 }
