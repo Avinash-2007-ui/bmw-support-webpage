@@ -672,30 +672,33 @@ nav {
 /*=============================================================================================*/
 /*                             Ending Webpage Footer Structure                                 */
 /*=============================================================================================*/
+/*=============================================================================================*/
+/*                             Refined Structural Footer Blueprint                             */
+/*=============================================================================================*/
 
 .second {
     background-color: rgb(27, 24, 24);
-    min-height: 380px;
-    padding: 40px 80px;
+    min-height: 420px;
+    padding: 60px 80px;
     box-sizing: border-box;
+    width: 100%;
 }
 
-/* Master wrapper separating left components from right components */
 .footer-layout-wrapper {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
-    gap: 40px;
+    gap: 60px;
 }
 
-/* --- Left Column Configurations --- */
+/* --- Left Column Stack (Languages -> Map -> Legal) --- */
 .footer-left-column {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 20px;
+    gap: 24px;
 }
 
 nav.main-navbar {
@@ -708,61 +711,90 @@ nav.main-navbar {
 .navcontent-2 {
     list-style: none;
     display: flex;
-    gap: 20px;
+    gap: 16px;
     margin: 0;
     padding: 0;
 }
 
-.navcontent-2 a {
+/* --- High Brilliancy Smooth Hover Setup --- */
+.navcontent-2 a, 
+.legal-links a, 
+.social-link-icon {
     color: #888888;
     text-decoration: none;
     font-size: 14px;
-    transition: color 0.3s ease;
+    padding: 6px 12px;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    /* Matches your exact smooth navbar link timing */
+    transition: background-color 0.2s cubic-bezier(0.25, 0.8, 0.25, 1), color 0.2s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.2s ease;
 }
 
-.navcontent-2 a:hover {
-    color: turquoise;
+/* Unified Glowing Turquoise Hover State across all footer elements */
+.navcontent-2 a:hover, 
+.legal-links a:hover, 
+.social-link-icon:hover {
+    color: turquoise !important;
+    background-color: rgba(50, 200, 200, 0.15) !important;
+    transform: translateY(-2px);
 }
 
+/* --- Map Sizing Adjustments --- */
 .bmw-map-container {
-    width: 250px;
-    max-width: 250px;
+    width: 320px; /* Wider and more prominent layout footprint */
+    max-width: 100%;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
     border: 1px solid #333;
 }
 
 .bmw-map-container iframe {
-    width: 250px;
-    height: 160px;
+    width: 100%;
+    height: 180px;
     border: 0;
     display: block;
 }
 
-/* --- Right Column Configurations --- */
+/* --- Legal Links Navigation --- */
+.footer-navbar {
+    margin: 0;
+    padding: 0;
+}
+
+.legal-links {
+    list-style: none;
+    display: flex;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+}
+
+.legal-links a {
+    font-size: 13px;
+}
+
+/* --- Right Column Stack (Social handles) --- */
 .footer-right-column {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 30px;
-    margin-top: 10px;
+    margin-top: 8px;
 }
 
 .footer-social-container {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 12px;
-    padding: 0;
-    background: none;
-    border-top: none;
+    gap: 16px;
 }
 
 .footer-brand-text {
     font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.2em;
+    font-weight: 700;
+    letter-spacing: 0.25em;
     color: #666666;
     text-transform: uppercase;
 }
@@ -770,48 +802,34 @@ nav.main-navbar {
 .social-icons-wrapper {
     display: flex;
     align-items: center;
-    gap: 24px;
+    gap: 16px;
 }
 
 .social-link-icon {
-    color: #888888;
-    transition: color 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.2s ease;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    padding: 10px; /* Square hover boundary boxes */
 }
 
-.social-link-icon:hover {
-    color: turquoise;
-    transform: scale(1.1);
-}
+/* --- Responsive Layout Rules for Tablets & Phones --- */
+@media screen and (max-width: 868px) {
+    .footer-layout-wrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 48px;
+    }
+    
+    .footer-left-column,
+    .footer-right-column {
+        align-items: center;
+        text-align: center;
+    }
 
-/* Integrated Privacy and Legal Links Layout */
-.footer-navbar {
-    margin-top: 10px;
+    .navcontent-2,
+    .legal-links,
+    .social-icons-wrapper {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
 }
-
-.legal-links {
-    list-style: none;
-    display: flex;
-    gap: 25px;
-    margin: 0;
-    padding: 0;
-}
-
-.legal-links a {
-    color: #666666;
-    text-decoration: none;
-    font-size: 12px;
-    letter-spacing: 0.05em;
-    transition: color 0.3s ease;
-}
-
-/* Matches the responsive silver-to-white shift */
-.legal-links a:hover {
-    color: turquoise;
-}
-
 
 /* ==========================================================================
    Floating Action Button (FAB) Setup - Premium Black Theme
