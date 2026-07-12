@@ -676,7 +676,7 @@ nav {
 .second {
     background-color: rgb(27, 24, 24);
     min-height: 180px;
-    padding: 40px 80px;
+    padding: 30px 40px;
     box-sizing: border-box;
 }
 
@@ -685,7 +685,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    max-width: 1200px;
+    max-width: 400px;
     margin: 0 auto;
     gap: 40px;
 }
