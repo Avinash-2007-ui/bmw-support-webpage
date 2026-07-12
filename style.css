@@ -672,33 +672,30 @@ nav {
 /*=============================================================================================*/
 /*                             Ending Webpage Footer Structure                                 */
 /*=============================================================================================*/
-/*=============================================================================================*/
-/*                             Refined Structural Footer Blueprint                             */
-/*=============================================================================================*/
 
 .second {
     background-color: rgb(27, 24, 24);
-    min-height: 420px;
-    padding: 60px 80px;
+    min-height: 380px;
+    padding: 40px 80px;
     box-sizing: border-box;
-    width: 100%;
 }
 
+/* Master wrapper separating left components from right components */
 .footer-layout-wrapper {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    max-width: 1300px;
+    max-width: 1200px;
     margin: 0 auto;
-    gap: 60px;
+    gap: 40px;
 }
 
-/* --- Left Column Stack (Languages -> Map -> Legal) --- */
+/* --- Left Column Configurations --- */
 .footer-left-column {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 24px;
+    gap: 20px;
 }
 
 nav.main-navbar {
@@ -711,125 +708,115 @@ nav.main-navbar {
 .navcontent-2 {
     list-style: none;
     display: flex;
-    gap: 16px;
+    gap: 20px;
     margin: 0;
     padding: 0;
 }
 
-/* --- High Brilliancy Smooth Hover Setup --- */
-.navcontent-2 a, 
-.legal-links a, 
-.social-link-icon {
-    color: #888888;
+.navcontent-2 a {
+    color: white;
     text-decoration: none;
-    font-size: 14px;
-    padding: 6px 12px;
-    border-radius: 4px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    /* Matches your exact smooth navbar link timing */
-    transition: background-color 0.2s cubic-bezier(0.25, 0.8, 0.25, 1), color 0.2s cubic-bezier(0.25, 0.8, 0.25, 1), transform 0.2s ease;
+    font-size: 1rem;
+    transition: color 0.3s ease, font-size 0.3s ease, text-shadow 0.3s ease;
 }
 
-/* Unified Glowing Turquoise Hover State across all footer elements */
-.navcontent-2 a:hover, 
-.legal-links a:hover, 
-.social-link-icon:hover {
-    color: turquoise !important;
-    background-color: rgba(50, 200, 200, 0.15) !important;
-    transform: translateY(-2px);
+.navcontent-2 a:hover {
+    color: rgb(127, 255, 212) !important; 
+    font-size: 1.1rem;
+    text-shadow: 0 0 10px rgba(127, 255, 212, 0.5);
+    cursor: pointer;    
 }
 
-/* --- Map Sizing Adjustments --- */
 .bmw-map-container {
-    width: 320px; /* Wider and more prominent layout footprint */
-    max-width: 100%;
+    width: 250px;
+    max-width: 250px;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
     border: 1px solid #333;
 }
 
 .bmw-map-container iframe {
-    width: 100%;
-    height: 180px;
+    width: 250px;
+    height: 160px;
     border: 0;
     display: block;
 }
 
-/* --- Legal Links Navigation --- */
-.footer-navbar {
-    margin: 0;
-    padding: 0;
-}
-
-.legal-links {
-    list-style: none;
-    display: flex;
-    gap: 12px;
-    margin: 0;
-    padding: 0;
-}
-
-.legal-links a {
-    font-size: 13px;
-}
-
-/* --- Right Column Stack (Social handles) --- */
+/* --- Right Column Configurations --- */
 .footer-right-column {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    margin-top: 8px;
+    gap: 30px;
+    margin-top: 10px;
 }
 
 .footer-social-container {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    gap: 16px;
+    gap: 12px;
+    padding: 0;
+    background: none;
+    border-top: none;
 }
 
 .footer-brand-text {
     font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.25em;
-    color: #666666;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: white;
     text-transform: uppercase;
 }
 
 .social-icons-wrapper {
     display: flex;
     align-items: center;
-    gap: 16px;
+    gap: 24px;
 }
 
 .social-link-icon {
-    padding: 10px; /* Square hover boundary boxes */
+    color: white;
+    transition: color 0.3s ease, font-size 0.3s ease, text-shadow 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* --- Responsive Layout Rules for Tablets & Phones --- */
-@media screen and (max-width: 868px) {
-    .footer-layout-wrapper {
-        flex-direction: column;
-        align-items: center;
-        gap: 48px;
-    }
-    
-    .footer-left-column,
-    .footer-right-column {
-        align-items: center;
-        text-align: center;
-    }
-
-    .navcontent-2,
-    .legal-links,
-    .social-icons-wrapper {
-        justify-content: center;
-        flex-wrap: wrap;
-    }
+.social-link-icon:hover {
+    color: rgb(127, 255, 212) !important; 
+    font-size: 1.1rem;
+    text-shadow: 0 0 10px rgba(127, 255, 212, 0.5);
+    transform: scale(1.1);
 }
+
+/* Integrated Privacy and Legal Links Layout */
+.footer-navbar {
+    margin-top: 10px;
+}
+
+.legal-links {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+.legal-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    transition: color 0.3s ease, font-size 0.3s ease, text-shadow 0.3s ease;
+}
+
+/* Matches the responsive silver-to-white shift */
+.legal-links a:hover {
+    color: rgb(127, 255, 212) !important; 
+}
+
 
 /* ==========================================================================
    Floating Action Button (FAB) Setup - Premium Black Theme
