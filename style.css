@@ -720,7 +720,7 @@ nav {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
+    gap: 18px;
 }
 
 nav.main-navbar {
@@ -777,6 +777,8 @@ nav.main-navbar {
     gap: 20px;
     margin: 0;
     padding: 0;
+    white-space: nowrap; /* Prevents wrapping of legal links */
+    font-size: 0.8rem; /* Slightly smaller font for legal links */
 }
 
 /* ==========================================================================
@@ -800,7 +802,7 @@ nav.main-navbar {
 }
 
 .legal-links a {
-    font-size: 1rem;
+    font-size: 0.8rem;
 }
 
 /* Preserves your original text-shadow properties and neon glow responses */
