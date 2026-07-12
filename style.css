@@ -786,12 +786,11 @@ nav.main-navbar {
    Polished Core Typography & Vibrant Aquarium Hover Effects
    ========================================================================== */
 
-.navcontent-2 a, 
-.legal-links a, 
+.navcontent-2 a,  
 .social-link-icon {
     color: white;
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 0.8rem;
     letter-spacing: 0.05em;
     display: inline-flex;
     align-items: center;
@@ -804,18 +803,32 @@ nav.main-navbar {
 
 .legal-links a {
     font-size: 0.8rem;
+    color: white;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: none !important;
+    border: none !important;
+    /* Preserves original transition properties and smooth speed curves */
+    transition: color 0.3s ease, font-size 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
 }
 
 /* Preserves your original text-shadow properties and neon glow responses */
-.navcontent-2 a:hover, 
-.legal-links a:hover, 
+.navcontent-2 a:hover,
 .social-link-icon:hover {
     color: rgb(127, 255, 212) !important; 
     text-shadow: 0 0 10px rgba(4, 179, 120, 0.6);
     cursor: pointer;    
     transform: scale(1.1); /* Fluid layout scaling */
 }
-
+.legal-links a:hover{
+    color: rgb(127, 255, 212) !important; 
+    text-shadow: 0 0 10px rgba(4, 179, 120, 0.6);
+    cursor: pointer;    
+    transform: scale(0.9rem); /* Fluid layout scaling */
+}
 /* --- Bottom Copyright Row (Clean next-line inclusion) --- */
 .footer-copyright-row {
     width: 100%;
