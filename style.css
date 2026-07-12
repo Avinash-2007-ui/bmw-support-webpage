@@ -698,7 +698,7 @@ nav {
 }
 
 .bmw-map-container {
-    width: 240px; /* Compact map scaling to maintain shorter footer space */
+    width: 290px; /* Compact map scaling to maintain shorter footer space */
     border-radius: 8px;
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
@@ -707,7 +707,7 @@ nav {
 
 .bmw-map-container iframe {
     width: 100%;
-    height: 110px; /* Reduced box height for low profile */
+    height: 120px; /* Reduced box height for low profile */
     border: 0;
     display: block;
 }
