@@ -763,7 +763,7 @@ nav.main-navbar {
 }
 
 .footer-brand-text {
-    font-size: 11px;
+    font-size: 1rem;
     font-weight: 600;
     letter-spacing: 0.2em;
     color: white;
@@ -807,7 +807,7 @@ nav.main-navbar {
 .legal-links a {
     color: white;
     text-decoration: none;
-    font-size: 12px;
+    font-size: 1rem;
     letter-spacing: 0.05em;
     transition: color 0.3s ease, font-size 0.3s ease, text-shadow 0.3s ease;
 }
@@ -815,6 +815,11 @@ nav.main-navbar {
 /* Matches the responsive silver-to-white shift */
 .legal-links a:hover {
     color: rgb(127, 255, 212) !important; 
+    font-size: 1.1rem;
+    text-shadow: 0 0 10px rgba(127, 255, 212, 0.5);
+    cursor: pointer;
+    transform: scale(1.1);
+
 }
 
 
