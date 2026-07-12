@@ -735,6 +735,8 @@ nav.main-navbar {
     list-style: none;
     display: flex;
     gap: 18px;
+    margin: 0;
+    padding: 0;
 }
 
 /* --- Right Item (Locked Right) --- */
