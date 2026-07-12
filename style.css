@@ -845,6 +845,10 @@ nav.main-navbar {
     text-align: center;
     letter-spacing: 0.05em;
 }
+.footer-copyright-row p a {
+    color: white;
+    text-decoration: none;
+}
 
 
 /* ==========================================================================
