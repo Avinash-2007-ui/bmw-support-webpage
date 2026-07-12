@@ -676,8 +676,7 @@ nav {
 .second {
     background-color: rgb(27, 24, 24);
     min-height: 180px;
-    padding: 30px 40px;
-    box-sizing: border-box;
+    padding: 40px 80px;
 }
 
 /* Master wrapper separating left components from right components */
@@ -685,7 +684,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    max-width: 400px;
+    max-width: 1200px;
     margin: 0 auto;
     gap: 40px;
 }
@@ -807,7 +806,7 @@ nav.main-navbar {
 .legal-links a {
     color: white;
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 1.1rem;
     letter-spacing: 0.05em;
     transition: color 0.3s ease, font-size 0.3s ease, text-shadow 0.3s ease;
 }
