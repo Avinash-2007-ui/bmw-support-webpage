@@ -795,7 +795,7 @@ nav.main-navbar {
     color: rgb(127, 255, 212) !important; 
     text-shadow: 0 0 10px rgba(4, 179, 120, 0.6);
     cursor: pointer;    
-    transform: scale(0.6); /* Fluid layout scaling */
+    transform: scale(0.7); /* Fluid layout scaling */
 }
 /* --- Bottom Copyright Row (Clean next-line inclusion) --- */
 .footer-copyright-row {
