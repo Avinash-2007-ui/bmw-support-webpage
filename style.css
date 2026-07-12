@@ -675,7 +675,7 @@ nav {
 
 .second {
     background-color: rgb(27, 24, 24);
-    min-height: 380px;
+    min-height: 180px;
     padding: 40px 80px;
     box-sizing: border-box;
 }
