@@ -743,7 +743,7 @@ nav.main-navbar {
 .footer-right-item {
     flex: 1;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
 }
 
 .footer-social-container {
