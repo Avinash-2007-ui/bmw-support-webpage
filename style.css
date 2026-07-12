@@ -772,16 +772,6 @@ nav.main-navbar {
     margin: 0;
 }
 
-.legal-links {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-    margin: 0;
-    padding: 0;
-    white-space: nowrap; /* Prevents wrapping of legal links */
-    font-size: 0.8rem; /* Slightly smaller font for legal links */
-}
-
 /* ==========================================================================
    Polished Core Typography & Vibrant Aquarium Hover Effects
    ========================================================================== */
@@ -801,29 +791,9 @@ nav.main-navbar {
     transition: color 0.3s ease, font-size 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
 }
 
-.legal-links a {
-    font-size: 0.8rem;
-    color: white;
-    text-decoration: none;
-    letter-spacing: 0.05em;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    background: none !important;
-    border: none !important;
-    /* Preserves original transition properties and smooth speed curves */
-    transition: color 0.3s ease, font-size 0.3s ease, text-shadow 0.3s ease, transform 0.3s ease;
-}
-
 /* Preserves your original text-shadow properties and neon glow responses */
 .navcontent-2 a:hover,
 .social-link-icon:hover {
-    color: rgb(127, 255, 212) !important; 
-    text-shadow: 0 0 10px rgba(4, 179, 120, 0.6);
-    cursor: pointer;    
-    transform: scale(0.8rem); /* Fluid layout scaling */
-}
-.legal-links a:hover{
     color: rgb(127, 255, 212) !important; 
     text-shadow: 0 0 10px rgba(4, 179, 120, 0.6);
     cursor: pointer;    
