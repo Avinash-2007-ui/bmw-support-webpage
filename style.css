@@ -855,20 +855,27 @@ nav.main-navbar {
    2. FLOATING LIQUID GLASS SIDE PANEL LAYER (FIGMA REV 5)
    ========================================================================== */
 #bmwAiSidePanel {
-    position:fixed;
+    position: fixed;
     bottom: 30px;
-    /* Pushed further off-screen to account for the new active placement */
-    right: -4000000px; 
+    
+    /* 🛠️ THE HIDE FIX: A realistic negative value that the animation engine can handle */
+    right: -600px; 
+    
     width: 440px; 
-    margin-right: 110px; /* Aligns with the FAB and gap */
+    /* Removed the conflicting margin-right property */
     
     /* 🛠️ HEIGHT FIX: Increased base height and max-height limits */
     height: calc(100vh - 120px); 
     min-height: 550px;
     max-height: 800px;
     
-    /* 🛠️ FIGMA BACKGROUND: Applied the deep crimson tint to the glass */
-    background: linear-gradient(135deg, rgba(125, 8, 11, 0.35) 100%, rgba(106, 30, 31) 81%, rgba(185, 120, 122, 0.25) 100%);
+    /* 🛠️ FIGMA BACKGROUND: Exact hex-to-RGBA mappings and stops from your screenshot */
+    background: linear-gradient(
+        135deg, 
+        rgba(125, 8, 11, 0.5) 36%, 
+        rgba(106, 30, 31, 0.5) 81%, 
+        rgba(185, 120, 122, 0.5) 100%
+    );
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
     
@@ -886,11 +893,11 @@ nav.main-navbar {
     transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* 🛠️ ALIGNMENT FIX: Snaps to the left of the 60px FAB (30px margin + 60px FAB + 20px gap) */
-/*#bmwAiSidePanel.active {
-    right: 250px;
+/* 🛠️ ALIGNMENT FIX: Snaps cleanly to the left of the FAB */
+#bmwAiSidePanel.active {
+    right: 110px;
 }
-*/
+
 /* ==========================================================================
    3. PANEL HEADER & ACCENT BRANDING
    ========================================================================== */
@@ -904,6 +911,7 @@ nav.main-navbar {
 #bmwAiSidePanel .brand-wrapper {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 12px;
 }
 
