@@ -855,11 +855,12 @@ nav.main-navbar {
    2. FLOATING LIQUID GLASS SIDE PANEL LAYER (FIGMA REV 5)
    ========================================================================== */
 #bmwAiSidePanel {
-    position: fixed;
+    position:sticky;
     bottom: 30px;
     /* Pushed further off-screen to account for the new active placement */
     right: -5000px; 
     width: 440px; 
+    margin-right: 110px; /* Aligns with the FAB and gap */
     
     /* 🛠️ HEIGHT FIX: Increased base height and max-height limits */
     height: calc(100vh - 120px); 
