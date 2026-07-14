@@ -300,39 +300,55 @@
                     </svg>
                 </button>
 
-        <!-- Smooth Sliding VS Code-style Side Panel -->
-                <div id="bmwAiSidePanel">
+        <!-- Premium Floating Liquid Glass AI Panel -->
+<div id="bmwAiSidePanel">
 
-                    <!-- Panel Header -->
-                    <div class="panel-header">
-                        <div class="brand-wrapper">
-                            <!-- Header Gemini Sparkle SVG Logo -->
-                            <svg class="gemini-logo-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 2C12 2 12 7 9 10C6 13 2 12 2 12C2 12 7 12 10 15C13 18 12 22 12 22C12 22 12 17 15 14C18 11 22 12 22 12C22 12 17 12 14 9C11 6 12 2 12 2Z"/>
-                            </svg>
-                            <h3>BMW GLOBAL SUPPORT AI</h3>
-                        </div>
-                        <!-- Close Button -->
-                        <button class="close-btn" onclick="toggleBmwSidePanel()">&times;</button>
-                    </div>
-                        
-                    <!-- Panel Content Area -->
-                    <div class="panel-content">
-                        <p class="panel-description">Input telemetry details or vehicle accident characteristics to generate a real-time safety baseline assessment.</p>
+    <!-- Panel Header: Optimized for BMW Identity & Clean Layout -->
+    <div class="panel-header">
+        <div class="brand-wrapper">
+            <!-- Swapped Gemini SVG for Official Matte/Chrome BMW Asset -->
+            <img src="BMW-logo2.png" alt="BMW Logo" class="bmw-header-logo">
+            <h3>BMW Diagnostic AI</h3>
+        </div>
+        <!-- Figma Rev 2 Integrated Translucent Capsule Close Trigger -->
+        <button class="panel-close-btn" onclick="toggleBmwSidePanel()" aria-label="Close Assistant">
+            <span class="close-icon">&times;</span>
+        </button>
+    </div>
         
-                        <div class="output-container">
-                            <strong class="label-heading">Diagnostic Output:</strong>
-                            <div id="aiOutputView">System standing by. Awaiting input report...</div>
-                        </div>
-                    </div>
+    <!-- Panel Content Area: Nested Dark Display Console -->
+    <div class="panel-content">
+        <p class="panel-description">Input telemetry details or vehicle accident characteristics to generate a real-time safety baseline assessment.</p>
 
-                        
-                    <!-- Panel Input Footer -->
-                    <div class="panel-footer">
-                        <textarea id="userDamageReport" placeholder="Describe vehicle impact, dashboard alerts, or component cracks..."></textarea>
-                        <button class="analyze-btn" onclick="runSystemCheck()">Analyze Telemetry</button>
-                    </div>
-                </div>
+        <div class="output-container">
+            <strong class="label-heading">Diagnostic Output</strong>
+            <!-- The dark card inner console from your layout -->
+            <div id="aiOutputView">
+                <span class="status-text">System standing by. Awaiting input report...</span>
+                <!-- Custom status accent divider bar visible in your mockup -->
+                <div class="accent-loading-bar"></div>
+            </div>
+        </div>
+    </div>
+        
+    <!-- Panel Input Footer: Apple-Style Pill Row Optimization -->
+    <div class="panel-footer">
+        <div class="input-container-wrapper">
+            <!-- Magnifying Glass Search Icon Prefix -->
+            <i class="search-icon-prefix">🔍</i>
+            
+            <input type="text" id="userDamageReport" placeholder="Search telemetry or describe faults...">
+            
+            <!-- Voice Audio Dictation Trigger Asset -->
+            <button class="mic-input-btn" onclick="triggerVoiceInput()" title="Voice Input">🎙️</button>
+        </div>
+        
+        <!-- Figma Style Capsule Checkmark Action Trigger -->
+        <button class="analyze-action-btn" onclick="runSystemCheck()" title="Analyze Telemetry">
+            <span class="action-check-mark">✓</span>
+        </button>
+    </div>
+</div>
     </main>
         <script src="dropdown.js"></script>
         <script src="translate.js"></script>
