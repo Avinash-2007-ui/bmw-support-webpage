@@ -956,18 +956,15 @@ nav.main-navbar {
 }
 
 /* ==========================================================================
-   4. NESTED PILLOWED OUTPUT CONSOLE 
+   NESTED PILLOWED OUTPUT CONSOLE (Overflow & Scroll Fixes)
    ========================================================================== */
-#bmwAiSidePanel .panel-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
+#bmwAiSidePanel .panel-content,
 #bmwAiSidePanel .output-container {
     flex: 1;
     display: flex;
     flex-direction: column;
+    /* CRITICAL: Forces flexbox to respect outer height limits and allows scrolling */
+    min-height: 0; 
 }
 
 #bmwAiSidePanel .label-heading {
@@ -989,21 +986,35 @@ nav.main-navbar {
     font-size: 14px;
     color: #cccccc;
     line-height: 1.6;
-    text-align: center;
+    /* Changed to left alignment for readability of long responses */
+    text-align: left; 
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* Aligns content to the top-left */
+    align-items: flex-start; 
     justify-content: flex-start;
-    overflow-y: auto;
+    
+    /* CRITICAL: Triggers the vertical scrollbar when text overflows */
+    overflow-y: auto; 
+    overflow-x: hidden;
+    word-wrap: break-word; /* Prevents long code strings from breaking width */
 }
 
-.accent-loading-bar {
-    width: 60px;
-    height: 2px;
-    background: #0066cc; 
-    border-radius: 1px;
-    margin-top: 15px;
-    box-shadow: 0 0 6px rgba(0, 102, 204, 0.8);
+/* Custom Liquid Glass Scrollbar Styling */
+#aiOutputView::-webkit-scrollbar {
+    width: 6px;
+}
+#aiOutputView::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin: 10px 0; /* Keeps scrollbar away from the rounded corners */
+}
+#aiOutputView::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+}
+#aiOutputView::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 120, 120, 0.4); /* Subtle crimson hover */
 }
 
 /* ==========================================================================
