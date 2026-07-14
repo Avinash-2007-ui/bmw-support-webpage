@@ -872,9 +872,9 @@ nav.main-navbar {
     /* 🛠️ FIGMA BACKGROUND: Exact hex-to-RGBA mappings and stops from your screenshot */
     background: linear-gradient(
         135deg, 
-        rgba(125, 8, 11, 0.5) 36%, 
-        rgba(106, 30, 31, 0.5) 81%, 
-        rgba(185, 120, 122, 0.5) 100%
+        rgba(125, 8, 11, 0.2) 36%, 
+        rgba(106, 30, 31, 0.2) 81%, 
+        rgba(185, 120, 122, 0.2) 100%
     );
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
