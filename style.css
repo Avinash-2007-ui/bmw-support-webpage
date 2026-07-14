@@ -886,7 +886,7 @@ nav.main-navbar {
     position: fixed;
     bottom: 30px;
     /* Pushed further off-screen to account for the new active placement */
-    right: -600px; 
+    right: -1000px; 
     width: 440px; 
     
     /* 🛠️ HEIGHT FIX: Increased base height and max-height limits */
@@ -915,7 +915,7 @@ nav.main-navbar {
 
 /* 🛠️ ALIGNMENT FIX: Snaps to the left of the 60px FAB (30px margin + 60px FAB + 20px gap) */
 #bmwAiSidePanel.active {
-    right: 110px;
+    right: 400px;
 }
 
 /* ==========================================================================
