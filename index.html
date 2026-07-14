@@ -300,42 +300,50 @@
                     </svg>
                 </button>
 
-        <!-- Premium Floating Liquid Glass AI Panel (Figma Rev 4) -->
-<div id="bmwAiSidePanel" class="active">
-    
-    <!-- Panel Header: Optimized for BMW Identity & Capsule Close -->
+        <!-- Premium Floating Liquid Glass AI Panel -->
+<div id="bmwAiSidePanel">
+
+    <!-- Panel Header: Optimized for BMW Identity & Clean Layout -->
     <div class="panel-header">
         <div class="brand-wrapper">
-            <!-- Official Vector/Chrome BMW Asset -->
+            <!-- Swapped Gemini SVG for Official Matte/Chrome BMW Asset -->
             <img src="BMW-logo2.png" alt="BMW Logo" class="bmw-header-logo">
             <h3>BMW Diagnostic AI</h3>
         </div>
-        <!-- Figma Custom Translucent Capsule Close Button -->
+        <!-- Figma Rev 2 Integrated Translucent Capsule Close Trigger -->
         <button class="panel-close-btn" onclick="toggleBmwSidePanel()" aria-label="Close Assistant">
             <span class="close-icon">&times;</span>
         </button>
     </div>
-
+        
     <!-- Panel Content Area: Nested Dark Display Console -->
     <div class="panel-content">
         <p class="panel-description">Input telemetry details or vehicle accident characteristics to generate a real-time safety baseline assessment.</p>
+
         <div class="output-container">
             <strong class="label-heading">Diagnostic Output</strong>
+            <!-- The dark card inner console from your layout -->
             <div id="aiOutputView">
                 <span class="status-text">System standing by. Awaiting input report...</span>
+                <!-- Custom status accent divider bar visible in your mockup -->
                 <div class="accent-loading-bar"></div>
             </div>
         </div>
     </div>
-
-    <!-- Panel Input Footer: Deep Recessed Apple-Style Controls -->
+        
+    <!-- Panel Input Footer: Apple-Style Pill Row Optimization -->
     <div class="panel-footer">
         <div class="input-container-wrapper">
+            <!-- Magnifying Glass Search Icon Prefix -->
             <i class="search-icon-prefix">🔍</i>
+            
             <input type="text" id="userDamageReport" placeholder="Search telemetry or describe faults...">
+            
+            <!-- Voice Audio Dictation Trigger Asset -->
             <button class="mic-input-btn" onclick="triggerVoiceInput()" title="Voice Input">🎙️</button>
         </div>
-        <!-- Non-Squishing Capsule Checkmark Action Trigger -->
+        
+        <!-- Figma Style Capsule Checkmark Action Trigger -->
         <button class="analyze-action-btn" onclick="runSystemCheck()" title="Analyze Telemetry">
             <span class="action-check-mark">✓</span>
         </button>
