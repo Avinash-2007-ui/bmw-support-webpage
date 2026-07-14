@@ -822,55 +822,35 @@ nav.main-navbar {
 
 
 /* ==========================================================================
-   1. FLOATING ACTION BUTTON (FAB) - PREMIUM GLOSSY BLACK
-   ========================================================================== */
-#bmwAiToggleBtn {
-    position: fixed;
-    bottom: 30px;
-    right: 30px;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background: rgba(17, 17, 17, 0.75);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    cursor: pointer;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 100000;
-    transition: transform 0.2s cubic-bezier(0.25, 0.8, 0.25, 1), background-color 0.2s ease, border-color 0.2s ease;
-}
-
-#bmwAiToggleBtn:hover {
-    transform: scale(1.08);
-    background-color: rgba(28, 28, 28, 0.85);
-    border-color: rgba(255, 255, 255, 0.3);
-}
-
-/* ==========================================================================
-   2. FLOATING LIQUID GLASS SIDE PANEL LAYER (FIGMA REV 2)
+   REVISED FIGMA LAYOUT: FLOATING CRIMSON LIQUID GLASS ASSISTANT
    ========================================================================== */
 #bmwAiSidePanel {
     position: fixed;
-    bottom: 30px;
-    right: -460px; /* Hidden off-screen initially, matches width + padding */
+    /* 1. POSITION SHIFT: Push it higher up and more left away from browser boundaries */
+    bottom: 40px; 
+    right: -480px; /* Offset to hide perfectly when inactive */
+    
+    /* 2. SCALING CORRECTION: Give it the explicit premium presence from Figma */
     width: 440px; 
-    height: calc(100vh - 180px); 
-    min-height: 500px;
-    max-height: 750px;
+    height: 720px; /* Static structural height to ensure elements never compress or clip */
     
-    /* Liquid Glass Translucent Formula */
-    background: rgba(30, 20, 20, 0.25); /* Tinted glass base to pick up background warm tones */
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
+    /* 3. FIGMA RED GRADIENT & GLOW BACKGROUND FORMULA */
+    background: linear-gradient(
+        135deg, 
+        rgba(35, 15, 15, 0.45) 0%, 
+        rgba(20, 10, 10, 0.3) 100%
+    );
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
     
-    /* Elegant High-Radius Corners from Mockup */
+    /* Glass Edge Highlighting */
     border-radius: 40px; 
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 99, 99, 0.12); /* Subtle red tint on the glass rim */
+    
+    /* Soft crimson ambient drop shadow framing the panel */
+    box-shadow: 
+        0 24px 60px rgba(0, 0, 0, 0.6),
+        0 0 40px rgba(233, 66, 53, 0.1); 
     
     z-index: 99999;
     display: flex;
@@ -878,17 +858,17 @@ nav.main-navbar {
     font-family: sans-serif;
     color: #ffffff;
     box-sizing: border-box;
-    padding: 30px; 
+    padding: 35px 30px; 
     transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Active State Trigger Rule (handled via JS utility script toggles) */
+/* Active Class state called by JS template toggle script */
 #bmwAiSidePanel.active {
-    right: 30px;
+    right: 40px; /* Brings it cleanly into full view away from the screen edge */
 }
 
 /* ==========================================================================
-   3. PANEL HEADER & ACCENT BRANDING
+   HEADER SECTION & TEXT GRADIENTS
    ========================================================================== */
 #bmwAiSidePanel .panel-header {
     display: flex;
@@ -903,24 +883,19 @@ nav.main-navbar {
     gap: 12px;
 }
 
-.bmw-header-logo {
-    width: 24px;
-    height: 24px;
-    object-fit: contain;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
-}
-
+/* 4. TEXT GRADIENT TWEAK: Direct translation of your Figma font coloring */
 #bmwAiSidePanel .panel-header h3 {
-    color: #ffffff;
     font-size: 22px; 
     margin: 0;
     font-weight: 600;
     letter-spacing: -0.5px;
+    background: linear-gradient(90deg, #ffffff 0%, #ff9999 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-/* Pill-Style Capsule Close Button Configuration */
 .panel-close-btn {
-    background: rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 14px;
     width: 38px;
@@ -929,40 +904,25 @@ nav.main-navbar {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: all 0.2s ease;
 }
 
 .panel-close-btn:hover {
-    background: rgba(255, 255, 255, 0.18);
-    border-color: rgba(255, 255, 255, 0.25);
-    transform: scale(1.05);
+    background: rgba(255, 99, 99, 0.15);
+    border-color: rgba(255, 99, 99, 0.3);
 }
 
-.panel-close-btn .close-icon {
-    color: rgba(255, 255, 255, 0.8);
-    font-size: 18px;
-    font-weight: 300;
-    line-height: 1;
-}
-
-/* Description Text Profile */
 #bmwAiSidePanel .panel-description {
     font-size: 13px;
-    color: rgba(255, 255, 255, 0.65); 
+    color: rgba(255, 255, 255, 0.6); 
     line-height: 1.5;
     margin: 0 0 25px 0;
 }
 
 /* ==========================================================================
-   4. NESTED PILLOWED OUTPUT CONSOLE 
+   NESTED OUTPUT CONSOLE BOX
    ========================================================================== */
 #bmwAiSidePanel .panel-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-}
-
-#bmwAiSidePanel .output-container {
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -971,21 +931,19 @@ nav.main-navbar {
 #bmwAiSidePanel .label-heading {
     font-size: 12px;
     font-weight: bold;
-    color: #ffffff;
-    margin-bottom: 15px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 12px;
     text-align: center;
-    text-transform: none;
-    letter-spacing: normal;
 }
 
 #aiOutputView {
     flex: 1;
-    background-color: rgba(0, 0, 0, 0.3); /* Distinct dark overlay hollow from Figma mockup */
-    border: 1px solid rgba(255, 255, 255, 0.03);
+    background-color: rgba(0, 0, 0, 0.35); 
+    border: 1px solid rgba(255, 255, 255, 0.02);
     padding: 25px;
     border-radius: 30px; 
     font-size: 14px;
-    color: #cccccc;
+    color: #dddddd;
     line-height: 1.6;
     text-align: center;
     display: flex;
@@ -995,27 +953,16 @@ nav.main-navbar {
     overflow-y: auto;
 }
 
-/* Horizontal M-Performance Tech Loading Line */
-.accent-loading-bar {
-    width: 60px;
-    height: 2px;
-    background: #0066cc; 
-    border-radius: 1px;
-    margin-top: 15px;
-    box-shadow: 0 0 6px rgba(0, 102, 204, 0.8);
-}
-
 /* ==========================================================================
-   5. APPLE-STYLE PILL FOOTER INTERFACE
+   5. FOOTER INTERFACE OPTIMIZATION & OUTER HOVER GLOWS
    ========================================================================== */
 #bmwAiSidePanel .panel-footer {
-    margin-top: 20px;
+    margin-top: 25px;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 15px;
 }
 
-/* Input text block element wrappers */
 .input-container-wrapper {
     position: relative;
     flex: 1;
@@ -1023,7 +970,6 @@ nav.main-navbar {
     align-items: center;
 }
 
-/* Internal glass search icon spacing */
 .search-icon-prefix {
     position: absolute;
     left: 15px;
@@ -1034,51 +980,48 @@ nav.main-navbar {
 
 #userDamageReport {
     width: 100%;
-    height: 48px;
-    padding: 0 45px 0 38px; /* Perfectly scales text entry window boundaries */
+    height: 50px;
+    padding: 0 45px 0 38px; 
     box-sizing: border-box;
-    border-radius: 24px; 
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 25px; 
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     color: #ffffff;
     font-size: 14px;
     outline: none;
-    transition: all 0.2s ease;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    /* Soft default inner shadow configuration */
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+/* Ambient glow activation when interacting with text entry */
 #userDamageReport:focus {
-    background: rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 255, 255, 0.35);
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(233, 66, 53, 0.4);
+    /* Outer layout drop glow matching your red gradient style maps */
+    box-shadow: 
+        inset 0 1px 2px rgba(0, 0, 0, 0.2),
+        0 0 15px rgba(233, 66, 53, 0.25);
 }
 
-#userDamageReport::placeholder {
-    color: rgba(255, 255, 255, 0.4);
-}
-
-/* Internal glass voice button placement mapping */
 .mic-input-btn {
     position: absolute;
-    right: 15px;
+    right: 18px;
     background: transparent;
     border: none;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.4);
     cursor: pointer;
     font-size: 14px;
     outline: none;
-    transition: color 0.2s ease;
 }
 
-.mic-input-btn:hover {
-    color: #ffffff;
-}
-
-/* Capsule Checkmark Action Trigger Icon Button */
+/* Capsule Checkmark Action Trigger Button */
 .analyze-action-btn {
-    width: 48px;
-    height: 48px;
-    border-radius: 24px; 
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    background: rgba(255, 255, 255, 0.1);
+    width: 50px;
+    height: 50px;
+    border-radius: 25px; 
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.07);
     color: #ffffff;
     font-size: 18px;
     cursor: pointer;
@@ -1086,21 +1029,18 @@ nav.main-navbar {
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .analyze-action-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.35);
-    transform: scale(1.05);
-}
-
-.analyze-action-btn:active {
-    transform: scale(0.95);
-}
-
-.analyze-action-btn .action-check-mark {
-    line-height: 1;
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(233, 66, 53, 0.4);
+    /* Heavy wrap-around glow matching search bar action points */
+    box-shadow: 
+        0 4px 15px rgba(0, 0, 0, 0.4),
+        0 0 15px rgba(233, 66, 53, 0.25);
+    transform: translateY(-1px);
 }
 
 /* Responsive drop for smaller screens */
