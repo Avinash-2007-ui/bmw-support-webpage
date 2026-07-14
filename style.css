@@ -860,7 +860,7 @@ nav.main-navbar {
     
     /* 🛠️ THE HIDE FIX: A realistic negative value that the animation engine can handle */
     right: -600px; 
-    right: 110px; /* Aligns perfectly with the FAB's right edge */
+    
     width: 440px; 
     /* Removed the conflicting margin-right property */
     /* 🛠️ WIDTH FIX: Adjusted to match the FAB and content comfortably */
@@ -889,14 +889,12 @@ nav.main-navbar {
     color: #ffffff;
     box-sizing: border-box;
     padding: 30px; 
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+    transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* 🛠️ ALIGNMENT FIX: Snaps cleanly to the left of the FAB */
 #bmwAiSidePanel.active {
-    transform: translateX(0); /* Brings it perfectly to the 110px mark */
-    opacity: 1; /* Makes it fully visible */
-    pointer-events: auto; /* Re-enables clicking */
+    right: 110px;
 }
 
 /* ==========================================================================
