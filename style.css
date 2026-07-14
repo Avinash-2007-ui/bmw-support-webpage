@@ -880,25 +880,27 @@ nav.main-navbar {
 }
 
 /* ==========================================================================
-   2. FLOATING LIQUID GLASS SIDE PANEL LAYER (FIGMA REV 2)
+   2. FLOATING LIQUID GLASS SIDE PANEL LAYER (FIGMA REV 5)
    ========================================================================== */
 #bmwAiSidePanel {
     position: fixed;
     bottom: 30px;
-    right: -460px; /* Hidden off-screen initially, matches width + padding */
+    /* Pushed further off-screen to account for the new active placement */
+    right: -600px; 
     width: 440px; 
-    height: calc(100vh - 180px); 
-    min-height: 500px;
-    max-height: 750px;
     
-    /* Liquid Glass Translucent Formula */
-    background: rgba(30, 20, 20, 0.25); /* Tinted glass base to pick up background warm tones */
+    /* 🛠️ HEIGHT FIX: Increased base height and max-height limits */
+    height: calc(100vh - 120px); 
+    min-height: 550px;
+    max-height: 800px;
+    
+    /* 🛠️ FIGMA BACKGROUND: Applied the deep crimson tint to the glass */
+    background: linear-gradient(135deg, rgba(40, 15, 15, 0.35) 0%, rgba(20, 10, 10, 0.25) 100%);
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
     
-    /* Elegant High-Radius Corners from Mockup */
     border-radius: 40px; 
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 120, 120, 0.15); /* Warmer rim reflection */
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
     
     z-index: 99999;
@@ -911,9 +913,9 @@ nav.main-navbar {
     transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Active State Trigger Rule (handled via JS utility script toggles) */
+/* 🛠️ ALIGNMENT FIX: Snaps to the left of the 60px FAB (30px margin + 60px FAB + 20px gap) */
 #bmwAiSidePanel.active {
-    right: 30px;
+    right: 110px;
 }
 
 /* ==========================================================================
@@ -947,7 +949,6 @@ nav.main-navbar {
     letter-spacing: -0.5px;
 }
 
-/* Pill-Style Capsule Close Button Configuration */
 .panel-close-btn {
     background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -962,8 +963,8 @@ nav.main-navbar {
 }
 
 .panel-close-btn:hover {
-    background: rgba(255, 255, 255, 0.18);
-    border-color: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 99, 99, 0.15); /* Warmer hover tint */
+    border-color: rgba(255, 99, 99, 0.3);
     transform: scale(1.05);
 }
 
@@ -974,7 +975,6 @@ nav.main-navbar {
     line-height: 1;
 }
 
-/* Description Text Profile */
 #bmwAiSidePanel .panel-description {
     font-size: 13px;
     color: rgba(255, 255, 255, 0.65); 
@@ -1009,7 +1009,7 @@ nav.main-navbar {
 
 #aiOutputView {
     flex: 1;
-    background-color: rgba(0, 0, 0, 0.3); /* Distinct dark overlay hollow from Figma mockup */
+    background-color: rgba(0, 0, 0, 0.3); 
     border: 1px solid rgba(255, 255, 255, 0.03);
     padding: 25px;
     border-radius: 30px; 
@@ -1024,7 +1024,6 @@ nav.main-navbar {
     overflow-y: auto;
 }
 
-/* Horizontal M-Performance Tech Loading Line */
 .accent-loading-bar {
     width: 60px;
     height: 2px;
@@ -1044,7 +1043,6 @@ nav.main-navbar {
     gap: 12px;
 }
 
-/* Input text block element wrappers */
 .input-container-wrapper {
     position: relative;
     flex: 1;
@@ -1052,7 +1050,6 @@ nav.main-navbar {
     align-items: center;
 }
 
-/* Internal glass search icon spacing */
 .search-icon-prefix {
     position: absolute;
     left: 15px;
@@ -1064,27 +1061,35 @@ nav.main-navbar {
 #userDamageReport {
     width: 100%;
     height: 48px;
-    padding: 0 45px 0 38px; /* Perfectly scales text entry window boundaries */
+    padding: 0 45px 0 38px; 
     box-sizing: border-box;
     border-radius: 24px; 
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.08);
     border: 1px solid rgba(255, 255, 255, 0.15);
     color: #ffffff;
     font-size: 14px;
     outline: none;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
+    
+    /* 🛠️ FIGMA SHADOW FIX: Deep inner carve + crimson drop shadow */
+    box-shadow: 
+        inset 0 4px 10px rgba(0, 0, 0, 0.6), 
+        0 6px 15px rgba(233, 66, 53, 0.15);
 }
 
 #userDamageReport:focus {
-    background: rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 255, 255, 0.35);
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 120, 120, 0.35);
+    /* Intensify shadows on interaction */
+    box-shadow: 
+        inset 0 4px 10px rgba(0, 0, 0, 0.7), 
+        0 8px 20px rgba(233, 66, 53, 0.3);
 }
 
 #userDamageReport::placeholder {
     color: rgba(255, 255, 255, 0.4);
 }
 
-/* Internal glass voice button placement mapping */
 .mic-input-btn {
     position: absolute;
     right: 15px;
@@ -1101,13 +1106,12 @@ nav.main-navbar {
     color: #ffffff;
 }
 
-/* Capsule Checkmark Action Trigger Icon Button */
 .analyze-action-btn {
     width: 48px;
     height: 48px;
     border-radius: 24px; 
     border: 1px solid rgba(255, 255, 255, 0.15);
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.08);
     color: #ffffff;
     font-size: 18px;
     cursor: pointer;
@@ -1115,13 +1119,23 @@ nav.main-navbar {
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
-    transition: all 0.2s cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    flex-shrink: 0; /* Prevents button from warping */
+    
+    /* 🛠️ FIGMA SHADOW FIX: Matches the exact styling of the search bar */
+    box-shadow: 
+        inset 0 4px 10px rgba(0, 0, 0, 0.6), 
+        0 6px 15px rgba(233, 66, 53, 0.15);
 }
 
 .analyze-action-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.35);
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 120, 120, 0.35);
     transform: scale(1.05);
+    /* Intensify hover shadow */
+    box-shadow: 
+        inset 0 4px 10px rgba(0, 0, 0, 0.7), 
+        0 8px 20px rgba(233, 66, 53, 0.3);
 }
 
 .analyze-action-btn:active {
