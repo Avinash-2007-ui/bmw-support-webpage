@@ -142,55 +142,54 @@ public class BmwBackend {
                     String secretKey = System.getenv("MAILJET_SECRET_KEY");
 
                     String emailHtmlContent = """
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        </head>
-        <body style="margin: 0; padding: 0; background-color: #0a0a0a; font-family: 'Helvetica Neue', Arial, sans-serif;">
-            <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #0a0a0a; padding: 40px 20px;">
-                <tr>
-                    <td align="center">
-                        <table width="100%" style="max-width: 600px; background-color: #121212; border: 1px solid #222222; border-radius: 4px; overflow: hidden;">
+                        <!DOCTYPE html>
+                        <html>
+                            <head>
+                                <meta charset="UTF-8">
+                                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                            </head>
+                            <body style="margin: 0; padding: 0; background-color: #0a0a0a; font-family: 'Helvetica Neue', Arial, sans-serif;">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #0a0a0a; padding: 40px 20px;">
+                                <tr>
+                                    <td align="center">
+                                        <table width="100%" style="max-width: 600px; background-color: #121212; border: 1px solid #222222; border-radius: 4px; overflow: hidden;">
                             
-                            <!-- Premium Header -->
-                            <tr>
-                                <td align="center" style="padding: 40px 40px 20px 40px; border-bottom: 1px solid #1a1a1a;">
-                                    <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.25em; color: #ffffff; text-transform: uppercase;">
-                                        BMW GLOBAL SUPPORT & DIAGNOSTICS
-                                    </div>
-                                </td>
-                            </tr>
+                                            <!-- Premium Header -->
+                                            <tr>
+                                                <td align="center" style="padding: 40px 40px 20px 40px; border-bottom: 1px solid #1a1a1a;">
+                                                    <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.25em; color: #ffffff; text-transform: uppercase;">
+                                                        BMW GLOBAL SUPPORT & DIAGNOSTICS
+                                                    </div>
+                                                </td>
+                                            </tr>
 
-                            <!-- Content Section -->
-                            <tr>
-                                <td style="padding: 40px 50px;">
-                                    <h1 style="margin: 0 0 15px 0; font-size: 24px; font-weight: 300; color: #ffffff; text-align: center;">
-                                        Registration Confirmed
-                                    </h1>
-                                    <p style="margin: 0 0 30px 0; font-size: 14px; line-height: 1.6; color: #a0a0a0; text-align: center;">
-                                        Your driver profile session is now active. Connected to Cloud Node Engine.
-                                    </p>
-                                </td>
-                            </tr>
+                                            <!-- Content Section -->
+                                            <tr>
+                                                <td style="padding: 40px 50px;">
+                                                    <h1 style="margin: 0 0 15px 0; font-size: 24px; font-weight: 300; color: #ffffff; text-align: center;">
+                                                        Registration Confirmed
+                                                    </h1>
+                                                    <p style="margin: 0 0 30px 0; font-size: 14px; line-height: 1.6; color: #a0a0a0; text-align: center;">
+                                                        Your driver profile session is now active. Connected to Cloud Node Engine.
+                                                    </p>
+                                                </td>
+                                            </tr>
 
-                            <!-- Professional System Footer -->
-                            <tr>
-                                <td align="center" style="background-color: #0d0d0d; padding: 20px 40px; border-top: 1px solid #1a1a1a;">
-                                    <p style="margin: 0; font-size: 11px; letter-spacing: 0.05em; color: #444444;">
-                                        &copy; 2026 BMW Support Systems Team. Automated Transmission.
-                                    </p>
-                                </td>
-                            </tr>
-
-                        </table>
-                    </td>
-                </tr>
-            </table>
-        </body>
-        </html>
-        """;
+                                            <!-- Professional System Footer -->
+                                            <tr>
+                                                <td align="center" style="background-color: #0d0d0d; padding: 20px 40px; border-top: 1px solid #1a1a1a;">
+                                                    <p style="margin: 0; font-size: 11px; letter-spacing: 0.05em; color: #444444;">
+                                                        &copy; 2026 BMW Support Systems Team. Automated Transmission.
+                                                    </p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                                </table>
+                            </body>
+                        </html>
+                        """;
                     String mailjetPayload = "{"
                             + "\"FromEmail\":\"noreply@bmwsupport.dedyn.io\"," 
                             + "\"FromName\":\"BMW Support Systems\","

@@ -123,48 +123,57 @@ document.addEventListener("DOMContentLoaded", () => {
     // =========================================================================
     // 📝 RESET REGISTRATION HANDLER (Simple, Direct Email Trigger)
     // =========================================================================
-    if (registrationForm) {
-        registrationForm.addEventListener("submit", async (e) => {
-            e.preventDefault();
-            const username = document.getElementById("username").value.trim();
-            const email = document.getElementById("email").value.trim();
-            const password = document.getElementById("password").value;
-            const confirmPassword = document.getElementById("confirmPassword").value;
+    // 📝 STRICT REGISTRATION HANDLER
+if (registrationForm) {
+    registrationForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const username = document.getElementById("username").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value;
+        const confirmPassword = document.getElementById("confirmPassword").value;
 
-            // Simple Password Match Check
-            if (password !== confirmPassword) {
-                alert("Passwords do not match.");
-                return;
+        if (password !== confirmPassword) {
+            alert("Passwords do not match.");
+            return;
+        }
+
+        if (driversDatabase.some(user => user.username.toLowerCase() === username.toLowerCase())) {
+            alert("Username is already taken.");
+            return;
+        }
+
+        // 1. Trigger the API first and check the actual response state
+        console.log("Attempting to verify registration with server for:", email);
+        let apiSuccess = false;
+
+        try {
+            const response = await fetch('https://bmw-support-webpage.onrender.com/api/register', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email: email })
+            });
+
+            if (response.status === 200 || response.status === 201) {
+                apiSuccess = true;
+            } else {
+                console.warn("Backend rejected request or returned status:", response.status);
             }
+        } catch (err) {
+            console.error("Network infrastructure error during validation:", err);
+        }
 
-            // Simple Duplicate Username Check
-            if (driversDatabase.some(user => user.username.toLowerCase() === username.toLowerCase())) {
-                alert("Username is already taken.");
-                return;
-            }
-
-            // Save user locally
+        // 2. Only save to LocalStorage if the API gateway successfully cleared
+        if (apiSuccess) {
             driversDatabase.push({ username, email, password, registeredAt: new Date().toISOString() });
             localStorage.setItem("driversDatabase", JSON.stringify(driversDatabase));
-            
-            // Trigger Registration Email and WAIT until it completely clears the network
-            console.log("Attempting to send registration email to:", email);
-            try {
-                const response = await fetch('https://bmw-support-webpage.onrender.com/api/register', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ email: email })
-                });
-                console.log("Server responded to registration mail request with status:", response.status);
-            } catch (err) {
-                console.error("Network error during registration mail fetch:", err);
-            }
-
             alert("Driver Profile Registered Successfully!");
             window.location.href = "login_HTML.html";
-        });
-    }
-
+        } else {
+            // Alert user that the registration bridge is currently offline/pending review
+            alert("Registration Service Delayed: Email verification gateway is currently initializing. Please check server status or try again shortly.");
+        }
+    });
+}
     // =========================================================================
     // 🚪 LOGOUT HANDLER
     // =========================================================================
