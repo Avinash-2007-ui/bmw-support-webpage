@@ -863,7 +863,7 @@ nav.main-navbar {
     
     width: 440px; 
     /* Removed the conflicting margin-right property */
-    
+    /* 🛠️ WIDTH FIX: Adjusted to match the FAB and content comfortably */
     /* 🛠️ HEIGHT FIX: Increased base height and max-height limits */
     height: calc(100vh - 120px); 
     min-height: 550px;
