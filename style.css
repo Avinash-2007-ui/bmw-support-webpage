@@ -870,8 +870,7 @@ nav.main-navbar {
     max-height: 800px;
     
     /* 🛠️ FIGMA BACKGROUND: Exact hex-to-RGBA mappings and stops from your screenshot */
-    background: linear-gradient(
-        135deg, 
+    background: linear-gradient( 
         rgba(125, 8, 11, 0.766) 36%, 
         rgba(106, 30, 31, 0.815) 81%, 
         rgba(185, 120, 122, 0.636) 100%
@@ -890,7 +889,7 @@ nav.main-navbar {
     color: #ffffff;
     box-sizing: border-box;
     padding: 30px; 
-    transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
 }
 
 /* 🛠️ ALIGNMENT FIX: Snaps cleanly to the left of the FAB */
