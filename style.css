@@ -858,7 +858,7 @@ nav.main-navbar {
     position:fixed;
     bottom: 30px;
     /* Pushed further off-screen to account for the new active placement */
-    right: -400px; 
+    right: -4000000px; 
     width: 440px; 
     margin-right: 110px; /* Aligns with the FAB and gap */
     
@@ -868,7 +868,7 @@ nav.main-navbar {
     max-height: 800px;
     
     /* 🛠️ FIGMA BACKGROUND: Applied the deep crimson tint to the glass */
-    background: linear-gradient(135deg, rgba(40, 15, 15, 0.35) 0%, rgba(20, 10, 10, 0.25) 100%);
+    background: linear-gradient(135deg, rgba(125, 8, 11, 0.35) 100%, rgba(106, 30, 31) 81%, rgba(185, 120, 122, 0.25) 100%);
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
     
@@ -887,10 +887,10 @@ nav.main-navbar {
 }
 
 /* 🛠️ ALIGNMENT FIX: Snaps to the left of the 60px FAB (30px margin + 60px FAB + 20px gap) */
-#bmwAiSidePanel.active {
+/*#bmwAiSidePanel.active {
     right: 250px;
 }
-
+*/
 /* ==========================================================================
    3. PANEL HEADER & ACCENT BRANDING
    ========================================================================== */
