@@ -859,7 +859,7 @@ nav.main-navbar {
     bottom: 30px;
     
     /* 🛠️ THE HIDE FIX: A realistic negative value that the animation engine can handle */
-    right: -600px; 
+    right: -440px; 
     
     width: 440px; 
     /* Removed the conflicting margin-right property */
