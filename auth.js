@@ -59,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Initialize dropdown on page load
     updateDropdownMenu();
 
-// =========================================================================
+    // =========================================================================
     // 🔐 RESET LOGIN HANDLER (No Race Conditions, Direct Fetch)
     // =========================================================================
     if (loginForm) {
@@ -68,17 +68,17 @@ document.addEventListener("DOMContentLoaded", () => {
             const usernameInput = document.getElementById("username").value.trim();
             const passwordInput = document.getElementById("password").value;
             
-            // 1. Admin Backdoor Check
+            // 1. Admin Backdoor Check (Updated to match production environment metrics)
             if (usernameInput === "admin_m_power" && passwordInput === "bmw2026") {
                 localStorage.setItem("activeDriverSession", "Admin (M-Power)");
-                localStorage.setItem("currentUser", JSON.stringify({ username: "Admin (M-Power)", email: "avinashvyas2007@gmail.com" }));
+                localStorage.setItem("currentUser", JSON.stringify({ username: "Admin (M-Power)", email: "admin@bmwsupport.dedyn.io" }));
                 
                 try {
                     console.log("Sending Admin Login Mail...");
                     await fetch('https://bmw-support-webpage.onrender.com/api/login', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ email: "avinashvyas2007@gmail.com" })
+                        body: JSON.stringify({ email: "admin@bmwsupport.dedyn.io" })
                     });
                 } catch (err) {
                     console.error("Admin mail request failed:", err);
@@ -119,7 +119,8 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
-  // =========================================================================
+
+    // =========================================================================
     // 📝 RESET REGISTRATION HANDLER (Simple, Direct Email Trigger)
     // =========================================================================
     if (registrationForm) {
@@ -163,6 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
             window.location.href = "login_HTML.html";
         });
     }
+
     // =========================================================================
     // 🚪 LOGOUT HANDLER
     // =========================================================================
@@ -170,6 +172,7 @@ document.addEventListener("DOMContentLoaded", () => {
         logoutBtn.addEventListener("click", (e) => {
             e.preventDefault();
             localStorage.removeItem("activeDriverSession");
+            localStorage.removeItem("currentUser"); // Clean validation checkpoint
             alert("Driver Session Terminated.");
             updateDropdownMenu();
             window.location.href = "index.html"; 
@@ -190,18 +193,20 @@ document.addEventListener("DOMContentLoaded", () => {
                 db = db.filter(user => user.username.toLowerCase() !== currentDriver.toLowerCase());
                 localStorage.setItem("driversDatabase", JSON.stringify(db));
                 localStorage.removeItem("activeDriverSession");
+                localStorage.removeItem("currentUser");
                 alert("Profile purged completely.");
                 window.location.href = "index.html";
             }
         });
     }
+
     // =========================================================================
     // 🚨 CUSTOM MODAL CLOSE FUNCTION (Must be global)
     // =========================================================================
-        window.closeAlert = function() {
+    window.closeAlert = function() {
         const alertBox = document.getElementById("custom-alert");
         if (alertBox) {
-         alertBox.classList.add("hidden-modal");
-    }
-};
+            alertBox.classList.add("hidden-modal");
+        }
+    };
 });
