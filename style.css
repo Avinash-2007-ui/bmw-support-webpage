@@ -858,7 +858,7 @@ nav.main-navbar {
     position:fixed;
     bottom: 30px;
     /* Pushed further off-screen to account for the new active placement */
-    right: -5000px; 
+    right: -400px; 
     width: 440px; 
     margin-right: 110px; /* Aligns with the FAB and gap */
     
