@@ -868,7 +868,7 @@ nav.main-navbar {
     height: calc(100vh - 120px); 
     min-height: 550px;
     max-height: 800px;
-    margin-right: 200px; /* Removed to avoid conflict with right positioning */
+
     /* 🛠️ FIGMA BACKGROUND: Exact hex-to-RGBA mappings and stops from your screenshot */
     background: linear-gradient( 
         rgba(125, 8, 11, 0.766) 36%, 
@@ -894,7 +894,7 @@ nav.main-navbar {
 
 /* 🛠️ ALIGNMENT FIX: Snaps cleanly to the left of the FAB */
 #bmwAiSidePanel.active {
-    right: 110px;
+    margin-right: 200px;
 }
 
 /* ==========================================================================
