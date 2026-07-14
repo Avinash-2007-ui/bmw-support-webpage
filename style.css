@@ -915,7 +915,7 @@ nav.main-navbar {
 
 /* 🛠️ ALIGNMENT FIX: Snaps to the left of the 60px FAB (30px margin + 60px FAB + 20px gap) */
 #bmwAiSidePanel.active {
-    right: 110px;
+    right: 250px;
 }
 
 /* ==========================================================================
