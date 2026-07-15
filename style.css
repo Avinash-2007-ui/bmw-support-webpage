@@ -857,7 +857,8 @@ nav.main-navbar {
 #bmwAiSidePanel {
     position: fixed;
     bottom: 30px;
-    
+    /* 🛠️ THE FIX: This hides it off-screen when the page first loads */
+    right: -600px;
     width: 440px; 
     /* Removed the conflicting margin-right property */
     /* 🛠️ WIDTH FIX: Adjusted to match the FAB and content comfortably */
