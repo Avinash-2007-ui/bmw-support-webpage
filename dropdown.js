@@ -114,3 +114,22 @@ function toggleBmwSidePanel() {
         toggleBtn.style.transform = 'rotate(0deg)';
     }
 }
+function toggleBmwSidePanel() {
+    const panel = document.getElementById('bmwAiSidePanel');
+    const toggleBtn = document.getElementById('bmwAiToggleBtn');
+
+    // Force the side panel to stop past the FAB to avoid overlapping
+    // 30px (FAB right spacing) + 60px (FAB width) + 20px (gap) = 110px
+    const rightOffset = 110; 
+
+    // We calculate a hidden offset to ensure it fully leaves the screen safely
+    const hiddenOffset = panel.offsetWidth + 50; 
+
+    if (!panel.style.right || panel.style.right === `-${hiddenOffset}px`) {
+        panel.style.right = `${rightOffset}px`; // Slide in gracefully
+        toggleBtn.style.transform = 'rotate(90deg)';
+    } else {
+        panel.style.right = `-${hiddenOffset}px`; // Slide back completely off-screen
+        toggleBtn.style.transform = 'rotate(0deg)';
+    }
+}
