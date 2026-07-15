@@ -857,10 +857,7 @@ nav.main-navbar {
 #bmwAiSidePanel {
     position: fixed;
     bottom: 30px;
-    
-    /* 🛠️ THE HIDE FIX: A realistic negative value that the animation engine can handle */
-    margin-right: 200px;
-    
+    right: 30px;
     width: 440px; 
     /* Removed the conflicting margin-right property */
     /* 🛠️ WIDTH FIX: Adjusted to match the FAB and content comfortably */
@@ -891,6 +888,7 @@ nav.main-navbar {
     padding: 30px; 
     transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
 
 /* ==========================================================================
    3. PANEL HEADER & ACCENT BRANDING
