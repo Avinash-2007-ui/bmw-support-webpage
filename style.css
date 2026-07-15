@@ -1040,6 +1040,7 @@ nav.main-navbar {
 
 .input-container-wrapper:hover {
     box-shadow: 0 4px 12px rgba(255, 180, 171, 0.8); /* Subtle hover glow */
+    border-radius: 24px; /* Matches the input's border radius */
 
 }
 .search-icon-prefix {
