@@ -870,11 +870,12 @@ nav.main-navbar {
     max-height: 800px;
 
     /* 🛠️ FIGMA BACKGROUND: Exact hex-to-RGBA mappings and stops from your screenshot */
-    background: linear-gradient( 
-        rgba(125, 8, 11, 0.766) 36%, 
-        rgba(106, 30, 31, 0.815) 81%, 
-        rgba(185, 120, 122, 0.636) 100%
-    );
+    background: linear-gradient(
+    180deg,
+    rgba(125, 8, 11, 0.383) 36%, 
+    rgba(106, 30, 31, 0.407) 81%, 
+    rgba(185, 120, 122, 0.318) 100%
+);
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
     
@@ -890,7 +891,6 @@ nav.main-navbar {
     box-sizing: border-box;
     padding: 30px; 
     transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    opacity: 0.5; /* Start fully transparent */
 }
 
 
