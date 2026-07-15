@@ -129,10 +129,18 @@ nav {
             display: none;
             position: absolute;
             z-index: 1000; /* Ensures dropdown is above other content */
-            background-color: rgba(7, 7, 7, 0.9); /* Semi-transparent background */
+            /* 1. The Blur (The Magic Ingredient) */
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%); /* Required for Safari/iOS */
+    
+            /* 2. The Semi-Transparent Background */
+            background-color: rgba(255, 255, 255, 0.15); 
+    
+            /* 3. The Subtle Edge (Optional but highly recommended) */
+            border: 1px solid rgba(255, 255, 255, 0.2);
             min-width: 160px;
             box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-            border-radius: 4px; /* Optional: subtle rounded corners */
+            border-radius: 50px; /* Optional: subtle rounded corners */
             overflow: hidden; /* Ensures content respects border-radius */
             left: 50%; /* Start dropdown at 50% from parent's left edge */
             transform: translateX(-50%); /* Adjust to truly center it */
