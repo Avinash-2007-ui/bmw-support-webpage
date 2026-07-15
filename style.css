@@ -859,7 +859,7 @@ nav.main-navbar {
     bottom: 30px;
     
     /* 🛠️ THE HIDE FIX: A realistic negative value that the animation engine can handle */
-    right: -440px; 
+    margin-right: 200px;
     
     width: 440px; 
     /* Removed the conflicting margin-right property */
@@ -890,11 +890,6 @@ nav.main-navbar {
     box-sizing: border-box;
     padding: 30px; 
     transition: right 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-/* 🛠️ ALIGNMENT FIX: Snaps cleanly to the left of the FAB */
-#bmwAiSidePanel.active {
-    right: 110px;
 }
 
 /* ==========================================================================
