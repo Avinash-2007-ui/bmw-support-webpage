@@ -58,9 +58,15 @@ header {
     max-width: 850px; /* Limits the width for better aesthetics on large screens */
     margin: 0 auto; /* Centers the nav bar horizontally */
     z-index: 9999; /* Forces it to float on top of video grids, headers, and images */
-    background-color: rgba(0, 0, 0, 0.6); /* Opaque premium dark room backdrop */
-    backdrop-filter: blur(10px); /* Sleek background glass blurring effect */
-    border: 1px solid rgba(255, 255, 255, 0.05); /* Technical divider line */
+   /* 1. The Blur (The Magic Ingredient) */
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%); /* Required for Safari/iOS */
+    
+    /* 2. The Semi-Transparent Background */
+    background-color: rgba(255, 255, 255, 0.15); 
+    
+    /* 3. The Subtle Edge (Optional but highly recommended) */
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 50px; /* Subtle pill-shaped rounding for a modern look */
 }
 nav {
