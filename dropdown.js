@@ -106,11 +106,11 @@ function toggleBmwSidePanel() {
     const toggleBtn = document.getElementById('bmwAiToggleBtn');
     
     // Force a default check if the style layout property is empty or uninitialized
-    if (!panel.style.right || panel.style.right === '-400px') {
+    if (!panel.style.right || panel.style.right === '-600px') {
         panel.style.right = '0px'; // Slide in gracefully
         toggleBtn.style.transform = 'rotate(90deg)';
     } else {
-        panel.style.right = '-400px'; // Slide back out
+        panel.style.right = '-600px'; // Slide back out
         toggleBtn.style.transform = 'rotate(0deg)';
     }
 }
