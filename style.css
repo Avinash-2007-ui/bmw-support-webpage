@@ -59,7 +59,7 @@ header {
     margin: 0 auto; /* Centers the nav bar horizontally */
     z-index: 9999; /* Forces it to float on top of video grids, headers, and images */
     background-color: rgba(0, 0, 0, 0.6); /* Opaque premium dark room backdrop */
-    backdrop-filter: blur(10px); /* Sleek background glass blurring effect */
+    backdrop-filter: blur(25px); /* Sleek background glass blurring effect */
     border: 1px solid rgba(255, 255, 255, 0.05); /* Technical divider line */
     border-radius: 50px; /* Subtle pill-shaped rounding for a modern look */
 }
