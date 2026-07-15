@@ -58,9 +58,15 @@ header {
     max-width: 850px; /* Limits the width for better aesthetics on large screens */
     margin: 0 auto; /* Centers the nav bar horizontally */
     z-index: 9999; /* Forces it to float on top of video grids, headers, and images */
-    background-color: rgba(0, 0, 0, 0.6); /* Opaque premium dark room backdrop */
-    backdrop-filter: blur(10px); /* Sleek background glass blurring effect */
-    border: 1px solid rgba(255, 255, 255, 0.05); /* Technical divider line */
+   /* 1. The Blur (The Magic Ingredient) */
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%); /* Required for Safari/iOS */
+    
+    /* 2. The Semi-Transparent Background */
+    /* 2. The Semi-Transparent Background */
+           background-color: rgba(0, 0, 0, 0.65); 
+    
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Keep the border subtle */
     border-radius: 50px; /* Subtle pill-shaped rounding for a modern look */
 }
 nav {
@@ -138,10 +144,17 @@ nav {
             display: none;
             position: absolute;
             z-index: 1000; /* Ensures dropdown is above other content */
-            background-color: rgba(7, 7, 7, 0.9); /* Semi-transparent background */
+           /* 1. The Blur (The Magic Ingredient) */
+            backdrop-filter: blur(16px) saturate(180%);
+            -webkit-backdrop-filter: blur(16px) saturate(180%); /* Required for Safari/iOS */
+    
+            /* 2. The Semi-Transparent Background */
+            background-color: rgba(0, 0, 0, 0.65); 
+    
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Keep the border subtle */
             min-width: 160px;
             box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-            border-radius: 4px; /* Optional: subtle rounded corners */
+            border-radius: 25px; /* Optional: subtle rounded corners */
             overflow: hidden; /* Ensures content respects border-radius */
             left: 50%; /* Start dropdown at 50% from parent's left edge */
             transform: translateX(-50%); /* Adjust to truly center it */
