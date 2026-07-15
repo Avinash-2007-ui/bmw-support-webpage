@@ -944,7 +944,7 @@ nav.main-navbar {
     border-color: rgba(255, 99, 99, 0.3);
     transform: scale(1.05);
         box-shadow: 0 4px 12px rgba(255, 180, 171, 0.8); /* Subtle hover glow */
-        border-radius: 24px; /* Matches the input's border radius */
+        border-radius: 24px;
 }
 
 .panel-close-btn .close-icon {
