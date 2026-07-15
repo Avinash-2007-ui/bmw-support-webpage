@@ -1037,6 +1037,10 @@ nav.main-navbar {
     align-items: center;
 }
 
+.input-container-wrapper:hover {
+    box-shadow: 0 4px 12px rgba(255, 180, 171, 0.8); /* Subtle hover glow */
+
+}
 .search-icon-prefix {
     position: absolute;
     left: 15px;
@@ -1117,12 +1121,13 @@ nav.main-navbar {
 
 .analyze-action-btn:hover {
     background: rgba(255, 255, 255, 0.15);
-    border-color: rgba(255, 120, 120, 0.35);
+    border-color: rgba(255, 179, 171, 0.86);
     transform: scale(1.05);
     /* Intensify hover shadow */
     box-shadow: 
         inset 0 4px 10px rgba(0, 0, 0, 0.7), 
         0 8px 20px rgba(233, 66, 53, 0.3);
+        
 }
 
 .analyze-action-btn:active {

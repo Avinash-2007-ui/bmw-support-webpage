@@ -1,0 +1,464 @@
+I am going to generate a single, complete HTML file for you. This file will contain a premium, BMW-styled profile side panel, fully powered by GSAP for buttery-smooth, staggered animations.
+
+It includes the avatar header, standard settings, a theme toggle, and the authentication options (logout/delete) styled with that sleek, aggressive aesthetic you are looking for.
+
+```html:bmw_profile_panel.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BMW Premium Profile Panel</title>
+    
+    <!-- Google Fonts for a sleek, automotive look -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- GSAP Core Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <style>
+        /* ==========================================================================
+           1. BASE STYLES & RESET
+           ========================================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: #0a0a0a;
+            color: #ffffff;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background-image: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #000000 100%);
+        }
+
+        /* Mock main navigation bar just to hold the trigger button */
+        .mock-navbar {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: flex-end;
+            z-index: 10;
+        }
+
+        /* Avatar Trigger Button on the main page */
+        .avatar-trigger {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #151e60 0%, #000000 100%);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            font-weight: 600;
+            font-size: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .avatar-trigger:hover {
+            border-color: #e32322; /* BMW M Red accent on hover */
+            transform: scale(1.05);
+        }
+
+        /* ==========================================================================
+           2. OVERLAY & PANEL STRUCTURE
+           ========================================================================== */
+        
+        /* The dark overlay that fades in behind the panel */
+        .panel-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            z-index: 9998;
+            opacity: 0;
+            visibility: hidden; /* Handled by GSAP */
+        }
+
+        /* The Main Side Panel */
+        .profile-panel {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            max-width: 400px;
+            height: 100vh;
+            background: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.8);
+            
+            /* Hidden state for GSAP to animate from */
+            transform: translateX(100%); 
+        }
+
+        /* BMW M-Color Gradient Strip at the top */
+        .profile-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #84d6fa 0%, #151e60 50%, #e32322 100%);
+        }
+
+        /* ==========================================================================
+           3. PANEL HEADER (Avatar & User Info)
+           ========================================================================== */
+        .panel-header {
+            padding: 40px 30px 30px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            background: transparent;
+            border: none;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 24px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close-btn:hover {
+            color: #fff;
+        }
+
+        .avatar-large {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: #222;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            color: #fff;
+            font-size: 24px;
+            font-weight: 700;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+            /* If they have a photo, it would go here as an img tag or background-image */
+        }
+
+        .user-info h2 {
+            font-size: 20px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            margin-bottom: 4px;
+        }
+
+        .user-info p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        /* ==========================================================================
+           4. MENU LIST (Navigation Options)
+           ========================================================================== */
+        .panel-content {
+            flex-grow: 1;
+            padding: 30px;
+            overflow-y: auto;
+        }
+
+        /* Custom Scrollbar for sleekness */
+        .panel-content::-webkit-scrollbar { width: 6px; }
+        .panel-content::-webkit-scrollbar-track { background: transparent; }
+        .panel-content::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
+
+        .menu-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px 20px;
+            border-radius: 12px;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 400;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: transparent;
+            border: 1px solid transparent;
+        }
+
+        .menu-item i {
+            font-size: 18px;
+            width: 24px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.4);
+            transition: color 0.3s ease;
+        }
+
+        .menu-item:hover {
+            background: rgba(255, 255, 255, 0.03);
+            border-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            transform: translateX(5px); /* Subtle physical hover push */
+        }
+
+        .menu-item:hover i {
+            color: #84d6fa; /* BMW Cyan accent on hover */
+        }
+
+        .menu-divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.05);
+            margin: 15px 0;
+        }
+
+        /* Special Toggle Switch styling for Theme */
+        .theme-toggle-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .toggle-switch {
+            width: 40px;
+            height: 22px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 20px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 18px;
+            height: 18px;
+            background: #fff;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+        /* Active state for toggle (mocking dark mode active) */
+        .toggle-switch.active { background: #84d6fa; }
+        .toggle-switch.active::after { transform: translateX(18px); }
+
+        /* ==========================================================================
+           5. PANEL FOOTER (Destructive Actions)
+           ========================================================================== */
+        .panel-footer {
+            padding: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .action-btn {
+            width: 100%;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-logout {
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-logout:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-delete {
+            background: transparent;
+            color: #e32322; /* BMW Red */
+            border: 1px solid rgba(227, 35, 34, 0.3);
+        }
+
+        .btn-delete:hover {
+            background: rgba(227, 35, 34, 0.1);
+            border-color: #e32322;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- MOCK NAVBAR WITH TRIGGER BUTTON -->
+    <nav class="mock-navbar">
+        <button id="avatarTrigger" class="avatar-trigger">AV</button>
+    </nav>
+
+    <!-- OVERLAY -->
+    <div id="panelOverlay" class="panel-overlay"></div>
+
+    <!-- PROFILE PANEL -->
+    <aside id="profilePanel" class="profile-panel">
+        
+        <!-- HEADER -->
+        <div class="panel-header">
+            <button id="closeBtn" class="close-btn"><i class="fa-solid fa-xmark"></i></button>
+            <div class="avatar-large">AV</div>
+            <div class="user-info">
+                <h2 class="animate-item">Avinash Vyas</h2>
+                <p class="animate-item">BMW ID: 8492-M-DEV</p>
+            </div>
+        </div>
+
+        <!-- CONTENT MENU -->
+        <div class="panel-content">
+            <ul class="menu-list">
+                <!-- We apply 'animate-item' to elements we want GSAP to stagger -->
+                <li class="menu-item animate-item">
+                    <i class="fa-solid fa-user"></i>
+                    <span>Profile & Account</span>
+                </li>
+                <li class="menu-item animate-item">
+                    <i class="fa-solid fa-car"></i>
+                    <span>My Garage</span>
+                </li>
+                <li class="menu-item animate-item">
+                    <i class="fa-solid fa-bell"></i>
+                    <span>Notifications</span>
+                </li>
+                
+                <div class="menu-divider animate-item"></div>
+                
+                <!-- THEME TOGGLE -->
+                <li class="menu-item animate-item" onclick="document.getElementById('themeToggle').classList.toggle('active')">
+                    <div class="theme-toggle-container">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <i class="fa-solid fa-moon"></i>
+                            <span>Dark Theme</span>
+                        </div>
+                        <div id="themeToggle" class="toggle-switch active"></div>
+                    </div>
+                </li>
+
+                <li class="menu-item animate-item">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <span>Privacy & Data</span>
+                </li>
+                <li class="menu-item animate-item">
+                    <i class="fa-solid fa-headset"></i>
+                    <span>BMW Support</span>
+                </li>
+            </ul>
+        </div>
+
+        <!-- FOOTER ACTIONS -->
+        <div class="panel-footer">
+            <button class="action-btn btn-logout animate-item">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i> Log Out
+            </button>
+            <button class="action-btn btn-delete animate-item">
+                <i class="fa-solid fa-trash"></i> Delete Account
+            </button>
+        </div>
+    </aside>
+
+    <!-- GSAP ANIMATION LOGIC -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            
+            // 1. Select DOM Elements
+            const triggerBtn = document.getElementById('avatarTrigger');
+            const closeBtn = document.getElementById('closeBtn');
+            const overlay = document.getElementById('panelOverlay');
+            const panel = document.getElementById('profilePanel');
+            const animateItems = document.querySelectorAll('.animate-item'); // All list items, titles, buttons
+
+            // 2. Setup GSAP Timeline
+            // paused: true means it won't run until we explicitly call play()
+            const panelTimeline = gsap.timeline({ paused: true, reversed: true });
+
+            // Step 1: Fade in the dark overlay
+            panelTimeline.to(overlay, {
+                autoAlpha: 1, // GSAP smart property that handles opacity and visibility: visible/hidden
+                duration: 0.3,
+                ease: "power2.inOut"
+            }, 0); // The '0' means start exactly at the beginning of the timeline
+
+            // Step 2: Slide the panel in from the right
+            panelTimeline.to(panel, {
+                x: "0%", 
+                duration: 0.5,
+                ease: "power3.out" // A very smooth, premium deceleration curve
+            }, 0); // Start at the same time as the overlay
+
+            // Step 3: Stagger the items inside the panel (Slide up and fade in)
+            panelTimeline.from(animateItems, {
+                y: 30, // Start 30px lower
+                opacity: 0, // Start invisible
+                duration: 0.4,
+                stagger: 0.05, // 0.05 seconds between each item animating
+                ease: "power2.out"
+            }, 0.2); // Start this animation 0.2 seconds AFTER the timeline begins
+
+            // 3. Logic to Play / Reverse the animation
+            function togglePanel() {
+                // If the timeline is currently reversed (closed), play it forward (open)
+                if (panelTimeline.reversed()) {
+                    panelTimeline.play();
+                } else {
+                    // Otherwise, play it backwards (close)
+                    panelTimeline.reverse();
+                }
+            }
+
+            // 4. Attach Event Listeners
+            triggerBtn.addEventListener('click', togglePanel);
+            closeBtn.addEventListener('click', togglePanel);
+            
+            // Allow clicking the dark background to close the panel
+            overlay.addEventListener('click', togglePanel);
+        });
+    </script>
+</body>
+</html>
