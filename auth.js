@@ -68,7 +68,7 @@ document.addEventListener("DOMContentLoaded", () => {
             const usernameInput = document.getElementById("username").value.trim();
             const passwordInput = document.getElementById("password").value;
             
-            // 1. Admin Backdoor Check (Updated to match production environment metrics)
+            // 1. Admin Backdoor Check
             if (usernameInput === "admin_m_power" && passwordInput === "bmw2026") {
                 localStorage.setItem("activeDriverSession", "Admin (M-Power)");
                 localStorage.setItem("currentUser", JSON.stringify({ username: "Admin (M-Power)", email: "admin@bmwsupport.dedyn.io" }));
@@ -107,7 +107,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     console.error("Network error during login mail fetch:", err);
                 }
 
-                // NOW redirect safely after fetch completely finishes
                 window.location.href = "index.html"; 
             } else {
                 const alertBox = document.getElementById("custom-alert");
@@ -121,59 +120,55 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // =========================================================================
-    // 📝 RESET REGISTRATION HANDLER (Simple, Direct Email Trigger)
-    // =========================================================================
     // 📝 STRICT REGISTRATION HANDLER
-if (registrationForm) {
-    registrationForm.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        const username = document.getElementById("username").value.trim();
-        const email = document.getElementById("email").value.trim();
-        const password = document.getElementById("password").value;
-        const confirmPassword = document.getElementById("confirmPassword").value;
+    // =========================================================================
+    if (registrationForm) {
+        registrationForm.addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const username = document.getElementById("username").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
 
-        if (password !== confirmPassword) {
-            alert("Passwords do not match.");
-            return;
-        }
-
-        if (driversDatabase.some(user => user.username.toLowerCase() === username.toLowerCase())) {
-            alert("Username is already taken.");
-            return;
-        }
-
-        // 1. Trigger the API first and check the actual response state
-        console.log("Attempting to verify registration with server for:", email);
-        let apiSuccess = false;
-
-        try {
-            const response = await fetch('https://bmw-support-webpage.onrender.com/api/register', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ email: email })
-            });
-
-            if (response.status === 200 || response.status === 201) {
-                apiSuccess = true;
-            } else {
-                console.warn("Backend rejected request or returned status:", response.status);
+            if (password !== confirmPassword) {
+                alert("Passwords do not match.");
+                return;
             }
-        } catch (err) {
-            console.error("Network infrastructure error during validation:", err);
-        }
 
-        // 2. Only save to LocalStorage if the API gateway successfully cleared
-        if (apiSuccess) {
-            driversDatabase.push({ username, email, password, registeredAt: new Date().toISOString() });
-            localStorage.setItem("driversDatabase", JSON.stringify(driversDatabase));
-            alert("Driver Profile Registered Successfully!");
-            window.location.href = "login_HTML.html";
-        } else {
-            // Alert user that the registration bridge is currently offline/pending review
-            alert("Registration Service Delayed: Email verification gateway is currently initializing. Please check server status or try again shortly.");
-        }
-    });
-}
+            if (driversDatabase.some(user => user.username.toLowerCase() === username.toLowerCase())) {
+                alert("Username is already taken.");
+                return;
+            }
+
+            console.log("Attempting to verify registration with server for:", email);
+            let apiSuccess = false;
+
+            try {
+                const response = await fetch('https://bmw-support-webpage.onrender.com/api/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: email })
+                });
+
+                if (response.status === 200 || response.status === 201) {
+                    apiSuccess = true;
+                } else {
+                    console.warn("Backend rejected request or returned status:", response.status);
+                }
+            } catch (err) {
+                console.error("Network infrastructure error during validation:", err);
+            }
+
+            if (apiSuccess) {
+                driversDatabase.push({ username, email, password, registeredAt: new Date().toISOString() });
+                localStorage.setItem("driversDatabase", JSON.stringify(driversDatabase));
+                alert("Driver Profile Registered Successfully!");
+                window.location.href = "login_HTML.html";
+            } else {
+                alert("Registration Service Delayed: Email verification gateway is currently initializing. Please check server status or try again shortly.");
+            }
+        });
+    }
     // =========================================================================
     // 🚪 LOGOUT HANDLER
     // =========================================================================

@@ -98,7 +98,7 @@ public class BmwBackend {
     }
 
     // =========================================================================
-    // ✉️ 2. REGISTER EMAIL HANDLER CLASS (Robust Payload Extraction)
+    // ✉️ 2. REGISTER EMAIL HANDLER (Resend Primary + Mailjet Fallback)
     // =========================================================================
     static class RegisterEmailHandler implements HttpHandler {
         @Override
@@ -115,32 +115,26 @@ public class BmwBackend {
             if ("POST".equalsIgnoreCase(exchange.getRequestMethod())) {
                 try {
                     String requestBody = new String(exchange.getRequestBody().readAllBytes(), StandardCharsets.UTF_8);
-                    // =========================================================================
-                    // ✅ FIXED BULLETPROOF EMAIL PARSING
-                    // =========================================================================
                     String userEmail = "";
-                if (requestBody.contains("\"email\"")) {
-                    int startIdx = requestBody.indexOf("\"email\"");
-                    // Slice everything AFTER the "email" key label
-                    String remaining = requestBody.substring(startIdx + 7); 
-    
-                    // Dynamically locate the actual quote marks enclosing the value string
-                    int firstQuote = remaining.indexOf("\"");
-                    int secondQuote = remaining.indexOf("\"", firstQuote + 1);
-    
-                    if (firstQuote != -1 && secondQuote != -1) {
-                    userEmail = remaining.substring(firstQuote + 1, secondQuote).trim();
-                }
+                    if (requestBody.contains("\"email\"")) {
+                        int startIdx = requestBody.indexOf("\"email\"");
+                        String remaining = requestBody.substring(startIdx + 7); 
+                        int firstQuote = remaining.indexOf("\"");
+                        int secondQuote = remaining.indexOf("\"", firstQuote + 1);
+                        if (firstQuote != -1 && secondQuote != -1) {
+                            userEmail = remaining.substring(firstQuote + 1, secondQuote).trim();
+                        }
                     }
 
                     if (userEmail.isEmpty()) {
-                        System.out.println("Registration Execution Blocked: Extracted Email Empty. Raw Payload: " + requestBody);
+                        System.out.println("Registration Execution Blocked: Extracted Email Empty.");
                         throw new IllegalArgumentException("Email payload missing.");
                     }
                     
-                    String apiKey = System.getenv("RESEND_API_KEY");
-                    String apiKey = System.getenv("MAILJET_API_KEY");
-                    String secretKey = System.getenv("MAILJET_SECRET_KEY");
+                    // Fixed Variable Declarations
+                    String resendApiKey = System.getenv("RESEND_API_KEY");
+                    String mailjetApiKey = System.getenv("MAILJET_API_KEY");
+                    String mailjetSecretKey = System.getenv("MAILJET_SECRET_KEY");
 
                     String emailHtmlContent = """
                         <!DOCTYPE html>
@@ -154,8 +148,6 @@ public class BmwBackend {
                                 <tr>
                                     <td align="center">
                                         <table width="100%" style="max-width: 600px; background-color: #121212; border: 1px solid #222222; border-radius: 4px; overflow: hidden;">
-                            
-                                            <!-- Premium Header -->
                                             <tr>
                                                 <td align="center" style="padding: 40px 40px 20px 40px; border-bottom: 1px solid #1a1a1a;">
                                                     <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.25em; color: #ffffff; text-transform: uppercase;">
@@ -163,8 +155,6 @@ public class BmwBackend {
                                                     </div>
                                                 </td>
                                             </tr>
-
-                                            <!-- Content Section -->
                                             <tr>
                                                 <td style="padding: 40px 50px;">
                                                     <h1 style="margin: 0 0 15px 0; font-size: 24px; font-weight: 300; color: #ffffff; text-align: center;">
@@ -175,8 +165,6 @@ public class BmwBackend {
                                                     </p>
                                                 </td>
                                             </tr>
-
-                                            <!-- Professional System Footer -->
                                             <tr>
                                                 <td align="center" style="background-color: #0d0d0d; padding: 20px 40px; border-top: 1px solid #1a1a1a;">
                                                     <p style="margin: 0; font-size: 11px; letter-spacing: 0.05em; color: #444444;">
@@ -192,70 +180,70 @@ public class BmwBackend {
                         </html>
                         """;
 
-                    // Clean the HTML for inline JSON parsing
                     String safeHtml = emailHtmlContent.replace("\"", "\\\"").replaceAll("[\\r\\n]+", "");    
                     HttpClient client = HttpClient.newHttpClient();
                     boolean emailSent = false;
 
-                    // 🚀 ATTEMPT 1: RESEND API (Primary)
+                    // ATTEMPT 1: RESEND API
                     if (resendApiKey != null && !resendApiKey.isEmpty()) {
                         try {
-                        System.out.println("Attempting to route registration email via Resend...");
-                        String resendPayload = "{"
-                        + "\"from\":\"BMW Support <noreply@bmwsupport.dedyn.io>\","
-                        + "\"to\":[\"" + userEmail + "\"],"
-                        + "\"subject\":\"Driver Profile Registration Success!\","
-                        + "\"html\":\"" + safeHtml + "\""
-                        + "}";
+                            System.out.println("Attempting to route registration email via Resend...");
+                            String resendPayload = "{"
+                                + "\"from\":\"BMW Support <noreply@bmwsupport.dedyn.io>\","
+                                + "\"to\":[\"" + userEmail + "\"],"
+                                + "\"subject\":\"Driver Profile Registration Success!\","
+                                + "\"html\":\"" + safeHtml + "\""
+                                + "}";
 
-                        HttpRequest resendRequest = HttpRequest.newBuilder()
-                            .uri(URI.create("https://api.resend.com/emails"))
-                            .header("Authorization", "Bearer " + resendApiKey)
+                            HttpRequest resendRequest = HttpRequest.newBuilder()
+                                .uri(URI.create("https://api.resend.com/emails"))
+                                .header("Authorization", "Bearer " + resendApiKey)
+                                .header("Content-Type", "application/json")
+                                .POST(HttpRequest.BodyPublishers.ofString(resendPayload))
+                                .build();
+                            
+                            HttpResponse<String> resendResponse = client.send(resendRequest, HttpResponse.BodyHandlers.ofString());
+            
+                            if (resendResponse.statusCode() >= 200 && resendResponse.statusCode() < 300) {
+                                System.out.println("✅ Success: Email dispatched via Resend Node.");
+                                emailSent = true;
+                            } else {
+                                System.out.println("⚠️ Resend API Rejected: " + resendResponse.statusCode());
+                            }
+                        } catch (Exception re) {
+                            System.out.println("⚠️ Resend Network Failure: " + re.getMessage());
+                        }
+                    }
+
+                    // ATTEMPT 2: MAILJET API
+                    if (!emailSent) {
+                        System.out.println("🔄 Switching to Mailjet Fallback...");
+                        String mailjetPayload = "{"
+                                + "\"FromEmail\":\"noreply@bmwsupport.dedyn.io\"," 
+                                + "\"FromName\":\"BMW Support Systems\","
+                                + "\"Subject\":\"Driver Profile Registration Success!\","
+                                + "\"html-part\":\"" + safeHtml + "\","
+                                + "\"Recipients\":[{\"Email\":\"" + userEmail + "\"}]"
+                                + "}";
+
+                        String authString = mailjetApiKey + ":" + mailjetSecretKey;
+                        String encodedAuth = Base64.getEncoder().encodeToString(authString.getBytes(StandardCharsets.UTF_8));
+
+                        HttpRequest mailjetRequest = HttpRequest.newBuilder()
+                            .uri(URI.create("https://api.mailjet.com/v3/send"))
+                            .header("Authorization", "Basic " + encodedAuth)
                             .header("Content-Type", "application/json")
-                            .POST(HttpRequest.BodyPublishers.ofString(resendPayload))
+                            .POST(HttpRequest.BodyPublishers.ofString(mailjetPayload))
                             .build();
-                        HttpResponse<String> resendResponse = client.send(resendRequest, HttpResponse.BodyHandlers.ofString());
-        
-                    if (resendResponse.statusCode() >= 200 && resendResponse.statusCode() < 300) {
-            System.out.println("✅ Success: Email dispatched via Resend Node.");
-            emailSent = true;
-        } else {
-            System.out.println("⚠️ Resend API Rejected: " + resendResponse.statusCode());
-        }
-    } catch (Exception re) {
-        System.out.println("⚠️ Resend Network Failure: " + re.getMessage());
-    }
-}
 
-// 🛡️ ATTEMPT 2: MAILJET API (Fallback)
-if (!emailSent) {
-    System.out.println("🔄 Switching to Mailjet Fallback...");
-    String mailjetPayload = "{"
-            + "\"FromEmail\":\"noreply@bmwsupport.dedyn.io\"," 
-            + "\"FromName\":\"BMW Support Systems\","
-            + "\"Subject\":\"Driver Profile Registration Success!\","
-            + "\"html-part\":\"" + safeHtml + "\","
-            + "\"Recipients\":[{\"Email\":\"" + userEmail + "\"}]"
-            + "}";
-
-    String authString = mailjetApiKey + ":" + mailjetSecretKey;
-    String encodedAuth = Base64.getEncoder().encodeToString(authString.getBytes(StandardCharsets.UTF_8));
-
-    HttpRequest mailjetRequest = HttpRequest.newBuilder()
-        .uri(URI.create("https://api.mailjet.com/v3/send"))
-        .header("Authorization", "Basic " + encodedAuth)
-        .header("Content-Type", "application/json")
-        .POST(HttpRequest.BodyPublishers.ofString(mailjetPayload))
-        .build();
-
-    HttpResponse<String> mpResponse = client.send(mailjetRequest, HttpResponse.BodyHandlers.ofString());
-    
-    if (mpResponse.statusCode() >= 200 && mpResponse.statusCode() < 300) {
-         System.out.println("✅ Success: Email dispatched via Mailjet Fallback.");
-    } else {
-         throw new RuntimeException("All email nodes exhausted. Delivery failed.");
-    }
-}
+                        HttpResponse<String> mpResponse = client.send(mailjetRequest, HttpResponse.BodyHandlers.ofString());
+                        
+                        if (mpResponse.statusCode() >= 200 && mpResponse.statusCode() < 300) {
+                             System.out.println("✅ Success: Email dispatched via Mailjet Fallback.");
+                        } else {
+                             throw new RuntimeException("All email nodes exhausted. Delivery failed.");
+                        }
+                    }
 
                     String responseJson = "{\"status\":\"success\"}";
                     byte[] responseBytes = responseJson.getBytes(StandardCharsets.UTF_8);
@@ -280,7 +268,7 @@ if (!emailSent) {
     }
 
     // =========================================================================
-    // ✉️ 3. NEW LOGIN EMAIL HANDLER CLASS (Robust Payload Extraction)
+    // ✉️ 3. LOGIN EMAIL HANDLER (Resend Primary + Mailjet Fallback)
     // =========================================================================
     static class LoginEmailHandler implements HttpHandler {
         @Override
@@ -297,32 +285,26 @@ if (!emailSent) {
             if ("POST".equalsIgnoreCase(exchange.getRequestMethod())) {
                 try {
                     String requestBody = new String(exchange.getRequestBody().readAllBytes(), StandardCharsets.UTF_8);
-                    // =========================================================================
-                    // ✅ FIXED BULLETPROOF EMAIL PARSING
-                    // =========================================================================
                     String userEmail = "";
-                if (requestBody.contains("\"email\"")) {
-                    int startIdx = requestBody.indexOf("\"email\"");
-                    // Slice everything AFTER the "email" key label
-                    String remaining = requestBody.substring(startIdx + 7); 
-    
-                     // Dynamically locate the actual quote marks enclosing the value string
+                    if (requestBody.contains("\"email\"")) {
+                        int startIdx = requestBody.indexOf("\"email\"");
+                        String remaining = requestBody.substring(startIdx + 7); 
                         int firstQuote = remaining.indexOf("\"");
-                     int secondQuote = remaining.indexOf("\"", firstQuote + 1);
-    
-                    if (firstQuote != -1 && secondQuote != -1) {
-                    userEmail = remaining.substring(firstQuote + 1, secondQuote).trim();
+                        int secondQuote = remaining.indexOf("\"", firstQuote + 1);
+                        if (firstQuote != -1 && secondQuote != -1) {
+                            userEmail = remaining.substring(firstQuote + 1, secondQuote).trim();
+                        }
                     }
-                }
 
                     if (userEmail.isEmpty()) {
-                        System.out.println("Login Notification Blocked: Extracted Email Empty. Raw Payload: " + requestBody);
+                        System.out.println("Login Notification Blocked: Extracted Email Empty.");
                         throw new IllegalArgumentException("Email payload missing.");
                     }
 
-                    String apiKey = System.getenv("RESEND_API_KEY");
-                    String apiKey = System.getenv("MAILJET_API_KEY");
-                    String secretKey = System.getenv("MAILJET_SECRET_KEY");
+                    // Fixed Variable Declarations
+                    String resendApiKey = System.getenv("RESEND_API_KEY");
+                    String mailjetApiKey = System.getenv("MAILJET_API_KEY");
+                    String mailjetSecretKey = System.getenv("MAILJET_SECRET_KEY");
 
                     String emailHtmlContent = "<h1>BMW Account Security Alert</h1>"
                             + "<p>Hello,</p>"
@@ -331,72 +313,70 @@ if (!emailSent) {
                             + "<p>If this action was not performed by you, please modify your profile credentials immediately.</p>"
                             + "<br><p><em>Secure automated system dispatch,<br>BMW Identity Management</em></p>";
 
-                   
-                   // Clean the HTML for inline JSON parsing
-String safeHtml = emailHtmlContent.replace("\"", "\\\"").replaceAll("[\\r\\n]+", "");
-                            HttpClient client = HttpClient.newHttpClient();
-boolean emailSent = false;
+                    String safeHtml = emailHtmlContent.replace("\"", "\\\"").replaceAll("[\\r\\n]+", "");
+                    HttpClient client = HttpClient.newHttpClient();
+                    boolean emailSent = false;
 
-// 🚀 ATTEMPT 1: RESEND API (Primary)
-if (resendApiKey != null && !resendApiKey.isEmpty()) {
-    try {
-        System.out.println("Attempting to route registration email via Resend...");
-        String resendPayload = "{"
-            + "\"from\":\"BMW Support <noreply@bmwsupport.dedyn.io>\","
-            + "\"to\":[\"" + userEmail + "\"],"
-            + "\"subject\":\"Driver Profile Registration Success!\","
-            + "\"html\":\"" + safeHtml + "\""
-            + "}";
+                    // ATTEMPT 1: RESEND API
+                    if (resendApiKey != null && !resendApiKey.isEmpty()) {
+                        try {
+                            System.out.println("Attempting to route login email via Resend...");
+                            String resendPayload = "{"
+                                + "\"from\":\"BMW Support <noreply@bmwsupport.dedyn.io>\","
+                                + "\"to\":[\"" + userEmail + "\"],"
+                                + "\"subject\":\"Security Alert: New Account Login Detected\"," // Fixed Subject
+                                + "\"html\":\"" + safeHtml + "\""
+                                + "}";
 
-        HttpRequest resendRequest = HttpRequest.newBuilder()
-            .uri(URI.create("https://api.resend.com/emails"))
-            .header("Authorization", "Bearer " + resendApiKey)
-            .header("Content-Type", "application/json")
-            .POST(HttpRequest.BodyPublishers.ofString(resendPayload))
-            .build();
+                            HttpRequest resendRequest = HttpRequest.newBuilder()
+                                .uri(URI.create("https://api.resend.com/emails"))
+                                .header("Authorization", "Bearer " + resendApiKey)
+                                .header("Content-Type", "application/json")
+                                .POST(HttpRequest.BodyPublishers.ofString(resendPayload))
+                                .build();
 
-        HttpResponse<String> resendResponse = client.send(resendRequest, HttpResponse.BodyHandlers.ofString());
-        
-        if (resendResponse.statusCode() >= 200 && resendResponse.statusCode() < 300) {
-            System.out.println("✅ Success: Email dispatched via Resend Node.");
-            emailSent = true;
-        } else {
-            System.out.println("⚠️ Resend API Rejected: " + resendResponse.statusCode());
-        }
-    } catch (Exception re) {
-        System.out.println("⚠️ Resend Network Failure: " + re.getMessage());
-    }
-}
+                            HttpResponse<String> resendResponse = client.send(resendRequest, HttpResponse.BodyHandlers.ofString());
+                            
+                            if (resendResponse.statusCode() >= 200 && resendResponse.statusCode() < 300) {
+                                System.out.println("✅ Success: Login email dispatched via Resend Node.");
+                                emailSent = true;
+                            } else {
+                                System.out.println("⚠️ Resend API Rejected: " + resendResponse.statusCode());
+                            }
+                        } catch (Exception re) {
+                            System.out.println("⚠️ Resend Network Failure: " + re.getMessage());
+                        }
+                    }
 
-// 🛡️ ATTEMPT 2: MAILJET API (Fallback)
-if (!emailSent) {
-    System.out.println("🔄 Switching to Mailjet Fallback...");
-    String mailjetPayload = "{"
-            + "\"FromEmail\":\"noreply@bmwsupport.dedyn.io\"," 
-            + "\"FromName\":\"BMW Support Systems\","
-            + "\"Subject\":\"Driver Profile Registration Success!\","
-            + "\"html-part\":\"" + safeHtml + "\","
-            + "\"Recipients\":[{\"Email\":\"" + userEmail + "\"}]"
-            + "}";
+                    // ATTEMPT 2: MAILJET API
+                    if (!emailSent) {
+                        System.out.println("🔄 Switching to Mailjet Fallback...");
+                        String mailjetPayload = "{"
+                                + "\"FromEmail\":\"noreply@bmwsupport.dedyn.io\"," 
+                                + "\"FromName\":\"BMW Identity Security\","
+                                + "\"Subject\":\"Security Alert: New Account Login Detected\","
+                                + "\"html-part\":\"" + safeHtml + "\","
+                                + "\"Recipients\":[{\"Email\":\"" + userEmail + "\"}]"
+                                + "}";
 
-    String authString = mailjetApiKey + ":" + mailjetSecretKey;
-    String encodedAuth = Base64.getEncoder().encodeToString(authString.getBytes(StandardCharsets.UTF_8));
+                        String authString = mailjetApiKey + ":" + mailjetSecretKey;
+                        String encodedAuth = Base64.getEncoder().encodeToString(authString.getBytes(StandardCharsets.UTF_8));
 
-    HttpRequest mailjetRequest = HttpRequest.newBuilder()
-        .uri(URI.create("https://api.mailjet.com/v3/send"))
-        .header("Authorization", "Basic " + encodedAuth)
-        .header("Content-Type", "application/json")
-        .POST(HttpRequest.BodyPublishers.ofString(mailjetPayload))
-        .build();
+                        HttpRequest mailjetRequest = HttpRequest.newBuilder()
+                            .uri(URI.create("https://api.mailjet.com/v3/send"))
+                            .header("Authorization", "Basic " + encodedAuth)
+                            .header("Content-Type", "application/json")
+                            .POST(HttpRequest.BodyPublishers.ofString(mailjetPayload))
+                            .build();
 
-    HttpResponse<String> mpResponse = client.send(mailjetRequest, HttpResponse.BodyHandlers.ofString());
-    
-    if (mpResponse.statusCode() >= 200 && mpResponse.statusCode() < 300) {
-         System.out.println("✅ Success: Email dispatched via Mailjet Fallback.");
-    } else {
-         throw new RuntimeException("All email nodes exhausted. Delivery failed.");
-    }
-}
+                        HttpResponse<String> mpResponse = client.send(mailjetRequest, HttpResponse.BodyHandlers.ofString());
+                        
+                        if (mpResponse.statusCode() >= 200 && mpResponse.statusCode() < 300) {
+                             System.out.println("✅ Success: Email dispatched via Mailjet Fallback.");
+                        } else {
+                             throw new RuntimeException("All email nodes exhausted. Delivery failed.");
+                        }
+                    }
 
                     String responseJson = "{\"status\":\"success\"}";
                     byte[] responseBytes = responseJson.getBytes(StandardCharsets.UTF_8);
