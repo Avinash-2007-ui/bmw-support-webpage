@@ -1153,16 +1153,29 @@ nav.main-navbar {
 .analyze-action-btn .action-check-mark {
     line-height: 1;
 }
-/* Responsive drop for smaller screens */
-@media (max-width: 768px) {
-    .bmw-map-container iframe {
-        height: 350px;
+/* ==========================================================================
+   📱 ENTERPRISE MOBILE RESPONSIVENESS (SKITS-STYLE STACKING)
+   ========================================================================== */
+
+/* Tablet & Smaller Desktop Adjustments */
+@media (max-width: 1024px) {
+    nav {
+        gap: 20px;
+        padding: 0 20px;
+    }
+    .navcontent {
+        gap: 15px;
+    }
+    .box1, .box2 {
+        width: 100%;
+        margin-top: 50px;
     }
 }
 
-/* Mobile Responsive Overrides */
+/* Mobile Devices (Max Width 768px) */
 @media screen and (max-width: 768px) {
-    /* 1. Reset Container Widths */
+    
+    /* 1. Reset Global Rigid Widths */
     .image-container, 
     .flex-container,
     .video,
@@ -1171,68 +1184,105 @@ nav.main-navbar {
         max-width: 100%;
     }
 
-    /* 2. Stack Flex Elements Vertically */
-    .flex-container, 
-    .video-container, 
-    .technology-EGBHLMS {
-        flex-direction: column;
-        flex-wrap: wrap;
+    /* 2. Floating Navbar - Stacked Layout */
+    header {
+        top: 10px;
+        width: 95%;
+    }
+    nav {
+        display: flex;
+        flex-direction: column; /* Stacks logo, links, and avatar vertically */
+        height: auto;
+        padding: 15px;
+        gap: 15px;
+        border-radius: 25px;
+    }
+    .navcontent {
+        flex-wrap: wrap; /* Allows links to flow to the next line */
+        gap: 10px;
+    }
+    .avatar-dropdown-wrapper {
+        justify-content: center;
+        width: 100%;
     }
 
-    /* 3. Reset Box Fixed Widths and Margins */
+    /* 3. The iDrive Section (Stacking like SKITS) */
+    .flex-container {
+        flex-direction: column; /* Converts side-by-side to top-and-bottom */
+        padding: 20px;
+    }
     .box1, .box2 {
         width: 100% !important;
-        height: auto; /* Allow height to expand with content */
-        margin-top: 20px !important; /* Removes the 340px/150px gaps */
-        margin-left: 0;
-        margin-right: 0;
-        padding: 20px;
+        height: auto; 
+        margin: 20px 0 !important; /* Removes massive desktop margins */
+        padding: 0;
+    }
+    .youtube-1 {
+        width: 100%;
+        height: 250px; /* Scaled down for mobile */
     }
 
-    /* 4. Responsive Videos & YouTube */
-    .youtube-1,
-    .video-1 video, 
-    .video-2 video,
-    .video-1,
-    .video-2,
-    .content-1,
-    .content-2,
-    .BMW_Itellegence {
-        width: 100% !important;
-        height: auto! important;
-        max-width: 100%;
-        min-width: 100%;
-    }
-
-    /* 5. Center Headings and Sub-headings */
-    .joy .heading,
-    .hidden .heading,
-    .joy .sub-heading,
-    .hidden .sub-heading,
-    .heading-c,
-    .sub-heading-c,
-    .discription,
-    .discription-sub-heading {
-        text-align: centre! important;
-        margin-left: 0 ! important;
-        padding: 0 10px;
-    }
-
-    /* Navbar adjustment for mobile */
-    nav, nav.main-navbar {
+    /* 4. Dual Video Grid (Stacking vertically) */
+    .video-container {
         flex-direction: column;
-        height: auto;
-        padding: 20px;
+        padding: 20px 10px;
+    }
+    .video-1, .video-2 {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 30px;
     }
 
-    .navcontent, .navcontent-2 {
+    /* 5. Image Gallery */
+    .image-gallery-container {
+        flex-direction: column; /* Stack gallery items */
+        padding: 0 20px;
+    }
+    .gallery-item {
+        max-width: 100%; /* Take up full width of phone */
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    /* 6. Typography Fixes (Preventing text clipping) */
+    .image-gallery-section h2 {
+        font-size: 1.8em;
+        margin-bottom: 40px;
+    }
+    .box1 p {
+        font-size: 1.5em; /* Smaller font for mobile */
+    }
+
+    /* 7. Footer (Matches SKITS flex-col stacking) */
+    .footer-skits-row {
+        flex-direction: column; /* Stacks map, languages, and socials */
+        gap: 30px;
+        text-align: center;
+    }
+    .footer-left-item, 
+    .footer-center-item, 
+    .footer-right-item {
+        justify-content: center;
+        width: 100%;
+    }
+    .bmw-map-container {
+        width: 100%;
+    }
+    .footer-social-container {
         flex-direction: column;
         gap: 10px;
-        margin-left: 0;
-        text-align: centre;
+    }
+
+    /* 8. AI Side Panel Optimization */
+    #bmwAiSidePanel {
+        width: 90%; /* Stops it from overflowing the screen */
+        height: calc(100vh - 100px);
+        bottom: 20px;
+        padding: 20px;
+        /* Mobile off-screen hiding logic */
+        right: -100%; 
     }
 }
-
 
 /* ==========================================================================
    PREMIUM CENTRIC BMW PRELOADER STYLING
