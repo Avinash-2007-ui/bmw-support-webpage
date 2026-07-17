@@ -1175,54 +1175,81 @@ nav.main-navbar {
 /* Mobile Devices (Max Width 768px) */
 @media screen and (max-width: 768px) {
     
-    /* 1. Reset Global Rigid Widths */
+    /* 1. Reset Global Rigid Widths & Destroy Min-Widths (Poco X5 Fix) */
     .image-container, 
     .flex-container,
     .video,
-    .milestone-1 {
+    .milestone-1,
+    .box1,
+    .box2 {
         width: 100% !important;
-        max-width: 100%;
+        max-width: 100vw !important;
+        min-width: 0 !important; 
+        box-sizing: border-box;
     }
 
-    /* 2. Floating Navbar - Stacked Layout */
+    /* 2. Floating Navbar - HORIZONTAL Layout for Logo + Hamburger */
     header {
         top: 10px;
         width: 95%;
     }
+    
     nav {
-        display: flex;
-        flex-direction: column; /* Stacks logo, links, and avatar vertically */
-        height: auto;
-        padding: 15px;
-        gap: 15px;
+        display: flex !important;
+        flex-direction: row !important; /* CRITICAL FIX: Forces horizontal layout */
+        justify-content: space-between !important;
+        align-items: center !important;
+        height: 75px !important;
+        padding: 0 25px !important;
         border-radius: 25px;
     }
-    .navcontent {
-        flex-wrap: wrap; /* Allows links to flow to the next line */
-        gap: 10px;
-    }
-    .avatar-dropdown-wrapper {
-        justify-content: center;
-        width: 100%;
+
+    .left-section {
+        width: auto !important;
+        margin: 0 !important;
     }
 
-    /* 3. The iDrive Section (Stacking like SKITS) */
+    /* 3. Hide Desktop Elements */
+    .rightnav, .avatar-dropdown-wrapper {
+        display: none !important;
+    }
+
+    /* 4. Show & Lock Hamburger Icon to the Right */
+    .hamburger-btn {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        margin-left: auto !important; /* Pushes it flush to the right */
+        width: 35px;
+        height: 35px;
+    }
+
+    /* 5. Position the Mobile Menu Panel Perfectly */
+    .mobile-nav-panel {
+        top: 85px !important;
+        left: 5% !important;
+        width: 90% !important;
+        z-index: 99999 !important;
+        box-sizing: border-box;
+    }
+
+    /* 6. The iDrive Section */
     .flex-container {
-        flex-direction: column; /* Converts side-by-side to top-and-bottom */
+        flex-direction: column;
         padding: 20px;
     }
     .box1, .box2 {
         width: 100% !important;
         height: auto; 
-        margin: 20px 0 !important; /* Removes massive desktop margins */
+        margin: 20px 0 !important;
         padding: 0;
     }
     .youtube-1 {
         width: 100%;
-        height: 250px; /* Scaled down for mobile */
+        height: 250px;
     }
 
-    /* 4. Dual Video Grid (Stacking vertically) */
+    /* 7. Dual Video Grid */
     .video-container {
         flex-direction: column;
         padding: 20px 10px;
@@ -1233,29 +1260,29 @@ nav.main-navbar {
         margin-bottom: 30px;
     }
 
-    /* 5. Image Gallery */
+    /* 8. Image Gallery */
     .image-gallery-container {
-        flex-direction: column; /* Stack gallery items */
+        flex-direction: column;
         padding: 0 20px;
     }
     .gallery-item {
-        max-width: 100%; /* Take up full width of phone */
+        max-width: 100%;
         width: 100%;
         margin-bottom: 20px;
     }
 
-    /* 6. Typography Fixes (Preventing text clipping) */
+    /* 9. Typography Fixes */
     .image-gallery-section h2 {
-        font-size: 1.8em;
+        font-size: clamp(1.5rem, 5vw, 2.5rem); 
         margin-bottom: 40px;
     }
     .box1 p {
-        font-size: 1.5em; /* Smaller font for mobile */
+        font-size: 1.5em;
     }
 
-    /* 7. Footer (Matches SKITS flex-col stacking) */
+    /* 10. Footer */
     .footer-skits-row {
-        flex-direction: column; /* Stacks map, languages, and socials */
+        flex-direction: column;
         gap: 30px;
         text-align: center;
     }
@@ -1273,13 +1300,12 @@ nav.main-navbar {
         gap: 10px;
     }
 
-    /* 8. AI Side Panel Optimization */
+    /* 11. AI Side Panel Optimization */
     #bmwAiSidePanel {
-        width: 90%; /* Stops it from overflowing the screen */
+        width: 90%;
         height: calc(100vh - 100px);
         bottom: 20px;
         padding: 20px;
-        /* Mobile off-screen hiding logic */
         right: -100%; 
     }
 }
@@ -1357,29 +1383,6 @@ nav.main-navbar {
     height: 1px;
     background: rgba(255, 255, 255, 0.1);
     margin: 10px 0;
-}
-
-/* ==========================================================================
-   📱 MEDIA QUERY OVERRIDES (For the Hamburger)
-   ========================================================================== */
-@media screen and (max-width: 768px) {
-    /* Hide the desktop components */
-    .rightnav, .avatar-dropdown-wrapper {
-        display: none !important;
-    }
-    
-    /* Show the hamburger trigger */
-    .hamburger-btn {
-        display: block;
-    }
-    
-    /* Realign the nav container */
-    nav {
-        display: flex;
-        justify-content: space-between; /* Pushes logo left, hamburger right */
-        align-items: center;
-        padding: 0 20px;
-    }
 }
 
 /* ==========================================================================
