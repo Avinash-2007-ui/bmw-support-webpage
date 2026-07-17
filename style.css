@@ -1285,6 +1285,104 @@ nav.main-navbar {
 }
 
 /* ==========================================================================
+   🍔 HAMBURGER MENU & MOBILE STATE
+   ========================================================================== */
+.hamburger-btn {
+    display: none; /* Strictly hidden on desktop architecture */
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    width: 35px;
+    height: 35px;
+    z-index: 10001; /* Keeps it above the glass panel */
+}
+
+.hamburger-btn svg {
+    width: 100%;
+    height: 100%;
+}
+
+.mobile-nav-panel {
+    position: absolute;
+    top: 90px; /* Drops down just below your floating navbar */
+    left: 5%;
+    width: 90%;
+    
+    /* The Premium BMW Glass Effect */
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 25px;
+    
+    /* State Management: Hidden by default */
+    opacity: 0;
+    transform: translateY(-15px); /* Starts slightly elevated */
+    pointer-events: none; /* Prevents clicking when invisible */
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); /* Smooth fluid drop */
+}
+
+/* The Active State Class (Triggered by JS) */
+.mobile-nav-panel.is-active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+}
+
+.mobile-nav-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.mobile-nav-list a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    display: block;
+    padding: 8px 0;
+    transition: color 0.2s ease;
+}
+
+.mobile-nav-list a:hover {
+    color: rgb(127, 255, 212);
+}
+
+.mobile-divider {
+    border: 0;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 10px 0;
+}
+
+/* ==========================================================================
+   📱 MEDIA QUERY OVERRIDES (For the Hamburger)
+   ========================================================================== */
+@media screen and (max-width: 768px) {
+    /* Hide the desktop components */
+    .rightnav, .avatar-dropdown-wrapper {
+        display: none !important;
+    }
+    
+    /* Show the hamburger trigger */
+    .hamburger-btn {
+        display: block;
+    }
+    
+    /* Realign the nav container */
+    nav {
+        display: flex;
+        justify-content: space-between; /* Pushes logo left, hamburger right */
+        align-items: center;
+        padding: 0 20px;
+    }
+}
+
+/* ==========================================================================
    PREMIUM CENTRIC BMW PRELOADER STYLING
    ========================================================================== */
 #preloader {

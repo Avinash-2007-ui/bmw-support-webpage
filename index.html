@@ -89,7 +89,25 @@
                         <a href="#" id="logoutBtn" class="logout-link" style="display: none;">🚪 Logout Driver</a>
                     </div>
             </div>
+            <!-- NEW: The Hamburger Trigger (Visible only on mobile) -->
+            <button id="mobileMenuBtn" class="hamburger-btn" aria-label="Toggle Mobile Menu">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
         </nav>
+        <!-- NEW: The Glassmorphism Mobile Panel (Hidden by default) -->
+            <div id="mobileNavPanel" class="mobile-nav-panel">
+                <ul class="mobile-nav-list">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">M3 Series</a></li>
+                    <li><a href="#">M4 Series</a></li>
+                    <li><a href="#">M5 Series</a></li>
+                    <hr class="mobile-divider">
+                    <li><a href="login_HTML.html">🔐 Authenticate Login</a></li>
+                    <li><a href="registration.html">📝 Register Profile</a></li>
+                </ul>
+            </div>
     </header>
 
     <main>
@@ -354,6 +372,7 @@
         <script src="translate.js"></script>
         <script src="auth.js"></script>
         <script src="chatbot-ui.js"></script>
+        <script src="mobile-nav.js"></script>
 </body>
 </html>
 
