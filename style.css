@@ -303,34 +303,48 @@ nav {
             opacity: 0.9;
             box-shadow: 0 12px 16px 0 rgb(177, 2, 2),0 17px 50px 0 rgb(0, 204, 255);
         }
-        .flex-container{
-            display: flex;
-            flex-wrap: nowrap;
-            background: inherit;
-            
-        }
-        .box1{
-            width: 50%;
-            margin: 20px;
-            text-align: center;
-            justify-content: center;
-            font-size: xx-large;
-            justify-content: space-between;
-            height: 450px;
-            width: 860px;
-            margin-top: 340px;
-        }
-        .box2{
-            width: 50%;
-            margin: 20px;
-            align-items: center;
-            font-size: xx-large;
-            justify-content: space-between;
-            height: 450px;
-            width: 860px;
-            margin-top: 150px;
-               pointer-events: none;
-        }
+        .flex-container {
+    display: flex;
+    flex-wrap: wrap; /* Allows natural wrapping if forced into a tight viewport */
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1400px; /* Caps the width on ultra-wide monitors */
+    margin: 40px auto;
+    padding: 0 40px;
+    gap: 40px;
+    background: inherit;
+}
+
+.box1 {
+    flex: 1;
+    min-width: 350px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    /* Removed the massive 340px margin-top */
+    margin: 0; 
+}
+
+.box2 {
+    flex: 1.5; /* Gives the video slightly more room than the text */
+    min-width: 350px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    /* Removed the 150px margin-top */
+    margin: 0; 
+}
+
+.box1 p {
+    font-size: clamp(2rem, 3vw, 2.8rem); /* Fluid text scaling */
+    line-height: 1.2;
+    margin-bottom: 25px;
+}
         .button{
             text-decoration: none;
             padding: 10px 20px;
@@ -342,12 +356,17 @@ nav {
             text-decoration: none;
             color: white;
         }
-        .youtube-1{
-            height: 450px;
-            width: 860px;
-            align-items: center;
-            pointer-events: none;   
+        .youtube-1 {
+            width: 100%;
+            max-width: 860px;
+            aspect-ratio: 16/9; /* Perfect modern video scaling without hardcoding height */
+            height: auto;
+            pointer-events: none;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
+
         .video-container{
             display: flex;
             flex-wrap: nowrap; /* Keep nowrap as per your original preference */
