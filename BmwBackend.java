@@ -12,7 +12,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.HashMap;
 import java.util.Map;
-
+/* 
 public class BmwServer {
     
     // THE FILING CABINET: Stores Email -> Name
@@ -37,7 +37,7 @@ public class BmwServer {
     }
     
     // Now inject 'userName' into your HTML template!
-}
+}*/
 public class BmwBackend {
     public static void main(String[] args) throws Exception {
         String portEnv = System.getenv("PORT");
