@@ -10,7 +10,34 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
+import java.util.HashMap;
+import java.util.Map;
 
+public class BmwServer {
+    
+    // THE FILING CABINET: Stores Email -> Name
+    // Example: "user@email.com" -> "Alex"
+    private static Map<String, String> userDatabase = new HashMap<>();
+
+    public static void main(String[] args) {
+        // ... your server startup code ...
+    }
+    
+    // --- INSIDE YOUR REGISTRATION HANDLER ---
+    // When a user registers:
+    userDatabase.put(extractedEmail, extractedName);
+    
+    // --- INSIDE YOUR LOGIN HANDLER ---
+    // When a user logs in, retrieve the name using their email:
+    String userName = userDatabase.get(extractedEmail);
+    
+    // Safety check just in case they aren't in the database
+    if (userName == null) {
+        userName = "Driver"; 
+    }
+    
+    // Now inject 'userName' into your HTML template!
+}
 public class BmwBackend {
     public static void main(String[] args) throws Exception {
         String portEnv = System.getenv("PORT");

@@ -368,6 +368,28 @@
     </div>
 </div>
     </main>
+
+    <!-- ==========================================================================
+   🚨 DESTROY PROFILE MODAL (BMW Enterprise Theme)
+   ========================================================================== -->
+<div id="deleteProfileModal" class="secure-modal-overlay">
+    <div class="secure-modal-card">
+        <h2>Terminate Driver Profile</h2>
+        <p class="warning-text">
+            This action is permanent and irreversible. All registered vehicles, support history, and diagnostic data will be completely erased from the global database.
+        </p>
+        
+        <div class="verification-input-group">
+            <label for="deleteConfirmInput">Type "TERMINATE" to confirm</label>
+            <input type="text" id="deleteConfirmInput" placeholder="Type Here..." autocomplete="off">
+        </div>
+
+        <div class="modal-action-buttons">
+            <button id="keepProfileBtn" class="btn-keep">Keep Profile</button>
+            <button id="terminateProfileBtn" class="btn-terminate" disabled>Terminate Profile</button>
+        </div>
+    </div>
+</div>
         <script src="dropdown.js"></script>
         <script src="translate.js"></script>
         <script src="auth.js"></script>

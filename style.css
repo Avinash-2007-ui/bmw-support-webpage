@@ -1405,6 +1405,149 @@ nav.main-navbar {
 }
 
 /* ==========================================================================
+   💎 PREMIUM OVERLAY & MODAL CARD STYLING
+   ========================================================================== */
+.secure-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999999; /* Higher than everything else */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+/* Add this class via JavaScript to open the modal */
+.secure-modal-overlay.is-open {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.secure-modal-card {
+    background-color: rgba(18, 18, 18, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    width: 90%;
+    max-width: 400px;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.secure-modal-card h2 {
+    color: #ffffff;
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.warning-text {
+    color: #a0a0a0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 25px;
+}
+
+/* ==========================================================================
+   🎛️ VERIFICATION INPUT
+   ========================================================================== */
+.verification-input-group {
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+.verification-input-group label {
+    display: block;
+    color: #ffffff;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.verification-input-group input {
+    width: 100%;
+    padding: 12px 16px;
+    background-color: #000000;
+    border: 1px solid #333333;
+    border-radius: 10px;
+    color: #ffffff;
+    font-size: 0.95rem;
+    box-sizing: border-box;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.verification-input-group input:focus {
+    outline: none;
+    border-color: #0066b1; /* BMW Blue Focus */
+    box-shadow: 0 0 8px rgba(0, 102, 177, 0.4);
+}
+
+/* ==========================================================================
+   ⚡ ACTIONS & ACCENT HOVER STATES
+   ========================================================================== */
+.modal-action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.modal-action-buttons button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Keep Profile Button (Primary Action) */
+.btn-keep {
+    background-color: #0066b1;
+    color: #ffffff;
+}
+
+.btn-keep:hover {
+    background-color: #0077cc;
+    box-shadow: 0 4px 15px rgba(0, 102, 177, 0.4);
+    transform: translateY(-1px);
+}
+
+/* Terminate Profile Button (Destructive Action) */
+.btn-terminate {
+    background-color: rgba(255, 59, 48, 0.1); /* Subtle transparent red base */
+    color: #ff3b30;
+    border: 1px solid rgba(255, 59, 48, 0.2) !important;
+}
+
+.btn-terminate:hover:not(:disabled) {
+    background-color: #ff3b30;
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(255, 59, 48, 0.4);
+    transform: translateY(-1px);
+}
+
+/* Disabled State (When typing doesn't match "TERMINATE") */
+.btn-terminate:disabled {
+    background-color: rgba(255, 255, 255, 0.03);
+    color: #444444;
+    border: 1px solid rgba(255, 255, 255, 0.05) !important;
+    cursor: not-allowed;
+    transform: none !important;
+    box-shadow: none !important;
+}
+
+/* ==========================================================================
    PREMIUM CENTRIC BMW PRELOADER STYLING
    ========================================================================== */
 #preloader {
