@@ -19,4 +19,19 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // Avatar Selection Logic
+const avatars = document.querySelectorAll('.avatar-option');
+let selectedAvatarPath = 'm-logo.png'; // Default fallback
+
+avatars.forEach(avatar => {
+    avatar.addEventListener('click', () => {
+        // Remove active class from all
+        avatars.forEach(a => a.classList.remove('active-avatar'));
+        // Add to the clicked one
+        avatar.classList.add('active-avatar');
+        // Store the chosen filename
+        selectedAvatarPath = avatar.getAttribute('data-avatar');
+    });
+});
 }); 

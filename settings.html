@@ -36,6 +36,27 @@
                 <h2>Account & Personal Details</h2>
                 <p>Manage your driver profile, avatar, and contact information here.</p>
                 <!-- We will add the specific inputs here next -->
+
+                <div class="avatar-selection-module">
+                        <h3>Select Driver Avatar</h3>
+                            <div class="avatar-grid">
+                                <!-- We will use placeholder image URLs for now, you can replace them with your local files later -->
+                                <img src="https://via.placeholder.com/80/000000/00F0FF?text=M-Logo" class="avatar-option active-avatar" data-avatar="m-logo.png" alt="M Logo">
+                                <img src="https://via.placeholder.com/80/000000/00F0FF?text=Turbo" class="avatar-option" data-avatar="turbo.png" alt="Turbo">
+                                <img src="https://via.placeholder.com/80/000000/00F0FF?text=E30" class="avatar-option" data-avatar="e30.png" alt="E30 Silhouette">
+                                <img src="https://via.placeholder.com/80/000000/00F0FF?text=Engine" class="avatar-option" data-avatar="engine.png" alt="Engine Block">
+                            </div>
+    
+                            <div class="profile-details-form">
+                                <label>Display Name</label>
+                                <input type="text" id="settingDisplayName" placeholder="Enter name...">
+        
+                                <label>Date of Birth</label>
+                                <input type="date" id="settingDob">
+        
+                                <button id="saveProfileBtn" class="btn-primary">Save Profile</button>
+                            </div>
+                </div>
             </section>
 
             <!-- 2. Localization Panel -->
