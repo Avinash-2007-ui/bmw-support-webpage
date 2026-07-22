@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Settings | BMW Global Support</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Make sure to link your font awesome or icon library here if you have one -->
+</head>
+<body class="settings-body">
+
+    <!-- 🔙 Top Navigation -->
+    <nav class="settings-top-nav">
+        <button id="backBtn" class="btn-back" onclick="window.history.back()">
+            ← Back to Terminal
+        </button>
+        <h1 class="settings-title">System Preferences</h1>
+    </nav>
+
+    <!-- 🎛️ Main Settings Container -->
+    <div class="settings-container glass-panel">
+        
+        <!-- Left Sidebar Navigation -->
+        <aside class="settings-sidebar">
+            <button class="tab-btn active" data-target="account-tab">Account & Personal</button>
+            <button class="tab-btn" data-target="region-tab">Localization & Global</button>
+            <button class="tab-btn" data-target="security-tab">Security & Access</button>
+            <button class="tab-btn" data-target="diagnostics-tab">Diagnostic Preferences</button>
+        </aside>
+
+        <!-- Right Content Area -->
+        <main class="settings-content">
+            
+            <!-- 1. Account Details Panel -->
+            <section id="account-tab" class="tab-panel active-panel">
+                <h2>Account & Personal Details</h2>
+                <p>Manage your driver profile, avatar, and contact information here.</p>
+                <!-- We will add the specific inputs here next -->
+            </section>
+
+            <!-- 2. Localization Panel -->
+            <section id="region-tab" class="tab-panel">
+                <h2>Localization & Global Preferences</h2>
+                <p>Set your region, language, and measurement units (Metric/Imperial).</p>
+            </section>
+
+            <!-- 3. Security Panel -->
+            <section id="security-tab" class="tab-panel">
+                <h2>Security & Access</h2>
+                <p>Manage passwords, active sessions, and geo-fencing protections.</p>
+            </section>
+
+            <!-- 4. Diagnostics Panel -->
+            <section id="diagnostics-tab" class="tab-panel">
+                <h2>Diagnostic Preferences</h2>
+                <p>Set your default vehicle chassis and telemetry data sharing.</p>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="settings.js"></script>
+</body>
+</html>

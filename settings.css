@@ -1,0 +1,134 @@
+/* ==========================================================================
+   ⚙️ SETTINGS PAGE STYLES (Black Liquid Glass & Turquoise)
+   ========================================================================== */
+
+.settings-body {
+    background-color: #050505; /* Deepest black background */
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 20px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+/* --- Top Navigation --- */
+.settings-top-nav {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.btn-back {
+    background: transparent;
+    color: #a0a0a0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.btn-back:hover {
+    color: #00F0FF; /* Turquoise Accent */
+    border-color: #00F0FF;
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+}
+
+.settings-title {
+    margin-left: 30px;
+    font-size: 1.5rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+/* --- Master-Detail Layout (Grid) --- */
+.settings-container {
+    display: grid;
+    grid-template-columns: 280px 1fr; /* 280px sidebar, rest is content */
+    gap: 30px;
+    flex-grow: 1;
+    height: calc(100vh - 100px);
+}
+
+/* --- Black Liquid Glass Panel --- */
+.glass-panel {
+    background: rgba(15, 15, 15, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5), 0 15px 35px rgba(0,0,0,0.8);
+}
+
+/* --- Sidebar Navigation --- */
+.settings-sidebar {
+    background: rgba(0, 0, 0, 0.4);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.tab-btn {
+    background: transparent;
+    color: #888888;
+    border: none;
+    text-align: left;
+    padding: 18px 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-left: 3px solid transparent;
+}
+
+.tab-btn:hover {
+    color: #ffffff;
+    background: rgba(0, 240, 255, 0.05);
+}
+
+/* The Active Turquoise State */
+.tab-btn.active {
+    color: #00F0FF;
+    background: rgba(0, 240, 255, 0.08);
+    border-left: 3px solid #00F0FF;
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+}
+
+/* --- Content Panels --- */
+.settings-content {
+    padding: 40px;
+    overflow-y: auto;
+}
+
+.tab-panel {
+    display: none; /* Hide all by default */
+    animation: fadeIn 0.4s ease forwards;
+}
+
+.tab-panel.active-panel {
+    display: block; /* Show active */
+}
+
+.tab-panel h2 {
+    color: #ffffff;
+    font-weight: 400;
+    margin-top: 0;
+    margin-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 15px;
+}
+
+.tab-panel p {
+    color: #a0a0a0;
+    font-size: 0.95rem;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
