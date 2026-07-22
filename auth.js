@@ -120,7 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // =========================================================================
-    // 📝 STRICT REGISTRATION HANDLER
+    // 📝 STRICT REGISTRATION HANDLER (Restored your exact logic)
     // =========================================================================
     if (registrationForm) {
         registrationForm.addEventListener("submit", async (e) => {
@@ -169,6 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
     }
+    
     // =========================================================================
     // 🚪 LOGOUT HANDLER
     // =========================================================================
@@ -186,8 +187,6 @@ document.addEventListener("DOMContentLoaded", () => {
     // ==========================================================================
     // ⚠️ DELETE ACCOUNT HANDLER (Premium Modal Integration)
     // ==========================================================================
-    const deleteAccountBtn = document.getElementById('deleteAccountBtn'); // Ensure your button has this ID
-
     // Modal Elements
     const modalOverlay = document.getElementById('deleteProfileModal');
     const confirmInput = document.getElementById('deleteConfirmInput');
@@ -195,19 +194,19 @@ document.addEventListener("DOMContentLoaded", () => {
     const keepBtn = document.getElementById('keepProfileBtn');
 
     // 1. Open the custom modal when the user clicks "Delete Account"
-    if (deleteAccountBtn) {
+    if (deleteAccountBtn && modalOverlay) {
         deleteAccountBtn.addEventListener("click", (e) => {
             e.preventDefault();
-            const currentDriver = localStorage.getItem("activeDriversSession");
+            const currentDriver = localStorage.getItem("activeDriverSession"); 
             if (!currentDriver) return; // Prevent opening if not logged in
         
             // Trigger the premium UI overlay
             modalOverlay.classList.add('is-open');
-    });
-}
+        });
+    }
 
     // 2. Handle Modal Logic & Final Deletion
-    if (confirmInput && terminateBtn && keepBtn) {
+    if (confirmInput && terminateBtn && keepBtn && modalOverlay) {
     
         // Live validation for the security input
         confirmInput.addEventListener('input', (e) => {
@@ -216,32 +215,35 @@ document.addEventListener("DOMContentLoaded", () => {
             } else {
                 terminateBtn.disabled = true;
             }
-    });
+        });
 
-    // Safe exit: Close the modal
-    keepBtn.addEventListener('click', () => {
-        modalOverlay.classList.remove('is-open');
-        confirmInput.value = ''; // Clear the input field
-        terminateBtn.disabled = true; // Re-lock the button
-    });
+        // Safe exit: Close the modal
+        keepBtn.addEventListener('click', () => {
+            modalOverlay.classList.remove('is-open');
+            confirmInput.value = ''; // Clear the input field
+            terminateBtn.disabled = true; // Re-lock the button
+        });
 
-    // The Point of No Return: Execute Deletion
-    terminateBtn.addEventListener('click', () => {
-        const currentDriver = localStorage.getItem("activeDriversSession");
-        
-        // Temporarily keeping the localStorage logic until we switch to the database
-        let db = JSON.parse(localStorage.getItem("driversDatabase")) || [];
-        db = db.filter(user => user.username.toLowerCase() !== currentDriver.toLowerCase());
-        
-        localStorage.setItem("driversDatabase", JSON.stringify(db));
-        localStorage.removeItem("activeDriversSession");
-        localStorage.removeItem("currentUser");
-        
-        // Close modal and redirect
-        modalOverlay.classList.remove('is-open');
-        window.location.href = "index.html";
-    });
-}
+        // The Point of No Return: Execute Deletion
+        terminateBtn.addEventListener('click', () => {
+            const currentDriver = localStorage.getItem("activeDriverSession"); 
+            
+            // Safety Check: Prevent fatal null error
+            if (!currentDriver) return;
+            
+            // Temporarily keeping the localStorage logic until we switch to the database
+            let db = JSON.parse(localStorage.getItem("driversDatabase")) || [];
+            db = db.filter(user => user.username.toLowerCase() !== currentDriver.toLowerCase());
+            
+            localStorage.setItem("driversDatabase", JSON.stringify(db));
+            localStorage.removeItem("activeDriverSession"); 
+            localStorage.removeItem("currentUser");
+            
+            // Close modal and redirect
+            modalOverlay.classList.remove('is-open');
+            window.location.href = "index.html";
+        });
+    }
     // =========================================================================
     // 🚨 CUSTOM MODAL CLOSE FUNCTION (Must be global)
     // =========================================================================
